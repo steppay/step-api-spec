@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import console from 'console'
 import fs from 'fs/promises'
-import { DOWNLOADED_SPECS_DIR, MERGED_SPECS_DIR, SERVICES } from './common/constants.mjs'
+import { DOWNLOADED_SPECS_DIR, GATEWAY_SPECS_DIR, MERGED_SPECS_DIR, SERVICES } from './common/constants.mjs'
 import {
     areComponentsEqual,
     pathExists,
@@ -13,6 +13,7 @@ import {
     replaceEnumRecursive,
 } from './common/utils.mjs'
 import _ from 'lodash'
+import { isAsyncFunction } from 'util/types'
 
 const API_SEGMENT = process.env.API_SEGMENT ?? 'all'
 
@@ -231,16 +232,18 @@ function updateOperationIdAndTagsByPathPrefix(spec, pathSegments = []) {
     return spec;
 }
 
-async function writeSpec(spec, apiName) {
-    if (!(await pathExists(MERGED_SPECS_DIR))) {
-        await fs.mkdir(MERGED_SPECS_DIR)
+async function writeSpec(spec, apiName, isMerged) {
+    let writePath = isMerged ? MERGED_SPECS_DIR : GATEWAY_SPECS_DIR;
+
+    if (!(await pathExists(writePath))) {
+        await fs.mkdir(writePath)
     }
 
-    const path = getSpecPathByServiceName(apiName, MERGED_SPECS_DIR)
+    const path = getSpecPathByServiceName(apiName, writePath)
     await fs.writeFile(path, JSON.stringify(spec, null, 4), {})
 }
 
-async function main() {
+async function mergeSpecBySegment() {
     try {
         const loadedSpecs = await loadSpecs()
         // const specs = await overrideSpecs(loadedSpecs)
@@ -259,10 +262,39 @@ async function main() {
         spec = clearTags(spec)
         spec = updateOperationIdAndTagsByPathPrefix(spec, [API_SEGMENT])
 
-        await writeSpec(spec, `merged_${API_SEGMENT}`.toLocaleLowerCase())
+        await writeSpec(spec, `${API_SEGMENT}`.toLocaleLowerCase(), true)
     } catch (e) {
         console.log(e)
     }
 }
+
+async function filterSpecBySegment() {
+    try {
+        const loadedSpecs = await loadSpecs();
+        const targetService = ['v1'];
+
+        for (const [service, specData] of Object.entries(loadedSpecs)) {
+            if (targetService.includes(API_SEGMENT)) {
+                let spec = specData;
+                spec = fixEnum(spec);
+                spec = clearTags(spec);
+                spec = updateOperationIdAndTagsByPathPrefix(spec, [API_SEGMENT]);
+                await writeSpec(spec, `${API_SEGMENT}_${service}`.toLowerCase(), false);
+            }
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+
+async function main() {
+    // segment 별로 merge
+    mergeSpecBySegment()
+
+    // service 별로 segment filtering
+    filterSpecBySegment([])
+}
+
 
 main()

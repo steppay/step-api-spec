@@ -12,7 +12,7 @@ chmod +x run.sh
 npm install
 APP_ENV=production yarn fetch
 API_SEGMENT=v1 yarn combine
-API_SPEC_FILE=merged_v1 yarn build
+API_SPEC_FILE=v1 yarn build
 ```
 
 - APP_ENV
@@ -28,13 +28,13 @@ API_SPEC_FILE=merged_v1 yarn build
     - admin
     - payment
 - API_SPEC_FILE
-    - merged_v1
-    - merged_public
-    - merged_manager
-    - merged_customer
-    - merged_internal
-    - merged_admin
-    - merged_payment
+    - v1
+    - public
+    - manager
+    - customer
+    - internal
+    - admin
+    - payment
 
 
 ## swagger ui 확인
@@ -46,3 +46,15 @@ node ./src/server.mjs
 ```text
 http://localhost:3000/swagger
 ```
+
+## 수정 작업
+
+- product
+    - v1_updateProductOrder
+    - v1_retryPayment
+    - v1_searchDeliveryByOrder
+
+
+APP_ENV=local yarn fetch
+API_SEGMENT=v1 yarn combine
+API_SPEC_FILE=v1 yarn build

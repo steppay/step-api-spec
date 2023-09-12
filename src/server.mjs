@@ -8,10 +8,10 @@ const app = express();
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 const specsDir = path.join(currentDir, '..', 'gateway');
 const fetchSpecsDir = path.join(currentDir, '..', 'service');
+const mergeSpecsDir = path.join(currentDir, '..', 'merge');
 
 const specRoutes = [];
 
-// Helper function
 const addSpecRoutesFromDir = (directory, prefix) => {
     fs.readdirSync(directory)
       .filter(file => file.endsWith('.json'))
@@ -28,9 +28,9 @@ const addSpecRoutesFromDir = (directory, prefix) => {
       });
 };
 
-// Add routes for both directories
 addSpecRoutesFromDir(specsDir, 'gateway');
 addSpecRoutesFromDir(fetchSpecsDir, 'service');
+addSpecRoutesFromDir(mergeSpecsDir, 'merge');
 
 app.get('/swagger', (req, res) => {
   const generateLinksForPrefix = (prefix) => {
@@ -49,6 +49,11 @@ app.get('/swagger', (req, res) => {
     <h3>Service</h3>
     <ul>
       ${generateLinksForPrefix('service')}
+    </ul>
+    <br><br><br>
+    <h3>Merge</h3>
+    <ul>
+      ${generateLinksForPrefix('merge')}
     </ul>
   `;
 

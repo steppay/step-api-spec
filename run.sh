@@ -14,7 +14,7 @@ for tag in "${tags[@]}"; do
     API_SEGMENT=$tag yarn combine
 done
 
-echo "Building with merged_all spec..."
-API_SPEC_FILE=merged_all yarn build
+echo "Building with all spec..."
+API_SPEC_FILE=all yarn build
 
 echo "Script completed!"

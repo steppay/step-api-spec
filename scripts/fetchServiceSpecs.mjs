@@ -9,9 +9,18 @@ import { directoryExists, getSpecPathByServiceName } from './common/utils.mjs'
 const APP_ENV = process.env.APP_ENV ?? 'develop'
 
 async function fetchServiceOpenApiSpec(env, services) {
-    const baseUrl = `https://api.${env === 'production' ? '' : env + '.'}steppay.kr/docs/manager`
+    let baseUrl = `https://api.${env === 'production' ? '' : env + '.'}steppay.kr/docs/manager`
+    if (env === 'local') {
+        baseUrl = `http://localhost:9091/docs`
+    }
     for (const service of services) {
-        const response = await axios.get(`${baseUrl}/${service}/api-docs`)
+        let response = ""
+        if (env === 'local') {
+            console.log("====> response ", `${baseUrl}/api-docs`)
+            response = await axios.get(`${baseUrl}/api-docs`)
+        } else {
+            response = await axios.get(`${baseUrl}/${service}/api-docs`)
+        }
         const data = response.data
 
         if (!(await directoryExists(DOWNLOADED_SPECS_DIR))) {
