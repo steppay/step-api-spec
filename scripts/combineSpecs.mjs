@@ -1,7 +1,13 @@
 #!/usr/bin/env node
 import console from 'console'
 import fs from 'fs/promises'
-import { DOWNLOADED_SPECS_DIR, GATEWAY_SPECS_DIR, MERGED_SPECS_DIR, SERVICES } from './common/constants.mjs'
+import { 
+    DOWNLOADED_SPECS_DIR, 
+    GATEWAY_SPECS_DIR, 
+    MERGED_SPECS_DIR, 
+    SERVICES, 
+    INCLUDE_TAG,
+    TAG_SPECS } from './common/constants.mjs'
 import {
     areComponentsEqual,
     pathExists,
@@ -13,7 +19,6 @@ import {
     replaceEnumRecursive,
 } from './common/utils.mjs'
 import _ from 'lodash'
-import { isAsyncFunction } from 'util/types'
 
 const API_SEGMENT = process.env.API_SEGMENT ?? 'all'
 
@@ -33,7 +38,22 @@ async function loadSpecs() {
     }, Promise.resolve({}));
 }
 
+async function loadSpecFrom(directory, fileName) {
+    try {
+        const specPath = `./${directory}/${fileName}.json`;
 
+        if (!(fs.access(specPath))) {
+            console.error(`문제가 발생한 경로: ${specPath}`);
+            throw new Error(`해당 경로에 스펙 파일이 없습니다: ${specPath}`);
+        }
+
+        const specContent = await fs.readFile(specPath);
+        return JSON.parse(specContent.toString());
+    } catch (e) {
+        console.error(e);
+        throw e;
+    }
+}
 
 function combineSpec(specs) {
     // 이름이 겹치는 컴포넌트 찾기
@@ -147,6 +167,91 @@ function extractSchemasFromRef(schemaRef, spec, collectedSchemas) {
     }
 }
 
+// /api/v1/product/... 에서 product를 가져와서 태그로 사용
+function getTagFromPath(path) {
+    const tag = path.split("/");
+    return tag[3] || '';
+}
+
+function processOperation(operation, spec, schemasToKeep, filterFn) {
+    if (typeof operation === 'object' && filterFn(operation)) {
+        // request 스키마 추출
+        if (operation.requestBody &&
+            operation.requestBody.content["application/json"]) {
+            if (operation.requestBody.content["application/json"].schema["$ref"]) {
+                extractSchemasFromRef(operation.requestBody.content["application/json"].schema["$ref"], spec, schemasToKeep);
+            }
+            if (operation.requestBody.content["application/json"].schema.items && operation.requestBody.content["application/json"].schema.items["$ref"]) {
+                extractSchemasFromRef(operation.requestBody.content["application/json"].schema.items["$ref"], spec, schemasToKeep);
+            }
+            if (operation.requestBody.content["application/json"].schema.properties && operation.requestBody.content["application/json"].schema.properties.data
+                && operation.requestBody.content["application/json"].schema.properties.data["$ref"]) {
+                extractSchemasFromRef(operation.requestBody.content["application/json"].schema.properties.data["$ref"], spec, schemasToKeep);
+            }
+            if (operation.requestBody.content["application/json"].schema.properties && operation.requestBody.content["application/json"].schema.properties.subscriptionChangePriceAdminDTO
+                && operation.requestBody.content["application/json"].schema.properties.subscriptionChangePriceAdminDTO["$ref"]) {
+                extractSchemasFromRef(operation.requestBody.content["application/json"].schema.properties.subscriptionChangePriceAdminDTO["$ref"], spec, schemasToKeep);
+            }
+        }
+
+        // parameters 스키마 추출
+        if (operation.parameters) {
+            operation.parameters.forEach(parameter => {
+                if (parameter.schema && parameter.schema["$ref"]) {
+                    extractSchemasFromRef(parameter.schema["$ref"], spec, schemasToKeep);
+                }
+            });
+        }
+
+        // response 스키마 추출
+        Object.values(operation.responses).forEach(response => {
+            if (response.content && response.content["*/*"]) {
+                if (response.content["*/*"].schema && response.content["*/*"].schema["$ref"]) {
+                    extractSchemasFromRef(response.content["*/*"].schema["$ref"], spec, schemasToKeep);
+                }
+                if (response.content["*/*"].schema && response.content["*/*"].schema.items && response.content["*/*"].schema.items["$ref"]) {
+                    extractSchemasFromRef(response.content["*/*"].schema.items["$ref"], spec, schemasToKeep);
+                }
+                if (response.content["*/*"].schema && response.content["*/*"].schema.additionalProperties && response.content["*/*"].schema.additionalProperties["$ref"]) {
+                    extractSchemasFromRef(response.content["*/*"].schema.additionalProperties["$ref"], spec, schemasToKeep);
+                }
+            }
+        });
+    }
+}
+
+function extractReferencedSchemas(spec, pathSegments) {
+    const filterFn = operation => pathSegments.some(segment => operation.operationId.includes(segment));
+    const schemasToKeep = extractSchemas(spec, filterFn);
+
+    const schemasToDelete = Object.keys(spec.components.schemas).filter(schemaName => !schemasToKeep.has(schemaName));
+    schemasToDelete.forEach(schemaName => {
+        delete spec.components.schemas[schemaName];
+    });
+}
+
+function extractReferencedSchemasByTags(spec, pathSegments) {
+    const filterFn = operation => pathSegments.some(segment => operation.operationId.includes(segment)) && operation.tags && operation.tags.some(tag => INCLUDE_TAG.includes(tag));
+    const schemasToKeep = extractSchemas(spec, filterFn);
+
+    const schemasToDelete = Object.keys(spec.components.schemas).filter(schemaName => !schemasToKeep.has(schemaName));
+    schemasToDelete.forEach(schemaName => {
+        delete spec.components.schemas[schemaName];
+    });
+}
+
+function extractSchemas(spec, filterFn) {
+    const schemasToKeep = new Set();
+
+    Object.keys(spec.paths).forEach(path => {
+        Object.values(spec.paths[path]).forEach(operation => {
+            processOperation(operation, spec, schemasToKeep, filterFn);
+        });
+    });
+
+    return schemasToKeep;
+}
+
 function updateOperationIdAndTagsByPathPrefix(spec, pathSegments = []) {
     const uniqueOperationIds = new Set();
 
@@ -163,71 +268,19 @@ function updateOperationIdAndTagsByPathPrefix(spec, pathSegments = []) {
                             counter++;
                         }
                         uniqueOperationIds.add(newOperationId);
-                        operation['tags'] = [segment];
+                        // operation['tags'] = [segment];
+                        operation['tags'] = [getTagFromPath(path)];
                         operation['operationId'] = newOperationId;
                     }
                 });
+                // console.log("path: ", path)
             } else {
                 delete spec.paths[path];
             }
         });
     });
 
-    const schemasToKeep = new Set();
-
-    Object.keys(spec.paths).forEach(path => {
-        Object.values(spec.paths[path]).forEach(operation => {
-            if (typeof operation === 'object' && pathSegments.some(segment => operation.operationId.includes(segment))) {
-                // request 스키마 추출
-                if (operation.requestBody &&
-                    operation.requestBody.content["application/json"]) {
-                    if (operation.requestBody.content["application/json"].schema["$ref"]) {
-                        extractSchemasFromRef(operation.requestBody.content["application/json"].schema["$ref"], spec, schemasToKeep);
-                    }
-                    if (operation.requestBody.content["application/json"].schema.items && operation.requestBody.content["application/json"].schema.items["$ref"]) {
-                        extractSchemasFromRef(operation.requestBody.content["application/json"].schema.items["$ref"], spec, schemasToKeep);
-                    }
-                    if (operation.requestBody.content["application/json"].schema.properties && operation.requestBody.content["application/json"].schema.properties.data
-                        && operation.requestBody.content["application/json"].schema.properties.data["$ref"]) {
-                        extractSchemasFromRef(operation.requestBody.content["application/json"].schema.properties.data["$ref"], spec, schemasToKeep);
-                    }
-                    if (operation.requestBody.content["application/json"].schema.properties && operation.requestBody.content["application/json"].schema.properties.subscriptionChangePriceAdminDTO
-                        && operation.requestBody.content["application/json"].schema.properties.subscriptionChangePriceAdminDTO["$ref"]) {
-                        extractSchemasFromRef(operation.requestBody.content["application/json"].schema.properties.subscriptionChangePriceAdminDTO["$ref"], spec, schemasToKeep);
-                    }
-                }
-
-                // parameters 스키마 추출
-                if (operation.parameters) {
-                    operation.parameters.forEach(parameter => {
-                        if (parameter.schema && parameter.schema["$ref"]) {
-                            extractSchemasFromRef(parameter.schema["$ref"], spec, schemasToKeep);
-                        }
-                    });
-                }
-
-                // response 스키마 추출
-                Object.values(operation.responses).forEach(response => {
-                    if (response.content && response.content["*/*"]) {
-                        if (response.content["*/*"].schema && response.content["*/*"].schema["$ref"]) {
-                            extractSchemasFromRef(response.content["*/*"].schema["$ref"], spec, schemasToKeep);
-                        }
-                        if (response.content["*/*"].schema && response.content["*/*"].schema.items && response.content["*/*"].schema.items["$ref"]) {
-                            extractSchemasFromRef(response.content["*/*"].schema.items["$ref"], spec, schemasToKeep);
-                        }
-                        if (response.content["*/*"].schema && response.content["*/*"].schema.additionalProperties && response.content["*/*"].schema.additionalProperties["$ref"]) {
-                            extractSchemasFromRef(response.content["*/*"].schema.additionalProperties["$ref"], spec, schemasToKeep);
-                        }
-                    }
-                });
-            }
-        });
-    });
-
-    const schemasToDelete = Object.keys(spec.components.schemas).filter(schemaName => !schemasToKeep.has(schemaName));
-    schemasToDelete.forEach(schemaName => {
-        delete spec.components.schemas[schemaName];
-    });
+    extractReferencedSchemas(spec, pathSegments)
 
     return spec;
 }
@@ -246,17 +299,7 @@ async function writeSpec(spec, apiName, isMerged) {
 async function mergeSpecBySegment() {
     try {
         const loadedSpecs = await loadSpecs()
-        // const specs = await overrideSpecs(loadedSpecs)
         const specs = loadedSpecs
-        const tags = [
-            'v1',
-            'public',
-            'manager',
-            'customer',
-            'internal',
-            'admin',
-            'payment',
-        ]
         let spec = combineSpec(specs)
         spec = fixEnum(spec)
         spec = clearTags(spec)
@@ -271,10 +314,10 @@ async function mergeSpecBySegment() {
 async function filterSpecBySegment() {
     try {
         const loadedSpecs = await loadSpecs();
-        const targetService = ['v1'];
+        const targetSegment = ['v1'];
 
         for (const [service, specData] of Object.entries(loadedSpecs)) {
-            if (targetService.includes(API_SEGMENT)) {
+            if (targetSegment.includes(API_SEGMENT)) {
                 let spec = specData;
                 spec = fixEnum(spec);
                 spec = clearTags(spec);
@@ -287,14 +330,75 @@ async function filterSpecBySegment() {
     }
 }
 
+async function addTag(directory, fileName) {
+    try {
+        const spec = await loadSpecFrom(directory, fileName);
+        const tagsMappingContent = await fs.readFile(TAG_SPECS, 'utf-8');
+        const tagsMapping = JSON.parse(tagsMappingContent);
+
+        const sortedPaths = {};
+
+        for (const [tag, paths] of Object.entries(tagsMapping)) {
+            for (const path of paths) {
+                if (spec.paths[path]) {
+                    sortedPaths[path] = spec.paths[path];
+                }
+            }
+        }
+
+        for (const [pathKey, pathValue] of Object.entries(spec.paths)) {
+            if (!sortedPaths[pathKey]) {
+                sortedPaths[pathKey] = pathValue;
+            }
+        }
+
+        spec.paths = sortedPaths;
+        for (const [pathKey, pathValue] of Object.entries(spec.paths)) {
+            for (const method of Object.values(pathValue)) {
+                if (method.tags) {
+                    method.tags = [];
+                }
+            }
+
+            let matchedTag = "포함되지 않은 API";
+            for (const [tag, paths] of Object.entries(tagsMapping)) {
+                if (paths.includes(pathKey)) {
+                    matchedTag = tag;
+                    break;
+                }
+            }
+
+            for (const method of Object.values(pathValue)) {
+                if (!method.tags) {
+                    method.tags = [];
+                }
+
+                if (!method.tags.includes(matchedTag)) {
+                    method.tags.push(matchedTag);
+                }
+            }
+        }
+        
+        const targetSegment = ['v1'];
+        extractReferencedSchemasByTags(spec, targetSegment)
+
+        const savePath = `./${directory}/${fileName}_tag.json`
+        await fs.writeFile(savePath, JSON.stringify(spec, null, 2));
+
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 async function main() {
     // segment 별로 merge
-    mergeSpecBySegment()
+    await mergeSpecBySegment();
 
     // service 별로 segment filtering
-    filterSpecBySegment([])
-}
+    await filterSpecBySegment();
 
+    // 공개된 V1 API에 맞게 정렬
+    await addTag('merge', 'v1');
+}
 
 main()

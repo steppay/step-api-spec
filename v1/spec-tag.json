@@ -1,0 +1,53 @@
+{
+  "고객 API": [
+    "/api/v1/customers",
+    "/api/v1/customers/{id}",
+    "/api/v1/customers/{id}/payment-method",
+    "/api/v1/customers/{customerId}/payment-method",
+    "/api/v1/customers/{customerId}/payment-method/{methodId}"
+  ],
+  "상품 API": [
+    "/api/v1/products",
+    "/api/v1/products/{id}",
+    "/api/v1/products/{code}",
+    "/api/v1/products/{id}/product_order",
+    "/api/v1/products/{id}/prices/{priceId}",
+    "/api/v1/products/{id}/prices",
+    "/api/v1/products/{id}/status"
+  ],
+  "주문 API": [
+    "/api/v1/orders",
+    "/api/v1/orders/{orderIdOrCode}",
+    "/api/v1/orders/{orderIdOrCode}/cancel",
+    "/api/v1/orders/{idOrCode}/pay"
+  ],
+  "청구서 API": [
+    "/api/v1/invoices",
+    "/api/v1/invoices/{id}"
+  ],
+  "구독 API": [
+    "/api/v1/subscriptions",
+    "/api/v1/subscriptions/{id}",
+    "/api/v1/subscriptions/{subscriptionId}/items",
+    "/api/v1/subscriptions/{subscriptionId}/items/{itemId}",
+    "/api/v1/subscriptions/{subscriptionId}/payment-method",
+    "/api/v1/subscriptions/{subscriptionId}/interval",
+    "/api/v1/subscriptions/{subscriptionId}/pause",
+    "/api/v1/subscriptions/{subscriptionId}/change-pay-datetime",
+    "/api/v1/subscriptions/{subscriptionId}/cancel",
+    "/api/v1/subscriptions/{subscriptionId}/active",
+    "/api/v1/subscriptions/{id}/renew",
+    "/api/v1/subscriptions/{subscriptionId}/items/{itemId}/options"
+  ],
+  "사용량 API": [
+    "/api/v1/usages",
+    "/api/v1/subscriptions/{subscriptionId}/calculate"
+  ],
+  "커버 API": [
+
+  ],
+  "인증 API": [
+    "/api/v1/session/{customerId}"
+  ],
+  "포함되지 않은 API": []
+}
