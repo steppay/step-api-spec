@@ -1,12 +1,21 @@
 # step-api-spec
 스텝페이 API Spec을 service별, gateway별로 확인하기 위한 서비스
 
+## Requirement
+- npm
+- yarn
+
+```bash
+brew install node
+npm install --global yarn
+```
+
 ## 주요 명령어 사용법
 
 ```bash
 chmod +x run.sh
 ./run.sh
-```bash
+```
 
 ```bash
 npm install
