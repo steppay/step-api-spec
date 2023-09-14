@@ -1,5 +1,283 @@
 {
     "/api/v1/products": {
+        "get": {
+            "summary":"상품 목록 조회",
+            "responses": {
+                "상품 목록": {
+                    "value": {
+                        "last": true,
+                        "size": 0,
+                        "sort": {
+                            "empty": true,
+                            "sorted": true,
+                            "unsorted": true
+                        },
+                        "empty": true,
+                        "first": true,
+                        "number": 0,
+                        "content": [
+                            {
+                            "id": 0,
+                            "code": "string",
+                            "name": "string",
+                            "type": "BOX",
+                            "prices": [
+                                {
+                                "id": 0,
+                                "code": "string",
+                                "plan": {
+                                    "name": "string",
+                                    "adminName": "string",
+                                    "description": "string",
+                                    "isHiddenFromShop": true,
+                                    "detailDescription": "string"
+                                },
+                                "type": "ONE_TIME",
+                                "unit": "string",
+                                "claim": {
+                                    "methodType": "PRE",
+                                    "billingDate": 0,
+                                    "provideStartDay": 0,
+                                    "whenToClaimType": "FIRST_PAYMENT"
+                                },
+                                "order": 0,
+                                "price": 0,
+                                "options": [
+                                    {
+                                    "id": 0,
+                                    "name": "string",
+                                    "type": "INITIALLY",
+                                    "price": 0,
+                                    "priceCode": "string",
+                                    "priceName": "string",
+                                    "productCode": "string",
+                                    "productType": "BOX",
+                                    "recurringDTO": {
+                                        "id": 0,
+                                        "interval": "DAY",
+                                        "usageType": "LICENSED",
+                                        "intervalCount": 0,
+                                        "aggregateUsageType": "SUM"
+                                    }
+                                    }
+                                ],
+                                "volumes": [
+                                    {
+                                    "id": 0,
+                                    "max": 0,
+                                    "min": 0,
+                                    "price": 0
+                                    }
+                                ],
+                                "planName": "string",
+                                "createdAt": "2019-08-24T14:15:22Z",
+                                "firstSale": {
+                                    "price": 0,
+                                    "enabled": true
+                                },
+                                "recurring": {
+                                    "id": 0,
+                                    "interval": "DAY",
+                                    "usageType": "LICENSED",
+                                    "intervalCount": 0,
+                                    "aggregateUsageType": "SUM"
+                                },
+                                "modifiedAt": "2019-08-24T14:15:22Z",
+                                "billingDate": 0,
+                                "setupOption": {
+                                    "id": 0,
+                                    "name": "string",
+                                    "type": "INITIALLY",
+                                    "price": 0,
+                                    "claimMethodType": "PRE"
+                                },
+                                "basicServing": 0,
+                                "bundlePrices": [
+                                    {
+                                    "price": {},
+                                    "product": {
+                                        "id": 0,
+                                        "sku": "string",
+                                        "code": "string",
+                                        "name": "string",
+                                        "type": "BOX",
+                                        "notice": "string",
+                                        "prices": [
+                                        {}
+                                        ],
+                                        "status": "SALE",
+                                        "groupId": 0,
+                                        "summary": "string",
+                                        "quantity": 0,
+                                        "subTitle": "string",
+                                        "createdAt": "2019-08-24T14:15:22Z",
+                                        "imageUrls": [
+                                        "string"
+                                        ],
+                                        "useWidget": {
+                                        "useDemo": true,
+                                        "useNotice": true,
+                                        "useEventBadge": true,
+                                        "useOnetimePurchasable": true
+                                        },
+                                        "categories": [
+                                        {
+                                            "name": "string",
+                                            "categoryId": 0
+                                        }
+                                        ],
+                                        "demoPeriod": 0,
+                                        "eventBadge": [
+                                        {
+                                            "event": "string",
+                                            "endDateTime": "2019-08-24T14:15:22Z",
+                                            "startDateTime": "2019-08-24T14:15:22Z"
+                                        }
+                                        ],
+                                        "modifiedAt": "2019-08-24T14:15:22Z",
+                                        "vendorUuid": "86a7a3b9-2a36-4138-af12-a1ac1bec47f5",
+                                        "description": "string",
+                                        "enabledDemo": true,
+                                        "optionGroups": [
+                                        {
+                                            "id": 0,
+                                            "name": "string",
+                                            "depth": 0,
+                                            "options": [
+                                            {
+                                                "id": 0,
+                                                "name": "string",
+                                                "price": 0,
+                                                "parent": 0,
+                                                "quantity": 0
+                                            }
+                                            ]
+                                        }
+                                        ],
+                                        "productOrder": 0,
+                                        "countrySetting": {
+                                        "id": 0,
+                                        "taxRate": 0,
+                                        "isDefault": true,
+                                        "countryCode": "string",
+                                        "currencyCode": "string",
+                                        "timezoneName": "string"
+                                        },
+                                        "demoPeriodUnit": "DAY",
+                                        "reasonOfReject": "string",
+                                        "useCombination": true,
+                                        "combinedProducts": [
+                                        {
+                                            "code": "string",
+                                            "name": "string",
+                                            "type": "BOX",
+                                            "prices": [
+                                            {}
+                                            ],
+                                            "status": "SALE",
+                                            "options": [
+                                            {
+                                                "id": 0,
+                                                "name": "string",
+                                                "depth": 0,
+                                                "options": [
+                                                {
+                                                    "id": 0,
+                                                    "name": "string",
+                                                    "price": 0,
+                                                    "parent": 0,
+                                                    "quantity": 0
+                                                }
+                                                ]
+                                            }
+                                            ],
+                                            "createdAt": "2019-08-24T14:15:22Z",
+                                            "modifiedAt": "2019-08-24T14:15:22Z",
+                                            "description": "string"
+                                        }
+                                        ],
+                                        "featuredImageUrl": "string",
+                                        "optionCombinations": [
+                                        {
+                                            "id": [
+                                            0
+                                            ],
+                                            "price": 0,
+                                            "status": "SALE",
+                                            "quantity": 0
+                                        }
+                                        ],
+                                        "isOnetimePurchasable": true
+                                    }
+                                    }
+                                ],
+                                "firstSalePrice": 0,
+                                "claimMethodType": "PRE",
+                                "planDescription": "string",
+                                "whenToClaimType": "FIRST_PAYMENT",
+                                "additionalBilling": {
+                                    "id": 0,
+                                    "type": "USAGE_BASED_WITH_RANGE",
+                                    "ranges": [
+                                    {
+                                        "id": 0,
+                                        "price": 0,
+                                        "until": 0
+                                    }
+                                    ]
+                                },
+                                "onetimeBundlePrice": 0,
+                                "enabledFirstSalePrice": true,
+                                "maximumPurchaseQuantity": 0,
+                                "membershipExpirationDate": 0,
+                                "membershipExpirationDateType": "DAY"
+                                }
+                            ],
+                            "status": "SALE",
+                            "quantity": 0,
+                            "createdAt": "2019-08-24T14:15:22Z",
+                            "categories": [
+                                {
+                                "name": "string",
+                                "categoryId": 0
+                                }
+                            ],
+                            "modifiedAt": "2019-08-24T14:15:22Z",
+                            "vendorUuid": "86a7a3b9-2a36-4138-af12-a1ac1bec47f5",
+                            "description": "string",
+                            "enabledDemo": true,
+                            "productOrder": 0,
+                            "countrySetting": {
+                                "id": 0,
+                                "taxRate": 0,
+                                "isDefault": true,
+                                "countryCode": "string",
+                                "currencyCode": "string",
+                                "timezoneName": "string"
+                            },
+                            "featuredImageUrl": "string",
+                            "isOnetimePurchasable": true
+                            }
+                        ],
+                        "pageable": {
+                            "sort": {
+                            "empty": true,
+                            "sorted": true,
+                            "unsorted": true
+                            },
+                            "paged": true,
+                            "offset": 0,
+                            "unpaged": true,
+                            "pageSize": 0,
+                            "pageNumber": 0
+                        },
+                        "totalPages": 0,
+                        "totalElements": 0,
+                        "numberOfElements": 0
+                    }
+                }
+            }
+        },
         "post": {
             "summary": "상품 생성",
             "requestBody": {
@@ -93,10 +371,6 @@
         }
     },
     "/api/v1/products/{id}": {
-        "get": {
-            "requestBody": {},
-            "responses": {}
-        },
         "put": {
             "summary": "상품 수정",
             "requestBody": {
@@ -204,6 +478,17 @@
                     }
                 }
             }
+        },
+        "delete": {
+            "summary": "상품 삭제",
+            "responses":{
+                "응답 예시": {
+                    "value": {
+                        "body": null,
+                        "message": "상품 삭제 성공"
+                    }
+                }
+            }
         }
     },
     "/api/v1/products/{code}": {
@@ -211,84 +496,82 @@
             "summary": "상품 상세 조회",
             "requestBody": {},
             "responses": {
-                "examples": {
-                    "응답 예시": {
-                        "value": {
-                            "id": 8525,
-                            "code": "product_3ahl8r2Mt",
-                            "type": "SOFTWARE",
-                            "status": "SALE",
-                            "name": "Product Name",
-                            "subTitle": null,
-                            "featuredImageUrl": "Url string",
-                            "imageUrls": [
-                                "Url string"
-                            ],
-                            "description": "Product Description",
-                            "summary": "string",
-                            "reasonOfReject": null,
-                            "sku": "unit",
-                            "quantity": 0,
-                            "combinedProducts": [],
-                            "optionGroups": [
-                                {
-                                    "id": 1091,
-                                    "name": "Option Group Name",
-                                    "options": [
-                                        {
-                                            "id": 2547,
-                                            "name": "Basic",
-                                            "quantity": 0,
-                                            "price": 1000,
-                                            "parent": null
-                                        },
-                                        {
-                                            "id": 2548,
-                                            "name": "Standard",
-                                            "quantity": 0,
-                                            "price": 2000,
-                                            "parent": null
-                                        },
-                                        {
-                                            "id": 2549,
-                                            "name": "Pro",
-                                            "quantity": 0,
-                                            "price": 2000,
-                                            "parent": null
-                                        }
-                                    ],
-                                    "depth": null
-                                }
-                            ],
-                            "useCombination": false,
-                            "optionCombinations": [],
-                            "prices": [],
-                            "createdAt": "2023-09-13T05:27:16",
-                            "modifiedAt": "2023-09-13T05:27:16",
-                            "enabledDemo": true,
-                            "demoPeriod": 3,
-                            "demoPeriodUnit": "DAY",
-                            "categories": [],
-                            "vendorUuid": "5d18b0e1-c843-4740-b369-c55891b301e7",
-                            "productOrder": 0,
-                            "isOnetimePurchasable": false,
-                            "eventBadge": [
-                                {
-                                    "event": "string",
-                                    "startDateTime": "2019-08-24T14:15:22",
-                                    "endDateTime": "2019-08-24T14:15:22"
-                                }
-                            ],
-                            "notice": "notice",
-                            "useWidget": {
-                                "useDemo": false,
-                                "useEventBadge": false,
-                                "useOnetimePurchasable": false,
-                                "useNotice": false
-                            },
-                            "groupId": null,
-                            "countrySetting": null
-                        }
+                "응답 예시": {
+                    "value": {
+                        "id": 8525,
+                        "code": "product_3ahl8r2Mt",
+                        "type": "SOFTWARE",
+                        "status": "SALE",
+                        "name": "Product Name",
+                        "subTitle": null,
+                        "featuredImageUrl": "Url string",
+                        "imageUrls": [
+                            "Url string"
+                        ],
+                        "description": "Product Description",
+                        "summary": "string",
+                        "reasonOfReject": null,
+                        "sku": "unit",
+                        "quantity": 0,
+                        "combinedProducts": [],
+                        "optionGroups": [
+                            {
+                                "id": 1091,
+                                "name": "Option Group Name",
+                                "options": [
+                                    {
+                                        "id": 2547,
+                                        "name": "Basic",
+                                        "quantity": 0,
+                                        "price": 1000,
+                                        "parent": null
+                                    },
+                                    {
+                                        "id": 2548,
+                                        "name": "Standard",
+                                        "quantity": 0,
+                                        "price": 2000,
+                                        "parent": null
+                                    },
+                                    {
+                                        "id": 2549,
+                                        "name": "Pro",
+                                        "quantity": 0,
+                                        "price": 2000,
+                                        "parent": null
+                                    }
+                                ],
+                                "depth": null
+                            }
+                        ],
+                        "useCombination": false,
+                        "optionCombinations": [],
+                        "prices": [],
+                        "createdAt": "2023-09-13T05:27:16",
+                        "modifiedAt": "2023-09-13T05:27:16",
+                        "enabledDemo": true,
+                        "demoPeriod": 3,
+                        "demoPeriodUnit": "DAY",
+                        "categories": [],
+                        "vendorUuid": "5d18b0e1-c843-4740-b369-c55891b301e7",
+                        "productOrder": 0,
+                        "isOnetimePurchasable": false,
+                        "eventBadge": [
+                            {
+                                "event": "string",
+                                "startDateTime": "2019-08-24T14:15:22",
+                                "endDateTime": "2019-08-24T14:15:22"
+                            }
+                        ],
+                        "notice": "notice",
+                        "useWidget": {
+                            "useDemo": false,
+                            "useEventBadge": false,
+                            "useOnetimePurchasable": false,
+                            "useNotice": false
+                        },
+                        "groupId": null,
+                        "countrySetting": null
                     }
                 }
             }
@@ -1070,6 +1353,30 @@
                         "bundlePrices": [],
                         "onetimeBundlePrice": 0,
                         "order": 5
+                    }
+                }
+            }
+        },
+        "delete": {
+            "summary":"가격 삭제",
+            "responses": {
+                "응답 예시": {
+                    "value": {
+                        "body": null,
+                        "message": "상품 모델을 성공적으로 삭제 했습니다"
+                    }
+                }
+            }
+        }
+    },
+    "/api/v1/products/{id}/status": {
+        "patch": {
+            "summary": "상품 게시 삭제 변경",
+            "responses": {
+                "응답 예시": {
+                    "value": {
+                        "body": null,
+                        "message": "상품 상태 변경 성공"
                     }
                 }
             }
