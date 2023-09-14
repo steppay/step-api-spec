@@ -10,7 +10,6 @@
     "/api/v1/products",
     "/api/v1/products/{id}",
     "/api/v1/products/{code}",
-    "/api/v1/products/{id}/product_order",
     "/api/v1/products/{id}/prices/{priceId}",
     "/api/v1/products/{id}/prices",
     "/api/v1/products/{id}/status"

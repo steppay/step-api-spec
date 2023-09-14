@@ -5,18 +5,22 @@ import {
     DOWNLOADED_SPECS_DIR, 
     GATEWAY_SPECS_DIR, 
     MERGED_SPECS_DIR, 
+    COMPLETE_SPECS_DIR,
     SERVICES, 
     INCLUDE_TAG,
-    TAG_SPECS } from './common/constants.mjs'
+    TAG_SPECS,
+    EXAMPLE_SPECS
+} from './common/constants.mjs'
 import {
     areComponentsEqual,
     pathExists,
     fileExists,
+    directoryExists,
     getSpecPathByServiceName,
     renameField,
     replaceValueRecursive,
     capitalize,
-    replaceEnumRecursive,
+    replaceEnumRecursive
 } from './common/utils.mjs'
 import _ from 'lodash'
 
@@ -40,7 +44,7 @@ async function loadSpecs() {
 
 async function loadSpecFrom(directory, fileName) {
     try {
-        const specPath = `./${directory}/${fileName}.json`;
+        const specPath = `${directory}/${fileName}`;
 
         if (!(fs.access(specPath))) {
             console.error(`문제가 발생한 경로: ${specPath}`);
@@ -330,14 +334,13 @@ async function filterSpecBySegment() {
     }
 }
 
-async function addTag(directory, fileName) {
+async function addTag(inPath, outPath, fileName) {
     try {
-        const spec = await loadSpecFrom(directory, fileName);
+        const spec = await loadSpecFrom(inPath, `${fileName}.json`);
         const tagsMappingContent = await fs.readFile(TAG_SPECS, 'utf-8');
         const tagsMapping = JSON.parse(tagsMappingContent);
 
         const sortedPaths = {};
-
         for (const [tag, paths] of Object.entries(tagsMapping)) {
             for (const path of paths) {
                 if (spec.paths[path]) {
@@ -382,8 +385,55 @@ async function addTag(directory, fileName) {
         const targetSegment = ['v1'];
         extractReferencedSchemasByTags(spec, targetSegment)
 
-        const savePath = `./${directory}/${fileName}_tag.json`
+        const savePath = `${outPath}/${fileName}_tag.json`
+        if (!(await directoryExists(outPath))) {
+            await fs.mkdir(outPath);
+        }
+
         await fs.writeFile(savePath, JSON.stringify(spec, null, 2));
+
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+async function addExamples(inPath, inFileName, outFileName) {
+    try {
+        const spec = await loadSpecFrom(inPath, inFileName);
+        const exampleContents = await fs.readFile(EXAMPLE_SPECS, 'utf-8');
+        const examples = JSON.parse(exampleContents);
+
+        Object.entries(examples).forEach(([examplePath, exampleMethods]) => {
+            if (spec.paths[examplePath]) {
+                Object.entries(exampleMethods).forEach(([exampleMethod, exampleData]) => {
+                    const operation = spec.paths[examplePath][exampleMethod];
+        
+                    if (operation !== null && operation !== undefined && typeof operation === 'object') {
+        
+                        // requestBody의 application/json에 examples 추가
+                        if (exampleData.requestBody && operation.requestBody && operation.requestBody.content && operation.requestBody.content['application/json']) {
+                            if (!operation.requestBody.content['application/json'].examples) {
+                                operation.requestBody.content['application/json'].examples = {};
+                            }
+                            operation.requestBody.content['application/json'].examples = exampleData.requestBody;
+                        }
+        
+                        // responses의 첫 번째 항목의 */*에 examples 추가
+                        if (exampleData.responses && operation.responses) {
+                            const firstResponseKey = Object.keys(operation.responses)[0];
+                            if (firstResponseKey && operation.responses[firstResponseKey].content && operation.responses[firstResponseKey].content['*/*']) {
+                                if (!operation.responses[firstResponseKey].content['*/*'].examples) {
+                                    operation.responses[firstResponseKey].content['*/*'].examples = {};
+                                }
+                                operation.responses[firstResponseKey].content['*/*'].examples = exampleData.responses;
+                            }
+                        }
+                    }
+                });
+            }
+        });              
+        
+        await fs.writeFile(`${COMPLETE_SPECS_DIR}/${outFileName}`, JSON.stringify(spec, null, 2));
 
     } catch (e) {
         console.log(e);
@@ -398,7 +448,10 @@ async function main() {
     await filterSpecBySegment();
 
     // 공개된 V1 API에 맞게 정렬
-    await addTag('merge', 'v1');
+    await addTag(MERGED_SPECS_DIR, COMPLETE_SPECS_DIR, 'v1');
+
+    // V1 요청, 응답 예시 넣어주기
+    await addExamples(COMPLETE_SPECS_DIR, 'v1_tag.json', 'steppay_v1.json')
 }
 
 main()
