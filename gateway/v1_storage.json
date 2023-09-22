@@ -1,218 +1,219 @@
 {
-    "openapi": "3.0.1",
-    "info": {
-        "title": "v1_storage",
-        "version": "v0"
-    },
-    "servers": [
-        {
-            "url": "https://api.steppay.kr",
-            "description": "Generated server url"
-        }
-    ],
-    "paths": {
-        "/api/v1/storages/{imageServiceType}-images": {
-            "post": {
-                "tags": [
-                    "storages"
-                ],
-                "operationId": "v1_upload",
-                "parameters": [
-                    {
-                        "name": "imageServiceType",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "files": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/FileUploadResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/storages/account": {
-            "post": {
-                "tags": [
-                    "storages"
-                ],
-                "operationId": "v1_upload_1",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "files": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/FileUploadResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "ErrorResponse": {
-                "required": [
-                    "errorCode",
-                    "httpStatus"
-                ],
-                "type": "object",
-                "properties": {
-                    "httpStatus": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "errorCode": {
-                        "type": "string"
-                    },
-                    "errorMessage": {
-                        "type": "string"
-                    },
-                    "fieldErrors": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/FieldError"
-                        }
-                    }
-                }
-            },
-            "FieldError": {
-                "required": [
-                    "field",
-                    "reason",
-                    "value"
-                ],
-                "type": "object",
-                "properties": {
-                    "field": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    },
-                    "reason": {
-                        "type": "string"
-                    }
-                }
-            },
-            "FileResponseDto": {
-                "required": [
-                    "modifiedAt",
-                    "path",
-                    "url",
-                    "uuid"
-                ],
-                "type": "object",
-                "properties": {
-                    "uuid": {
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    "path": {
-                        "type": "string"
-                    },
-                    "url": {
-                        "type": "string"
-                    },
-                    "modifiedAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    }
-                }
-            },
-            "FileUploadResponse": {
-                "required": [
-                    "fileList",
-                    "type"
-                ],
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": [
-                            "ACCOUNT",
-                            "PRODUCT",
-                            "BLOG",
-                            "POST"
-                        ]
-                    },
-                    "fileList": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/FileResponseDto"
-                        }
-                    }
-                }
-            }
-        }
+  "openapi": "3.0.1",
+  "info": {
+    "title": "v1_storage",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "https://api.steppay.kr",
+      "description": "Generated server url"
     }
+  ],
+  "paths": {
+    "/api/v1/storages/{imageServiceType}-images": {
+      "post": {
+        "tags": [
+          "storages"
+        ],
+        "operationId": "v1_upload",
+        "parameters": [
+          {
+            "name": "imageServiceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileUploadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/storages/account": {
+      "post": {
+        "tags": [
+          "storages"
+        ],
+        "operationId": "v1_upload_1",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileUploadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "required": [
+          "errorCode",
+          "httpStatus"
+        ],
+        "type": "object",
+        "properties": {
+          "httpStatus": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "fieldErrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldError"
+            }
+          }
+        }
+      },
+      "FieldError": {
+        "required": [
+          "field",
+          "reason",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "FileResponseDto": {
+        "required": [
+          "modifiedAt",
+          "path",
+          "url",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "path": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "FileUploadResponse": {
+        "required": [
+          "fileList",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "ACCOUNT",
+              "PRODUCT",
+              "BLOG",
+              "POST"
+            ]
+          },
+          "fileList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileResponseDto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-internal": true
 }

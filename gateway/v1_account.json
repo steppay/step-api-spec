@@ -1,1145 +1,1146 @@
 {
-    "openapi": "3.0.1",
-    "info": {
-        "title": "v1_account",
-        "version": "v0.1"
-    },
-    "servers": [
-        {
-            "url": "https://api.steppay.kr",
-            "description": "Generated server url"
-        }
-    ],
-    "paths": {
-        "/api/v1/customers/{id}": {
-            "put": {
-                "tags": [
-                    "customers"
-                ],
-                "summary": "고객 수정",
-                "description": "고객 정보를 수정할 때 호출합니다. 파라미터로 전달된 정보로 고객 정보가 치환됩니다.",
-                "operationId": "v1_updateCustomer",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "수정할 고객 번호",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CustomerUpdateDTO"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "정상적으로 수정됨",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CustomerV1DTO"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "파라미터 검증 실패"
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "수정할 고객 정보를 찾지 못 함",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CustomerV1DTO"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "customers"
-                ],
-                "summary": "고객 삭제",
-                "description": "고객 정보를 삭제할 때 호출합니다.",
-                "operationId": "v1_deleteCustomer",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "삭제할 고객 번호",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "정상적으로 삭제됨",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ApiResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "파라미터 검증 실패"
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "삭제할 고객 정보를 찾지 못 함",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ApiResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/customers": {
-            "post": {
-                "tags": [
-                    "customers"
-                ],
-                "summary": "고객 생성",
-                "description": "고객을 생성할 때 호출합니다.",
-                "operationId": "v1_createCustomer",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CustomerCreateDTO"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "201": {
-                        "description": "정상적으로 생성됨",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CustomerV1DTO"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "파라미터 검증 실패"
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/accounts/sm/settings": {
-            "get": {
-                "tags": [
-                    "accounts"
-                ],
-                "operationId": "v1_getSetting",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/SubscriptionManagerSettingDTO"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "accounts"
-                ],
-                "operationId": "v1_updateSetting",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/SubscriptionManagerSettingDTO"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ApiResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/vendors": {
-            "get": {
-                "tags": [
-                    "vendors"
-                ],
-                "operationId": "v1_getVendor",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/VendorInfoDTO"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/session/{customerId}": {
-            "get": {
-                "tags": [
-                    "session"
-                ],
-                "summary": "세션 생성",
-                "description": "고객 연동을 위한 세션을 생성합니다. 세션 연동을 위한 키를 리턴합니다.",
-                "operationId": "v1_getSession",
-                "parameters": [
-                    {
-                        "name": "customerId",
-                        "in": "path",
-                        "description": "고객 번호",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "세션 생성됨. 생성된 세션 키를 리턴함",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/accounts/{vendorUuid}/setting": {
-            "get": {
-                "tags": [
-                    "accounts"
-                ],
-                "operationId": "v1_getPaymentFieldList",
-                "parameters": [
-                    {
-                        "name": "vendorUuid",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "uuid"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/PaymentFieldDTO"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "ErrorResponse": {
-                "required": [
-                    "errorCode"
-                ],
-                "type": "object",
-                "properties": {
-                    "traceId": {
-                        "type": "string"
-                    },
-                    "errorCode": {
-                        "type": "string"
-                    },
-                    "errorMessage": {
-                        "type": "string"
-                    },
-                    "details": {
-                        "$ref": "#/components/schemas/ReturnError"
-                    }
-                }
-            },
-            "ReturnError": {
-                "type": "object"
-            },
-            "CustomerV1DTO": {
-                "title": "고객 상세 정보",
-                "required": [
-                    "createdAt",
-                    "id"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "description": "고객 번호",
-                        "format": "int64"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "고객 이름"
-                    },
-                    "email": {
-                        "type": "string",
-                        "description": "고객 이메일"
-                    },
-                    "phone": {
-                        "type": "string",
-                        "description": "고객 전화번호"
-                    },
-                    "code": {
-                        "type": "string",
-                        "description": "고객 코드"
-                    },
-                    "marketingSms": {
-                        "type": "boolean",
-                        "description": "고객이 허가한 마케팅 채널 - SMS"
-                    },
-                    "marketingEmail": {
-                        "type": "boolean",
-                        "description": "고객이 허가한 마케팅 채널 - Email"
-                    },
-                    "marketingKakao": {
-                        "type": "boolean",
-                        "description": "고객이 허가한 마케팅 채널 - Kakao"
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "description": "고객 생성 시점",
-                        "format": "date-time"
-                    }
-                }
-            },
-            "CustomerUpdateDTO": {
-                "title": "고객 수정 데이터",
-                "required": [
-                    "email",
-                    "name"
-                ],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "description": "이름"
-                    },
-                    "email": {
-                        "type": "string",
-                        "description": "이메일"
-                    },
-                    "phone": {
-                        "type": "string",
-                        "description": "전화번호"
-                    },
-                    "shipping": {
-                        "$ref": "#/components/schemas/ShippingAddressDTO"
-                    },
-                    "marketingSms": {
-                        "type": "boolean",
-                        "description": "고객이 허가한 마케팅 채널 - SMS"
-                    },
-                    "marketingEmail": {
-                        "type": "boolean",
-                        "description": "고객이 허가한 마케팅 채널 - Email"
-                    },
-                    "marketingKakao": {
-                        "type": "boolean",
-                        "description": "고객이 허가한 마케팅 채널 - Kakao"
-                    },
-                    "attributes": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string",
-                            "description": "고객의 추가 정보"
-                        },
-                        "description": "고객의 추가 정보"
-                    }
-                },
-                "description": "고객 수정 데이터"
-            },
-            "ShippingAddressDTO": {
-                "title": "배송지 정보 수정 데이터",
-                "required": [
-                    "address1",
-                    "address2",
-                    "postcode"
-                ],
-                "type": "object",
-                "properties": {
-                    "postcode": {
-                        "type": "string",
-                        "description": "우편번호"
-                    },
-                    "address1": {
-                        "type": "string",
-                        "description": "주소"
-                    },
-                    "address2": {
-                        "type": "string",
-                        "description": "세부 주소"
-                    },
-                    "state": {
-                        "type": "string",
-                        "description": "주 정보"
-                    },
-                    "city": {
-                        "type": "string",
-                        "description": "도시 정보"
-                    },
-                    "countryCode": {
-                        "type": "string",
-                        "description": "국가 코드"
-                    }
-                },
-                "description": "배송지 정보 수정 데이터"
-            },
-            "DeliveryChargeResponseDTO": {
-                "required": [
-                    "islandAndMountainShipAmount",
-                    "jejuShipAmount",
-                    "useDefaultCourier",
-                    "useDeliveryCharge",
-                    "useLocalShipCharge"
-                ],
-                "type": "object",
-                "properties": {
-                    "useDefaultCourier": {
-                        "type": "boolean"
-                    },
-                    "defaultCourierId": {
-                        "type": "string"
-                    },
-                    "useDeliveryCharge": {
-                        "type": "boolean"
-                    },
-                    "deliveryChargeType": {
-                        "type": "string",
-                        "enum": [
-                            "FREE",
-                            "CONDITIONAL_FREE",
-                            "FIXED"
-                        ]
-                    },
-                    "defaultDeliveryCharge": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "freeShipOverAmount": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "useLocalShipCharge": {
-                        "type": "boolean"
-                    },
-                    "jejuShipAmount": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "islandAndMountainShipAmount": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                }
-            },
-            "LocalTime": {
-                "type": "object",
-                "properties": {
-                    "hour": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "minute": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "second": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "nano": {
-                        "type": "integer",
-                        "format": "int32"
-                    }
-                }
-            },
-            "VendorAppDTO": {
-                "required": [
-                    "installed",
-                    "priceCode",
-                    "productCode",
-                    "status"
-                ],
-                "type": "object",
-                "properties": {
-                    "productCode": {
-                        "type": "string"
-                    },
-                    "priceCode": {
-                        "type": "string"
-                    },
-                    "status": {
-                        "type": "string",
-                        "enum": [
-                            "ACTIVE",
-                            "UNPAID",
-                            "PENDING_PAUSE",
-                            "PAUSE",
-                            "PENDING_CANCEL",
-                            "EXPIRED",
-                            "CANCELED",
-                            "INCOMPLETE",
-                            "QUEUEING"
-                        ]
-                    },
-                    "installed": {
-                        "type": "boolean"
-                    },
-                    "subscriptionId": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                }
-            },
-            "VendorSettingsDTO": {
-                "required": [
-                    "notiBeforePayment",
-                    "notiBeforePaymentDays",
-                    "vatIncluded",
-                    "vatRate"
-                ],
-                "type": "object",
-                "properties": {
-                    "vatIncluded": {
-                        "type": "boolean"
-                    },
-                    "vatRate": {
-                        "type": "number"
-                    },
-                    "paymentAmountScale": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "notiBeforePayment": {
-                        "type": "boolean"
-                    },
-                    "notiBeforePaymentDays": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "notiBeforePaymentTime": {
-                        "$ref": "#/components/schemas/LocalTime"
-                    }
-                }
-            },
-            "VendorTermsAgreeDTO": {
-                "required": [
-                    "field"
-                ],
-                "type": "object",
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    },
-                    "order": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "field": {
-                        "type": "boolean"
-                    },
-                    "content": {
-                        "type": "string"
-                    }
-                }
-            },
-            "VendorTermsDTO": {
-                "required": [
-                    "termsAgree",
-                    "useCheckBox"
-                ],
-                "type": "object",
-                "properties": {
-                    "useCheckBox": {
-                        "type": "boolean"
-                    },
-                    "termsAgree": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/VendorTermsAgreeDTO"
-                        }
-                    }
-                }
-            },
-            "ApiResponse": {
-                "type": "object",
-                "properties": {
-                    "success": {
-                        "type": "boolean",
-                        "writeOnly": true
-                    },
-                    "message": {
-                        "type": "string",
-                        "writeOnly": true
-                    }
-                }
-            },
-            "CustomerCreateDTO": {
-                "title": "고객 생성 데이터",
-                "required": [
-                    "attributes",
-                    "email",
-                    "marketingEmail",
-                    "marketingKakao",
-                    "marketingSms",
-                    "name"
-                ],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "description": "이름"
-                    },
-                    "email": {
-                        "type": "string",
-                        "description": "이메일"
-                    },
-                    "phone": {
-                        "pattern": "^(0\\d{1,2}-?\\d{3,4}-?\\d{4}|(\\+\\d{2,3}|\\d{2,3}\\)|\\d{2,3})[ -]?\\d{1,2}[ -]?\\d{3,4}[ -]?\\d{4})$",
-                        "type": "string",
-                        "description": "전화번호"
-                    },
-                    "shipping": {
-                        "$ref": "#/components/schemas/ShippingAddressDTO"
-                    },
-                    "marketingSms": {
-                        "type": "boolean",
-                        "description": "고객이 허가한 마케팅 채널 - SMS(기본값: false)"
-                    },
-                    "marketingEmail": {
-                        "type": "boolean",
-                        "description": "고객이 허가한 마케팅 채널 - Email(기본값: false)"
-                    },
-                    "marketingKakao": {
-                        "type": "boolean",
-                        "description": "고객이 허가한 마케팅 채널 - Kakao(기본값: false)"
-                    },
-                    "attributes": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string",
-                            "description": "고객의 추가 정보"
-                        },
-                        "description": "고객의 추가 정보"
-                    }
-                },
-                "description": "고객 생성 데이터"
-            },
-            "AddableProdDTO": {
-                "required": [
-                    "active",
-                    "categoryIds",
-                    "productCodes",
-                    "productType"
-                ],
-                "type": "object",
-                "properties": {
-                    "active": {
-                        "type": "boolean"
-                    },
-                    "productType": {
-                        "type": "string"
-                    },
-                    "categoryIds": {
-                        "type": "array",
-                        "items": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    "productCodes": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                }
-            },
-            "ChangeableCycleDTO": {
-                "required": [
-                    "active",
-                    "cycles"
-                ],
-                "type": "object",
-                "properties": {
-                    "active": {
-                        "type": "boolean"
-                    },
-                    "cycles": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/CycleDTO"
-                        }
-                    }
-                }
-            },
-            "ChangeableNextPayDateDTO": {
-                "required": [
-                    "active",
-                    "maximumPeriod"
-                ],
-                "type": "object",
-                "properties": {
-                    "active": {
-                        "type": "boolean"
-                    },
-                    "maximumPeriod": {
-                        "type": "integer",
-                        "format": "int32"
-                    }
-                }
-            },
-            "ChangeableStatusDTO": {
-                "required": [
-                    "cancel",
-                    "pause",
-                    "survey"
-                ],
-                "type": "object",
-                "properties": {
-                    "pause": {
-                        "$ref": "#/components/schemas/PauseDTO"
-                    },
-                    "cancel": {
-                        "type": "boolean"
-                    },
-                    "survey": {
-                        "$ref": "#/components/schemas/SurveyDTO"
-                    }
-                }
-            },
-            "CustomProdDTO": {
-                "required": [
-                    "addableProd",
-                    "editable"
-                ],
-                "type": "object",
-                "properties": {
-                    "editable": {
-                        "type": "boolean"
-                    },
-                    "addableProd": {
-                        "$ref": "#/components/schemas/AddableProdDTO"
-                    }
-                }
-            },
-            "CycleDTO": {
-                "required": [
-                    "interval",
-                    "period"
-                ],
-                "type": "object",
-                "properties": {
-                    "interval": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "period": {
-                        "$ref": "#/components/schemas/PeriodDTO"
-                    }
-                }
-            },
-            "PauseDTO": {
-                "required": [
-                    "active",
-                    "cycles",
-                    "type"
-                ],
-                "type": "object",
-                "properties": {
-                    "active": {
-                        "type": "boolean"
-                    },
-                    "type": {
-                        "type": "string",
-                        "enum": [
-                            "IMMEDIATE",
-                            "LAZY"
-                        ]
-                    },
-                    "cycles": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/CycleDTO"
-                        }
-                    }
-                }
-            },
-            "PeriodDTO": {
-                "required": [
-                    "label",
-                    "value"
-                ],
-                "type": "object",
-                "properties": {
-                    "label": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    }
-                }
-            },
-            "SubscriptionManagerSettingDTO": {
-                "required": [
-                    "changeableCycle",
-                    "changeableNextPayDate",
-                    "changeablePaymentMethod",
-                    "changeableShippingAddress",
-                    "changeableStatus",
-                    "customProd"
-                ],
-                "type": "object",
-                "properties": {
-                    "changeableStatus": {
-                        "$ref": "#/components/schemas/ChangeableStatusDTO"
-                    },
-                    "changeableNextPayDate": {
-                        "$ref": "#/components/schemas/ChangeableNextPayDateDTO"
-                    },
-                    "changeablePaymentMethod": {
-                        "type": "boolean"
-                    },
-                    "changeableShippingAddress": {
-                        "type": "boolean"
-                    },
-                    "changeableCycle": {
-                        "$ref": "#/components/schemas/ChangeableCycleDTO"
-                    },
-                    "customProd": {
-                        "$ref": "#/components/schemas/CustomProdDTO"
-                    }
-                }
-            },
-            "SurveyDTO": {
-                "required": [
-                    "active",
-                    "cancelSurveyUrl",
-                    "pauseSurveyUrl"
-                ],
-                "type": "object",
-                "properties": {
-                    "active": {
-                        "type": "boolean"
-                    },
-                    "pauseSurveyUrl": {
-                        "type": "string"
-                    },
-                    "cancelSurveyUrl": {
-                        "type": "string"
-                    }
-                }
-            },
-            "VendorCheckList": {
-                "required": [
-                    "firstActivation"
-                ],
-                "type": "object",
-                "properties": {
-                    "firstActivation": {
-                        "type": "boolean"
-                    }
-                }
-            },
-            "VendorInfoDTO": {
-                "required": [
-                    "apps",
-                    "checkList",
-                    "children",
-                    "deliveryCharge",
-                    "name",
-                    "useAuth",
-                    "usePayout",
-                    "useStore",
-                    "uuid",
-                    "vendorSettings",
-                    "zoneId"
-                ],
-                "type": "object",
-                "properties": {
-                    "uuid": {
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    "parentUuid": {
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    "useAuth": {
-                        "type": "boolean"
-                    },
-                    "useStore": {
-                        "type": "boolean"
-                    },
-                    "usePayout": {
-                        "type": "boolean"
-                    },
-                    "featuredImageUrl": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "deliveryCharge": {
-                        "$ref": "#/components/schemas/DeliveryChargeResponseDTO"
-                    },
-                    "vendorSettings": {
-                        "$ref": "#/components/schemas/VendorSettingsDTO"
-                    },
-                    "contactUrl": {
-                        "type": "string"
-                    },
-                    "checkList": {
-                        "$ref": "#/components/schemas/VendorCheckList"
-                    },
-                    "apps": {
-                        "uniqueItems": true,
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/VendorAppDTO"
-                        }
-                    },
-                    "children": {
-                        "uniqueItems": true,
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "uuid"
-                        }
-                    },
-                    "zoneId": {
-                        "type": "string"
-                    },
-                    "vendorTerms": {
-                        "$ref": "#/components/schemas/VendorTermsDTO"
-                    }
-                }
-            },
-            "PaymentFieldDTO": {
-                "required": [
-                    "name",
-                    "type"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "link": {
-                        "type": "string"
-                    },
-                    "options": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string",
-                        "enum": [
-                            "TEXT",
-                            "NUMBER",
-                            "CHECKBOX",
-                            "CALENDAR",
-                            "DROPDOWN"
-                        ]
-                    },
-                    "order": {
-                        "type": "integer",
-                        "format": "int32"
-                    }
-                }
-            }
-        }
+  "openapi": "3.0.1",
+  "info": {
+    "title": "v1_account",
+    "version": "v0.1"
+  },
+  "servers": [
+    {
+      "url": "https://api.steppay.kr",
+      "description": "Generated server url"
     }
+  ],
+  "paths": {
+    "/api/v1/customers/{id}": {
+      "put": {
+        "tags": [
+          "customers"
+        ],
+        "summary": "고객 수정",
+        "description": "고객 정보를 수정할 때 호출합니다. 파라미터로 전달된 정보로 고객 정보가 치환됩니다.",
+        "operationId": "v1_updateCustomer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "수정할 고객 번호",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "정상적으로 수정됨",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerV1DTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "파라미터 검증 실패"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "수정할 고객 정보를 찾지 못 함",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerV1DTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "customers"
+        ],
+        "summary": "고객 삭제",
+        "description": "고객 정보를 삭제할 때 호출합니다.",
+        "operationId": "v1_deleteCustomer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "삭제할 고객 번호",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "정상적으로 삭제됨",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "파라미터 검증 실패"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "삭제할 고객 정보를 찾지 못 함",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customers": {
+      "post": {
+        "tags": [
+          "customers"
+        ],
+        "summary": "고객 생성",
+        "description": "고객을 생성할 때 호출합니다.",
+        "operationId": "v1_createCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerCreateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "정상적으로 생성됨",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerV1DTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "파라미터 검증 실패"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/accounts/sm/settings": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "v1_getSetting",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionManagerSettingDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "v1_updateSetting",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionManagerSettingDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/vendors": {
+      "get": {
+        "tags": [
+          "vendors"
+        ],
+        "operationId": "v1_getVendor",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorInfoDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/session/{customerId}": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "세션 생성",
+        "description": "고객 연동을 위한 세션을 생성합니다. 세션 연동을 위한 키를 리턴합니다.",
+        "operationId": "v1_getSession",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "고객 번호",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "세션 생성됨. 생성된 세션 키를 리턴함",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/accounts/{vendorUuid}/setting": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "v1_getPaymentFieldList",
+        "parameters": [
+          {
+            "name": "vendorUuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentFieldDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "required": [
+          "errorCode"
+        ],
+        "type": "object",
+        "properties": {
+          "traceId": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/components/schemas/ReturnError"
+          }
+        }
+      },
+      "ReturnError": {
+        "type": "object"
+      },
+      "CustomerV1DTO": {
+        "title": "고객 상세 정보",
+        "required": [
+          "createdAt",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "고객 번호",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "고객 이름"
+          },
+          "email": {
+            "type": "string",
+            "description": "고객 이메일"
+          },
+          "phone": {
+            "type": "string",
+            "description": "고객 전화번호"
+          },
+          "code": {
+            "type": "string",
+            "description": "고객 코드"
+          },
+          "marketingSms": {
+            "type": "boolean",
+            "description": "고객이 허가한 마케팅 채널 - SMS"
+          },
+          "marketingEmail": {
+            "type": "boolean",
+            "description": "고객이 허가한 마케팅 채널 - Email"
+          },
+          "marketingKakao": {
+            "type": "boolean",
+            "description": "고객이 허가한 마케팅 채널 - Kakao"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "고객 생성 시점",
+            "format": "date-time"
+          }
+        }
+      },
+      "CustomerUpdateDTO": {
+        "title": "고객 수정 데이터",
+        "required": [
+          "email",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "이름"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일"
+          },
+          "phone": {
+            "type": "string",
+            "description": "전화번호"
+          },
+          "shipping": {
+            "$ref": "#/components/schemas/ShippingAddressDTO"
+          },
+          "marketingSms": {
+            "type": "boolean",
+            "description": "고객이 허가한 마케팅 채널 - SMS"
+          },
+          "marketingEmail": {
+            "type": "boolean",
+            "description": "고객이 허가한 마케팅 채널 - Email"
+          },
+          "marketingKakao": {
+            "type": "boolean",
+            "description": "고객이 허가한 마케팅 채널 - Kakao"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "description": "고객의 추가 정보"
+            },
+            "description": "고객의 추가 정보"
+          }
+        },
+        "description": "고객 수정 데이터"
+      },
+      "ShippingAddressDTO": {
+        "title": "배송지 정보 수정 데이터",
+        "required": [
+          "address1",
+          "address2",
+          "postcode"
+        ],
+        "type": "object",
+        "properties": {
+          "postcode": {
+            "type": "string",
+            "description": "우편번호"
+          },
+          "address1": {
+            "type": "string",
+            "description": "주소"
+          },
+          "address2": {
+            "type": "string",
+            "description": "세부 주소"
+          },
+          "state": {
+            "type": "string",
+            "description": "주 정보"
+          },
+          "city": {
+            "type": "string",
+            "description": "도시 정보"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "국가 코드"
+          }
+        },
+        "description": "배송지 정보 수정 데이터"
+      },
+      "DeliveryChargeResponseDTO": {
+        "required": [
+          "islandAndMountainShipAmount",
+          "jejuShipAmount",
+          "useDefaultCourier",
+          "useDeliveryCharge",
+          "useLocalShipCharge"
+        ],
+        "type": "object",
+        "properties": {
+          "useDefaultCourier": {
+            "type": "boolean"
+          },
+          "defaultCourierId": {
+            "type": "string"
+          },
+          "useDeliveryCharge": {
+            "type": "boolean"
+          },
+          "deliveryChargeType": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "CONDITIONAL_FREE",
+              "FIXED"
+            ]
+          },
+          "defaultDeliveryCharge": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "freeShipOverAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "useLocalShipCharge": {
+            "type": "boolean"
+          },
+          "jejuShipAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "islandAndMountainShipAmount": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "LocalTime": {
+        "type": "object",
+        "properties": {
+          "hour": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minute": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "second": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nano": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "VendorAppDTO": {
+        "required": [
+          "installed",
+          "priceCode",
+          "productCode",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string"
+          },
+          "priceCode": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "UNPAID",
+              "PENDING_PAUSE",
+              "PAUSE",
+              "PENDING_CANCEL",
+              "EXPIRED",
+              "CANCELED",
+              "INCOMPLETE",
+              "QUEUEING"
+            ]
+          },
+          "installed": {
+            "type": "boolean"
+          },
+          "subscriptionId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "VendorSettingsDTO": {
+        "required": [
+          "notiBeforePayment",
+          "notiBeforePaymentDays",
+          "vatIncluded",
+          "vatRate"
+        ],
+        "type": "object",
+        "properties": {
+          "vatIncluded": {
+            "type": "boolean"
+          },
+          "vatRate": {
+            "type": "number"
+          },
+          "paymentAmountScale": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notiBeforePayment": {
+            "type": "boolean"
+          },
+          "notiBeforePaymentDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notiBeforePaymentTime": {
+            "$ref": "#/components/schemas/LocalTime"
+          }
+        }
+      },
+      "VendorTermsAgreeDTO": {
+        "required": [
+          "field"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "field": {
+            "type": "boolean"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "VendorTermsDTO": {
+        "required": [
+          "termsAgree",
+          "useCheckBox"
+        ],
+        "type": "object",
+        "properties": {
+          "useCheckBox": {
+            "type": "boolean"
+          },
+          "termsAgree": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VendorTermsAgreeDTO"
+            }
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "message": {
+            "type": "string",
+            "writeOnly": true
+          }
+        }
+      },
+      "CustomerCreateDTO": {
+        "title": "고객 생성 데이터",
+        "required": [
+          "attributes",
+          "email",
+          "marketingEmail",
+          "marketingKakao",
+          "marketingSms",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "이름"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일"
+          },
+          "phone": {
+            "pattern": "^(0\\d{1,2}-?\\d{3,4}-?\\d{4}|(\\+\\d{2,3}|\\d{2,3}\\)|\\d{2,3})[ -]?\\d{1,2}[ -]?\\d{3,4}[ -]?\\d{4})$",
+            "type": "string",
+            "description": "전화번호"
+          },
+          "shipping": {
+            "$ref": "#/components/schemas/ShippingAddressDTO"
+          },
+          "marketingSms": {
+            "type": "boolean",
+            "description": "고객이 허가한 마케팅 채널 - SMS(기본값: false)"
+          },
+          "marketingEmail": {
+            "type": "boolean",
+            "description": "고객이 허가한 마케팅 채널 - Email(기본값: false)"
+          },
+          "marketingKakao": {
+            "type": "boolean",
+            "description": "고객이 허가한 마케팅 채널 - Kakao(기본값: false)"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "description": "고객의 추가 정보"
+            },
+            "description": "고객의 추가 정보"
+          }
+        },
+        "description": "고객 생성 데이터"
+      },
+      "AddableProdDTO": {
+        "required": [
+          "active",
+          "categoryIds",
+          "productCodes",
+          "productType"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "productType": {
+            "type": "string"
+          },
+          "categoryIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "productCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ChangeableCycleDTO": {
+        "required": [
+          "active",
+          "cycles"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "cycles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CycleDTO"
+            }
+          }
+        }
+      },
+      "ChangeableNextPayDateDTO": {
+        "required": [
+          "active",
+          "maximumPeriod"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "maximumPeriod": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ChangeableStatusDTO": {
+        "required": [
+          "cancel",
+          "pause",
+          "survey"
+        ],
+        "type": "object",
+        "properties": {
+          "pause": {
+            "$ref": "#/components/schemas/PauseDTO"
+          },
+          "cancel": {
+            "type": "boolean"
+          },
+          "survey": {
+            "$ref": "#/components/schemas/SurveyDTO"
+          }
+        }
+      },
+      "CustomProdDTO": {
+        "required": [
+          "addableProd",
+          "editable"
+        ],
+        "type": "object",
+        "properties": {
+          "editable": {
+            "type": "boolean"
+          },
+          "addableProd": {
+            "$ref": "#/components/schemas/AddableProdDTO"
+          }
+        }
+      },
+      "CycleDTO": {
+        "required": [
+          "interval",
+          "period"
+        ],
+        "type": "object",
+        "properties": {
+          "interval": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "period": {
+            "$ref": "#/components/schemas/PeriodDTO"
+          }
+        }
+      },
+      "PauseDTO": {
+        "required": [
+          "active",
+          "cycles",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "IMMEDIATE",
+              "LAZY"
+            ]
+          },
+          "cycles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CycleDTO"
+            }
+          }
+        }
+      },
+      "PeriodDTO": {
+        "required": [
+          "label",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "SubscriptionManagerSettingDTO": {
+        "required": [
+          "changeableCycle",
+          "changeableNextPayDate",
+          "changeablePaymentMethod",
+          "changeableShippingAddress",
+          "changeableStatus",
+          "customProd"
+        ],
+        "type": "object",
+        "properties": {
+          "changeableStatus": {
+            "$ref": "#/components/schemas/ChangeableStatusDTO"
+          },
+          "changeableNextPayDate": {
+            "$ref": "#/components/schemas/ChangeableNextPayDateDTO"
+          },
+          "changeablePaymentMethod": {
+            "type": "boolean"
+          },
+          "changeableShippingAddress": {
+            "type": "boolean"
+          },
+          "changeableCycle": {
+            "$ref": "#/components/schemas/ChangeableCycleDTO"
+          },
+          "customProd": {
+            "$ref": "#/components/schemas/CustomProdDTO"
+          }
+        }
+      },
+      "SurveyDTO": {
+        "required": [
+          "active",
+          "cancelSurveyUrl",
+          "pauseSurveyUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "pauseSurveyUrl": {
+            "type": "string"
+          },
+          "cancelSurveyUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "VendorCheckList": {
+        "required": [
+          "firstActivation"
+        ],
+        "type": "object",
+        "properties": {
+          "firstActivation": {
+            "type": "boolean"
+          }
+        }
+      },
+      "VendorInfoDTO": {
+        "required": [
+          "apps",
+          "checkList",
+          "children",
+          "deliveryCharge",
+          "name",
+          "useAuth",
+          "usePayout",
+          "useStore",
+          "uuid",
+          "vendorSettings",
+          "zoneId"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "parentUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "useAuth": {
+            "type": "boolean"
+          },
+          "useStore": {
+            "type": "boolean"
+          },
+          "usePayout": {
+            "type": "boolean"
+          },
+          "featuredImageUrl": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "deliveryCharge": {
+            "$ref": "#/components/schemas/DeliveryChargeResponseDTO"
+          },
+          "vendorSettings": {
+            "$ref": "#/components/schemas/VendorSettingsDTO"
+          },
+          "contactUrl": {
+            "type": "string"
+          },
+          "checkList": {
+            "$ref": "#/components/schemas/VendorCheckList"
+          },
+          "apps": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VendorAppDTO"
+            }
+          },
+          "children": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "zoneId": {
+            "type": "string"
+          },
+          "vendorTerms": {
+            "$ref": "#/components/schemas/VendorTermsDTO"
+          }
+        }
+      },
+      "PaymentFieldDTO": {
+        "required": [
+          "name",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "options": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "TEXT",
+              "NUMBER",
+              "CHECKBOX",
+              "CALENDAR",
+              "DROPDOWN"
+            ]
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  },
+  "x-internal": true
 }

@@ -1,1641 +1,1642 @@
 {
-    "openapi": "3.0.1",
-    "info": {
-        "title": "OpenAPI definition",
-        "version": "v0"
-    },
-    "servers": [
-        {
-            "url": "https://api.steppay.kr",
-            "description": "Generated server url"
-        }
-    ],
-    "paths": {
-        "/api/manager/webhooks/{code}": {
-            "get": {
-                "tags": [
-                    "웹훅 API (Manager)"
-                ],
-                "summary": "웹훅 상세 조회",
-                "operationId": "getWebhookDetail",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "description": "웹훅 코드",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Detail"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Detail"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "웹훅 API (Manager)"
-                ],
-                "summary": "웹훅 이벤트 수정",
-                "operationId": "updateEventTypes",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "description": "웹훅 코드",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "description": "웹훅 이벤트 수정 DTO",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateEventTypes"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Detail"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Detail"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "웹훅 API (Manager)"
-                ],
-                "summary": "웹훅 삭제",
-                "operationId": "deleteWebhook",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "description": "웹훅 코드",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "No Content",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/manager/notification/{code}": {
-            "get": {
-                "tags": [
-                    "notification-manager-controller"
-                ],
-                "operationId": "getNotification",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NotificationDTO"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "notification-manager-controller"
-                ],
-                "operationId": "updateNotification",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/NotificationUpdateDTO"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ApiResponseNotificationDTO"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "notification-manager-controller"
-                ],
-                "operationId": "deleteNotification",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ApiResponseUnit"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/manager/webhooks": {
-            "get": {
-                "tags": [
-                    "웹훅 API (Manager)"
-                ],
-                "summary": "웹훅 목록 조회",
-                "operationId": "getWebhookList",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ListItem"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/PageListItem"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "웹훅 API (Manager)"
-                ],
-                "summary": "웹훅 생성",
-                "operationId": "createWebhook",
-                "requestBody": {
-                    "description": "웹훅 생성 DTO",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Create"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Detail"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Detail"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/manager/webhooks/retry/{webhookRecordId}": {
-            "post": {
-                "tags": [
-                    "웹훅 API (Manager)"
-                ],
-                "summary": "웹훅 이벤트 재시도",
-                "operationId": "retryWebhook",
-                "parameters": [
-                    {
-                        "name": "webhookRecordId",
-                        "in": "path",
-                        "description": "웹훅 전송 내역 번호",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/manager/notification": {
-            "get": {
-                "tags": [
-                    "notification-manager-controller"
-                ],
-                "operationId": "getNotificationList",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/NotificationDTO"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "notification-manager-controller"
-                ],
-                "operationId": "createNotification",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/NotificationCreateDTO"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ApiResponseNotificationDTO"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/manager/notification/slack/workspaces/{workspaceId}/uplink": {
-            "post": {
-                "tags": [
-                    "notification-manager-controller"
-                ],
-                "operationId": "notificationSlackUnlink",
-                "parameters": [
-                    {
-                        "name": "workspaceId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ApiResponseUnit"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/manager/webhooks/{code}/records": {
-            "get": {
-                "tags": [
-                    "웹훅 API (Manager)"
-                ],
-                "summary": "웹훅 전송 내역 조회",
-                "operationId": "getWebhookRecords",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "description": "웹훅 코드",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RecordDetail"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/RecordDetail"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/manager/webhooks/events": {
-            "get": {
-                "tags": [
-                    "웹훅 API (Manager)"
-                ],
-                "summary": "웹훅 이벤트 목록 조회",
-                "operationId": "getEvents",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Event"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Event"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/manager/notification/slack/workspaces": {
-            "get": {
-                "tags": [
-                    "notification-manager-controller"
-                ],
-                "operationId": "getSlackWorkspace",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/SlackInfoDTO"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/manager/notification/slack/workspaces/{workspaceId}/channels": {
-            "get": {
-                "tags": [
-                    "notification-manager-controller"
-                ],
-                "operationId": "getSlackChannels",
-                "parameters": [
-                    {
-                        "name": "workspaceId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/SlackChannelListDTO"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/manager/notification/events": {
-            "get": {
-                "tags": [
-                    "notification-manager-controller"
-                ],
-                "operationId": "getAllEventTypes",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/NotificationDTO"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "ErrorResponse": {
-                "required": [
-                    "errorCode"
-                ],
-                "type": "object",
-                "properties": {
-                    "traceId": {
-                        "type": "string"
-                    },
-                    "errorCode": {
-                        "type": "string"
-                    },
-                    "errorMessage": {
-                        "type": "string"
-                    },
-                    "details": {
-                        "$ref": "#/components/schemas/ReturnError"
-                    }
-                }
-            },
-            "ReturnError": {
-                "type": "object"
-            },
-            "UpdateEventTypes": {
-                "required": [
-                    "eventTypes"
-                ],
-                "type": "object",
-                "properties": {
-                    "eventTypes": {
-                        "uniqueItems": true,
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "ORDER_CREATED",
-                                "ORDER_UPDATED",
-                                "USAGE_ADDED",
-                                "INVOICE_CREATED",
-                                "INVOICE_UPDATED",
-                                "INVOICE_DELETED",
-                                "PAYMENT_COMPLETED",
-                                "PAYMENT_FAILED",
-                                "PAYMENT_CANCELED",
-                                "PAYMENT_STANDBY",
-                                "CUSTOMER_CREATED",
-                                "CUSTOMER_UPDATED",
-                                "CUSTOMER_DELETED",
-                                "SUBSCRIPTION_CREATED",
-                                "SUBSCRIPTION_UPDATED",
-                                "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
-                                "PRODUCT_CREATED",
-                                "PRODUCT_UPDATED",
-                                "PRODUCT_DELETED",
-                                "PRICE_CREATED",
-                                "PRICE_UPDATED",
-                                "PRICE_DELETED"
-                            ]
-                        }
-                    }
-                }
-            },
-            "Detail": {
-                "required": [
-                    "code"
-                ],
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    },
-                    "eventTypes": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "ORDER_CREATED",
-                                "ORDER_UPDATED",
-                                "USAGE_ADDED",
-                                "INVOICE_CREATED",
-                                "INVOICE_UPDATED",
-                                "INVOICE_DELETED",
-                                "PAYMENT_COMPLETED",
-                                "PAYMENT_FAILED",
-                                "PAYMENT_CANCELED",
-                                "PAYMENT_STANDBY",
-                                "CUSTOMER_CREATED",
-                                "CUSTOMER_UPDATED",
-                                "CUSTOMER_DELETED",
-                                "SUBSCRIPTION_CREATED",
-                                "SUBSCRIPTION_UPDATED",
-                                "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
-                                "PRODUCT_CREATED",
-                                "PRODUCT_UPDATED",
-                                "PRODUCT_DELETED",
-                                "PRICE_CREATED",
-                                "PRICE_UPDATED",
-                                "PRICE_DELETED"
-                            ]
-                        }
-                    },
-                    "url": {
-                        "type": "string"
-                    },
-                    "secretKey": {
-                        "type": "string"
-                    }
-                },
-                "description": "웹훅 상세 정보"
-            },
-            "NotificationChannelUpdateDTO": {
-                "required": [
-                    "channelType"
-                ],
-                "type": "object",
-                "properties": {
-                    "channelType": {
-                        "type": "string",
-                        "enum": [
-                            "EMAIL",
-                            "SLACK",
-                            "KAKAO",
-                            "SMS"
-                        ]
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "slackChannelId": {
-                        "type": "string"
-                    },
-                    "slackChannelName": {
-                        "type": "string"
-                    },
-                    "slackId": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                }
-            },
-            "NotificationUpdateDTO": {
-                "required": [
-                    "channels",
-                    "types"
-                ],
-                "type": "object",
-                "properties": {
-                    "types": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "PAID",
-                                "CREATED_CUSTOMER",
-                                "DELETED_CUSTOMER",
-                                "SUBSCRIPTION_RENEW_FAILED",
-                                "OUT_OF_STOCK",
-                                "SUBSCRIPTION_RENEW_OUT_OF_STOCK",
-                                "SUBSCRIPTION_RENEW_SUCCESS",
-                                "REFUND_ORDER",
-                                "EXCHANGE_ORDER",
-                                "RETURN_ORDER",
-                                "REQUEST_QUOTATION",
-                                "CREATED_INVOICE"
-                            ]
-                        }
-                    },
-                    "channels": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/NotificationChannelUpdateDTO"
-                        }
-                    }
-                }
-            },
-            "ApiResponseNotificationDTO": {
-                "title": "단순 API 응답",
-                "required": [
-                    "message"
-                ],
-                "type": "object",
-                "properties": {
-                    "message": {
-                        "type": "string",
-                        "description": "결과에 대한 메세지"
-                    },
-                    "body": {
-                        "$ref": "#/components/schemas/NotificationDTO"
-                    }
-                }
-            },
-            "NotificationChannelDTO": {
-                "required": [
-                    "channelType",
-                    "id"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "channelType": {
-                        "type": "string",
-                        "enum": [
-                            "EMAIL",
-                            "SLACK",
-                            "KAKAO",
-                            "SMS"
-                        ]
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "slackChannelId": {
-                        "type": "string"
-                    },
-                    "slackChannelName": {
-                        "type": "string"
-                    },
-                    "slackId": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "workspaceId": {
-                        "type": "string"
-                    },
-                    "workspaceName": {
-                        "type": "string"
-                    }
-                }
-            },
-            "NotificationDTO": {
-                "required": [
-                    "channels",
-                    "code",
-                    "id",
-                    "types"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "code": {
-                        "type": "string"
-                    },
-                    "channelDetail": {
-                        "type": "string"
-                    },
-                    "types": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "PAID",
-                                "CREATED_CUSTOMER",
-                                "DELETED_CUSTOMER",
-                                "SUBSCRIPTION_RENEW_FAILED",
-                                "OUT_OF_STOCK",
-                                "SUBSCRIPTION_RENEW_OUT_OF_STOCK",
-                                "SUBSCRIPTION_RENEW_SUCCESS",
-                                "REFUND_ORDER",
-                                "EXCHANGE_ORDER",
-                                "RETURN_ORDER",
-                                "REQUEST_QUOTATION",
-                                "CREATED_INVOICE"
-                            ]
-                        }
-                    },
-                    "channels": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/NotificationChannelDTO"
-                        }
-                    }
-                },
-                "description": "관련 데이터"
-            },
-            "Create": {
-                "required": [
-                    "eventTypes"
-                ],
-                "type": "object",
-                "properties": {
-                    "eventTypes": {
-                        "uniqueItems": true,
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "ORDER_CREATED",
-                                "ORDER_UPDATED",
-                                "USAGE_ADDED",
-                                "INVOICE_CREATED",
-                                "INVOICE_UPDATED",
-                                "INVOICE_DELETED",
-                                "PAYMENT_COMPLETED",
-                                "PAYMENT_FAILED",
-                                "PAYMENT_CANCELED",
-                                "PAYMENT_STANDBY",
-                                "CUSTOMER_CREATED",
-                                "CUSTOMER_UPDATED",
-                                "CUSTOMER_DELETED",
-                                "SUBSCRIPTION_CREATED",
-                                "SUBSCRIPTION_UPDATED",
-                                "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
-                                "PRODUCT_CREATED",
-                                "PRODUCT_UPDATED",
-                                "PRODUCT_DELETED",
-                                "PRICE_CREATED",
-                                "PRICE_UPDATED",
-                                "PRICE_DELETED"
-                            ]
-                        }
-                    },
-                    "url": {
-                        "type": "string"
-                    }
-                }
-            },
-            "NotificationChannelCreateDTO": {
-                "required": [
-                    "channelType"
-                ],
-                "type": "object",
-                "properties": {
-                    "channelType": {
-                        "type": "string",
-                        "enum": [
-                            "EMAIL",
-                            "SLACK",
-                            "KAKAO",
-                            "SMS"
-                        ]
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "slackChannelId": {
-                        "type": "string"
-                    },
-                    "slackChannelName": {
-                        "type": "string"
-                    },
-                    "slackId": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                }
-            },
-            "NotificationCreateDTO": {
-                "required": [
-                    "channels",
-                    "types"
-                ],
-                "type": "object",
-                "properties": {
-                    "types": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "PAID",
-                                "CREATED_CUSTOMER",
-                                "DELETED_CUSTOMER",
-                                "SUBSCRIPTION_RENEW_FAILED",
-                                "OUT_OF_STOCK",
-                                "SUBSCRIPTION_RENEW_OUT_OF_STOCK",
-                                "SUBSCRIPTION_RENEW_SUCCESS",
-                                "REFUND_ORDER",
-                                "EXCHANGE_ORDER",
-                                "RETURN_ORDER",
-                                "REQUEST_QUOTATION",
-                                "CREATED_INVOICE"
-                            ]
-                        }
-                    },
-                    "channels": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/NotificationChannelCreateDTO"
-                        }
-                    }
-                }
-            },
-            "ApiResponseUnit": {
-                "title": "단순 API 응답",
-                "required": [
-                    "message"
-                ],
-                "type": "object",
-                "properties": {
-                    "message": {
-                        "type": "string",
-                        "description": "결과에 대한 메세지"
-                    },
-                    "body": {
-                        "$ref": "#/components/schemas/Unit"
-                    }
-                }
-            },
-            "Unit": {
-                "type": "object",
-                "description": "관련 데이터"
-            },
-            "ListItem": {
-                "required": [
-                    "code"
-                ],
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    },
-                    "eventTypes": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "ORDER_CREATED",
-                                "ORDER_UPDATED",
-                                "USAGE_ADDED",
-                                "INVOICE_CREATED",
-                                "INVOICE_UPDATED",
-                                "INVOICE_DELETED",
-                                "PAYMENT_COMPLETED",
-                                "PAYMENT_FAILED",
-                                "PAYMENT_CANCELED",
-                                "PAYMENT_STANDBY",
-                                "CUSTOMER_CREATED",
-                                "CUSTOMER_UPDATED",
-                                "CUSTOMER_DELETED",
-                                "SUBSCRIPTION_CREATED",
-                                "SUBSCRIPTION_UPDATED",
-                                "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
-                                "PRODUCT_CREATED",
-                                "PRODUCT_UPDATED",
-                                "PRODUCT_DELETED",
-                                "PRICE_CREATED",
-                                "PRICE_UPDATED",
-                                "PRICE_DELETED"
-                            ]
-                        }
-                    },
-                    "url": {
-                        "type": "string"
-                    }
-                },
-                "description": "목록용 웹훅"
-            },
-            "PageListItem": {
-                "type": "object",
-                "properties": {
-                    "totalPages": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "totalElements": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "pageable": {
-                        "$ref": "#/components/schemas/PageableObject"
-                    },
-                    "first": {
-                        "type": "boolean"
-                    },
-                    "last": {
-                        "type": "boolean"
-                    },
-                    "sort": {
-                        "$ref": "#/components/schemas/SortObject"
-                    },
-                    "number": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "numberOfElements": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "size": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "content": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ListItem"
-                        }
-                    },
-                    "empty": {
-                        "type": "boolean"
-                    }
-                }
-            },
-            "PageableObject": {
-                "type": "object",
-                "properties": {
-                    "pageNumber": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "pageSize": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "paged": {
-                        "type": "boolean"
-                    },
-                    "unpaged": {
-                        "type": "boolean"
-                    },
-                    "sort": {
-                        "$ref": "#/components/schemas/SortObject"
-                    },
-                    "offset": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                }
-            },
-            "SortObject": {
-                "type": "object",
-                "properties": {
-                    "sorted": {
-                        "type": "boolean"
-                    },
-                    "unsorted": {
-                        "type": "boolean"
-                    },
-                    "empty": {
-                        "type": "boolean"
-                    }
-                }
-            },
-            "RecordDetail": {
-                "required": [
-                    "eventType",
-                    "processStatus"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "description": "웹훅 발송 내역 번호",
-                        "format": "int64"
-                    },
-                    "eventType": {
-                        "type": "string",
-                        "description": "이벤트 타입",
-                        "enum": [
-                            "ORDER_CREATED",
-                            "ORDER_UPDATED",
-                            "USAGE_ADDED",
-                            "INVOICE_CREATED",
-                            "INVOICE_UPDATED",
-                            "INVOICE_DELETED",
-                            "PAYMENT_COMPLETED",
-                            "PAYMENT_FAILED",
-                            "PAYMENT_CANCELED",
-                            "PAYMENT_STANDBY",
-                            "CUSTOMER_CREATED",
-                            "CUSTOMER_UPDATED",
-                            "CUSTOMER_DELETED",
-                            "SUBSCRIPTION_CREATED",
-                            "SUBSCRIPTION_UPDATED",
-                            "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
-                            "PRODUCT_CREATED",
-                            "PRODUCT_UPDATED",
-                            "PRODUCT_DELETED",
-                            "PRICE_CREATED",
-                            "PRICE_UPDATED",
-                            "PRICE_DELETED"
-                        ]
-                    },
-                    "processStatus": {
-                        "type": "string",
-                        "description": "전송 상태",
-                        "enum": [
-                            "SUCCESS",
-                            "FAIL",
-                            "PENDING"
-                        ]
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "description": "생성 일시",
-                        "format": "date-time"
-                    }
-                },
-                "description": "웹훅 발송 기록"
-            },
-            "Event": {
-                "required": [
-                    "description",
-                    "domain",
-                    "key",
-                    "name",
-                    "schema"
-                ],
-                "type": "object",
-                "properties": {
-                    "domain": {
-                        "type": "string",
-                        "description": "도메인",
-                        "enum": [
-                            "ORDER",
-                            "INVOICE",
-                            "SUBSCRIPTION",
-                            "PAYMENT",
-                            "CUSTOMER",
-                            "PRODUCT"
-                        ]
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "이벤트",
-                        "enum": [
-                            "ORDER_CREATED",
-                            "ORDER_UPDATED",
-                            "USAGE_ADDED",
-                            "INVOICE_CREATED",
-                            "INVOICE_UPDATED",
-                            "INVOICE_DELETED",
-                            "PAYMENT_COMPLETED",
-                            "PAYMENT_FAILED",
-                            "PAYMENT_CANCELED",
-                            "PAYMENT_STANDBY",
-                            "CUSTOMER_CREATED",
-                            "CUSTOMER_UPDATED",
-                            "CUSTOMER_DELETED",
-                            "SUBSCRIPTION_CREATED",
-                            "SUBSCRIPTION_UPDATED",
-                            "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
-                            "PRODUCT_CREATED",
-                            "PRODUCT_UPDATED",
-                            "PRODUCT_DELETED",
-                            "PRICE_CREATED",
-                            "PRICE_UPDATED",
-                            "PRICE_DELETED"
-                        ]
-                    },
-                    "key": {
-                        "type": "string",
-                        "description": "이벤트 연동키"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "이벤트 설명"
-                    },
-                    "schema": {
-                        "type": "string",
-                        "description": "스키마",
-                        "enum": [
-                            "ORDER",
-                            "USAGE",
-                            "INVOICE",
-                            "PAYMENT",
-                            "CUSTOMER",
-                            "SUBSCRIPTION",
-                            "PRODUCT",
-                            "PRICE"
-                        ]
-                    }
-                },
-                "description": "웹훅 이벤트"
-            },
-            "SlackInfoDTO": {
-                "required": [
-                    "id",
-                    "token",
-                    "vendorUuid",
-                    "workspaceId",
-                    "workspaceName"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "vendorUuid": {
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    "workspaceId": {
-                        "type": "string"
-                    },
-                    "workspaceName": {
-                        "type": "string"
-                    },
-                    "token": {
-                        "type": "string"
-                    }
-                }
-            },
-            "SlackChannelDTO": {
-                "required": [
-                    "id",
-                    "name"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    }
-                }
-            },
-            "SlackChannelListDTO": {
-                "type": "object",
-                "properties": {
-                    "result": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/SlackChannelDTO"
-                        }
-                    }
-                }
-            }
-        }
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "https://api.steppay.kr",
+      "description": "Generated server url"
     }
+  ],
+  "paths": {
+    "/api/manager/webhooks/{code}": {
+      "get": {
+        "tags": [
+          "웹훅 API (Manager)"
+        ],
+        "summary": "웹훅 상세 조회",
+        "operationId": "getWebhookDetail",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "웹훅 코드",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Detail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Detail"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "웹훅 API (Manager)"
+        ],
+        "summary": "웹훅 이벤트 수정",
+        "operationId": "updateEventTypes",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "웹훅 코드",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "웹훅 이벤트 수정 DTO",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEventTypes"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Detail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Detail"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "웹훅 API (Manager)"
+        ],
+        "summary": "웹훅 삭제",
+        "operationId": "deleteWebhook",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "웹훅 코드",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/manager/notification/{code}": {
+      "get": {
+        "tags": [
+          "notification-manager-controller"
+        ],
+        "operationId": "getNotification",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "notification-manager-controller"
+        ],
+        "operationId": "updateNotification",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseNotificationDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "notification-manager-controller"
+        ],
+        "operationId": "deleteNotification",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseUnit"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manager/webhooks": {
+      "get": {
+        "tags": [
+          "웹훅 API (Manager)"
+        ],
+        "summary": "웹훅 목록 조회",
+        "operationId": "getWebhookList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageListItem"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "웹훅 API (Manager)"
+        ],
+        "summary": "웹훅 생성",
+        "operationId": "createWebhook",
+        "requestBody": {
+          "description": "웹훅 생성 DTO",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Detail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Detail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manager/webhooks/retry/{webhookRecordId}": {
+      "post": {
+        "tags": [
+          "웹훅 API (Manager)"
+        ],
+        "summary": "웹훅 이벤트 재시도",
+        "operationId": "retryWebhook",
+        "parameters": [
+          {
+            "name": "webhookRecordId",
+            "in": "path",
+            "description": "웹훅 전송 내역 번호",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/manager/notification": {
+      "get": {
+        "tags": [
+          "notification-manager-controller"
+        ],
+        "operationId": "getNotificationList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "notification-manager-controller"
+        ],
+        "operationId": "createNotification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationCreateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseNotificationDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manager/notification/slack/workspaces/{workspaceId}/uplink": {
+      "post": {
+        "tags": [
+          "notification-manager-controller"
+        ],
+        "operationId": "notificationSlackUnlink",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseUnit"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manager/webhooks/{code}/records": {
+      "get": {
+        "tags": [
+          "웹훅 API (Manager)"
+        ],
+        "summary": "웹훅 전송 내역 조회",
+        "operationId": "getWebhookRecords",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "웹훅 코드",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordDetail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecordDetail"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manager/webhooks/events": {
+      "get": {
+        "tags": [
+          "웹훅 API (Manager)"
+        ],
+        "summary": "웹훅 이벤트 목록 조회",
+        "operationId": "getEvents",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manager/notification/slack/workspaces": {
+      "get": {
+        "tags": [
+          "notification-manager-controller"
+        ],
+        "operationId": "getSlackWorkspace",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SlackInfoDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manager/notification/slack/workspaces/{workspaceId}/channels": {
+      "get": {
+        "tags": [
+          "notification-manager-controller"
+        ],
+        "operationId": "getSlackChannels",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SlackChannelListDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manager/notification/events": {
+      "get": {
+        "tags": [
+          "notification-manager-controller"
+        ],
+        "operationId": "getAllEventTypes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "required": [
+          "errorCode"
+        ],
+        "type": "object",
+        "properties": {
+          "traceId": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/components/schemas/ReturnError"
+          }
+        }
+      },
+      "ReturnError": {
+        "type": "object"
+      },
+      "UpdateEventTypes": {
+        "required": [
+          "eventTypes"
+        ],
+        "type": "object",
+        "properties": {
+          "eventTypes": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ORDER_CREATED",
+                "ORDER_UPDATED",
+                "USAGE_ADDED",
+                "INVOICE_CREATED",
+                "INVOICE_UPDATED",
+                "INVOICE_DELETED",
+                "PAYMENT_COMPLETED",
+                "PAYMENT_FAILED",
+                "PAYMENT_CANCELED",
+                "PAYMENT_STANDBY",
+                "CUSTOMER_CREATED",
+                "CUSTOMER_UPDATED",
+                "CUSTOMER_DELETED",
+                "SUBSCRIPTION_CREATED",
+                "SUBSCRIPTION_UPDATED",
+                "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
+                "PRODUCT_CREATED",
+                "PRODUCT_UPDATED",
+                "PRODUCT_DELETED",
+                "PRICE_CREATED",
+                "PRICE_UPDATED",
+                "PRICE_DELETED"
+              ]
+            }
+          }
+        }
+      },
+      "Detail": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "eventTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ORDER_CREATED",
+                "ORDER_UPDATED",
+                "USAGE_ADDED",
+                "INVOICE_CREATED",
+                "INVOICE_UPDATED",
+                "INVOICE_DELETED",
+                "PAYMENT_COMPLETED",
+                "PAYMENT_FAILED",
+                "PAYMENT_CANCELED",
+                "PAYMENT_STANDBY",
+                "CUSTOMER_CREATED",
+                "CUSTOMER_UPDATED",
+                "CUSTOMER_DELETED",
+                "SUBSCRIPTION_CREATED",
+                "SUBSCRIPTION_UPDATED",
+                "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
+                "PRODUCT_CREATED",
+                "PRODUCT_UPDATED",
+                "PRODUCT_DELETED",
+                "PRICE_CREATED",
+                "PRICE_UPDATED",
+                "PRICE_DELETED"
+              ]
+            }
+          },
+          "url": {
+            "type": "string"
+          },
+          "secretKey": {
+            "type": "string"
+          }
+        },
+        "description": "웹훅 상세 정보"
+      },
+      "NotificationChannelUpdateDTO": {
+        "required": [
+          "channelType"
+        ],
+        "type": "object",
+        "properties": {
+          "channelType": {
+            "type": "string",
+            "enum": [
+              "EMAIL",
+              "SLACK",
+              "KAKAO",
+              "SMS"
+            ]
+          },
+          "email": {
+            "type": "string"
+          },
+          "slackChannelId": {
+            "type": "string"
+          },
+          "slackChannelName": {
+            "type": "string"
+          },
+          "slackId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "NotificationUpdateDTO": {
+        "required": [
+          "channels",
+          "types"
+        ],
+        "type": "object",
+        "properties": {
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "PAID",
+                "CREATED_CUSTOMER",
+                "DELETED_CUSTOMER",
+                "SUBSCRIPTION_RENEW_FAILED",
+                "OUT_OF_STOCK",
+                "SUBSCRIPTION_RENEW_OUT_OF_STOCK",
+                "SUBSCRIPTION_RENEW_SUCCESS",
+                "REFUND_ORDER",
+                "EXCHANGE_ORDER",
+                "RETURN_ORDER",
+                "REQUEST_QUOTATION",
+                "CREATED_INVOICE"
+              ]
+            }
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationChannelUpdateDTO"
+            }
+          }
+        }
+      },
+      "ApiResponseNotificationDTO": {
+        "title": "단순 API 응답",
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "결과에 대한 메세지"
+          },
+          "body": {
+            "$ref": "#/components/schemas/NotificationDTO"
+          }
+        }
+      },
+      "NotificationChannelDTO": {
+        "required": [
+          "channelType",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "channelType": {
+            "type": "string",
+            "enum": [
+              "EMAIL",
+              "SLACK",
+              "KAKAO",
+              "SMS"
+            ]
+          },
+          "email": {
+            "type": "string"
+          },
+          "slackChannelId": {
+            "type": "string"
+          },
+          "slackChannelName": {
+            "type": "string"
+          },
+          "slackId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "workspaceId": {
+            "type": "string"
+          },
+          "workspaceName": {
+            "type": "string"
+          }
+        }
+      },
+      "NotificationDTO": {
+        "required": [
+          "channels",
+          "code",
+          "id",
+          "types"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "code": {
+            "type": "string"
+          },
+          "channelDetail": {
+            "type": "string"
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "PAID",
+                "CREATED_CUSTOMER",
+                "DELETED_CUSTOMER",
+                "SUBSCRIPTION_RENEW_FAILED",
+                "OUT_OF_STOCK",
+                "SUBSCRIPTION_RENEW_OUT_OF_STOCK",
+                "SUBSCRIPTION_RENEW_SUCCESS",
+                "REFUND_ORDER",
+                "EXCHANGE_ORDER",
+                "RETURN_ORDER",
+                "REQUEST_QUOTATION",
+                "CREATED_INVOICE"
+              ]
+            }
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationChannelDTO"
+            }
+          }
+        },
+        "description": "관련 데이터"
+      },
+      "Create": {
+        "required": [
+          "eventTypes"
+        ],
+        "type": "object",
+        "properties": {
+          "eventTypes": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ORDER_CREATED",
+                "ORDER_UPDATED",
+                "USAGE_ADDED",
+                "INVOICE_CREATED",
+                "INVOICE_UPDATED",
+                "INVOICE_DELETED",
+                "PAYMENT_COMPLETED",
+                "PAYMENT_FAILED",
+                "PAYMENT_CANCELED",
+                "PAYMENT_STANDBY",
+                "CUSTOMER_CREATED",
+                "CUSTOMER_UPDATED",
+                "CUSTOMER_DELETED",
+                "SUBSCRIPTION_CREATED",
+                "SUBSCRIPTION_UPDATED",
+                "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
+                "PRODUCT_CREATED",
+                "PRODUCT_UPDATED",
+                "PRODUCT_DELETED",
+                "PRICE_CREATED",
+                "PRICE_UPDATED",
+                "PRICE_DELETED"
+              ]
+            }
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "NotificationChannelCreateDTO": {
+        "required": [
+          "channelType"
+        ],
+        "type": "object",
+        "properties": {
+          "channelType": {
+            "type": "string",
+            "enum": [
+              "EMAIL",
+              "SLACK",
+              "KAKAO",
+              "SMS"
+            ]
+          },
+          "email": {
+            "type": "string"
+          },
+          "slackChannelId": {
+            "type": "string"
+          },
+          "slackChannelName": {
+            "type": "string"
+          },
+          "slackId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "NotificationCreateDTO": {
+        "required": [
+          "channels",
+          "types"
+        ],
+        "type": "object",
+        "properties": {
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "PAID",
+                "CREATED_CUSTOMER",
+                "DELETED_CUSTOMER",
+                "SUBSCRIPTION_RENEW_FAILED",
+                "OUT_OF_STOCK",
+                "SUBSCRIPTION_RENEW_OUT_OF_STOCK",
+                "SUBSCRIPTION_RENEW_SUCCESS",
+                "REFUND_ORDER",
+                "EXCHANGE_ORDER",
+                "RETURN_ORDER",
+                "REQUEST_QUOTATION",
+                "CREATED_INVOICE"
+              ]
+            }
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationChannelCreateDTO"
+            }
+          }
+        }
+      },
+      "ApiResponseUnit": {
+        "title": "단순 API 응답",
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "결과에 대한 메세지"
+          },
+          "body": {
+            "$ref": "#/components/schemas/Unit"
+          }
+        }
+      },
+      "Unit": {
+        "type": "object",
+        "description": "관련 데이터"
+      },
+      "ListItem": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "eventTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ORDER_CREATED",
+                "ORDER_UPDATED",
+                "USAGE_ADDED",
+                "INVOICE_CREATED",
+                "INVOICE_UPDATED",
+                "INVOICE_DELETED",
+                "PAYMENT_COMPLETED",
+                "PAYMENT_FAILED",
+                "PAYMENT_CANCELED",
+                "PAYMENT_STANDBY",
+                "CUSTOMER_CREATED",
+                "CUSTOMER_UPDATED",
+                "CUSTOMER_DELETED",
+                "SUBSCRIPTION_CREATED",
+                "SUBSCRIPTION_UPDATED",
+                "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
+                "PRODUCT_CREATED",
+                "PRODUCT_UPDATED",
+                "PRODUCT_DELETED",
+                "PRICE_CREATED",
+                "PRICE_UPDATED",
+                "PRICE_DELETED"
+              ]
+            }
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "description": "목록용 웹훅"
+      },
+      "PageListItem": {
+        "type": "object",
+        "properties": {
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListItem"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paged": {
+            "type": "boolean"
+          },
+          "unpaged": {
+            "type": "boolean"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "sorted": {
+            "type": "boolean"
+          },
+          "unsorted": {
+            "type": "boolean"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RecordDetail": {
+        "required": [
+          "eventType",
+          "processStatus"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "웹훅 발송 내역 번호",
+            "format": "int64"
+          },
+          "eventType": {
+            "type": "string",
+            "description": "이벤트 타입",
+            "enum": [
+              "ORDER_CREATED",
+              "ORDER_UPDATED",
+              "USAGE_ADDED",
+              "INVOICE_CREATED",
+              "INVOICE_UPDATED",
+              "INVOICE_DELETED",
+              "PAYMENT_COMPLETED",
+              "PAYMENT_FAILED",
+              "PAYMENT_CANCELED",
+              "PAYMENT_STANDBY",
+              "CUSTOMER_CREATED",
+              "CUSTOMER_UPDATED",
+              "CUSTOMER_DELETED",
+              "SUBSCRIPTION_CREATED",
+              "SUBSCRIPTION_UPDATED",
+              "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
+              "PRODUCT_CREATED",
+              "PRODUCT_UPDATED",
+              "PRODUCT_DELETED",
+              "PRICE_CREATED",
+              "PRICE_UPDATED",
+              "PRICE_DELETED"
+            ]
+          },
+          "processStatus": {
+            "type": "string",
+            "description": "전송 상태",
+            "enum": [
+              "SUCCESS",
+              "FAIL",
+              "PENDING"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "생성 일시",
+            "format": "date-time"
+          }
+        },
+        "description": "웹훅 발송 기록"
+      },
+      "Event": {
+        "required": [
+          "description",
+          "domain",
+          "key",
+          "name",
+          "schema"
+        ],
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "도메인",
+            "enum": [
+              "ORDER",
+              "INVOICE",
+              "SUBSCRIPTION",
+              "PAYMENT",
+              "CUSTOMER",
+              "PRODUCT"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "이벤트",
+            "enum": [
+              "ORDER_CREATED",
+              "ORDER_UPDATED",
+              "USAGE_ADDED",
+              "INVOICE_CREATED",
+              "INVOICE_UPDATED",
+              "INVOICE_DELETED",
+              "PAYMENT_COMPLETED",
+              "PAYMENT_FAILED",
+              "PAYMENT_CANCELED",
+              "PAYMENT_STANDBY",
+              "CUSTOMER_CREATED",
+              "CUSTOMER_UPDATED",
+              "CUSTOMER_DELETED",
+              "SUBSCRIPTION_CREATED",
+              "SUBSCRIPTION_UPDATED",
+              "SUBSCRIPTION_PAYMENT_DUE_NOTIFICATION",
+              "PRODUCT_CREATED",
+              "PRODUCT_UPDATED",
+              "PRODUCT_DELETED",
+              "PRICE_CREATED",
+              "PRICE_UPDATED",
+              "PRICE_DELETED"
+            ]
+          },
+          "key": {
+            "type": "string",
+            "description": "이벤트 연동키"
+          },
+          "description": {
+            "type": "string",
+            "description": "이벤트 설명"
+          },
+          "schema": {
+            "type": "string",
+            "description": "스키마",
+            "enum": [
+              "ORDER",
+              "USAGE",
+              "INVOICE",
+              "PAYMENT",
+              "CUSTOMER",
+              "SUBSCRIPTION",
+              "PRODUCT",
+              "PRICE"
+            ]
+          }
+        },
+        "description": "웹훅 이벤트"
+      },
+      "SlackInfoDTO": {
+        "required": [
+          "id",
+          "token",
+          "vendorUuid",
+          "workspaceId",
+          "workspaceName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "vendorUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string"
+          },
+          "workspaceName": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "SlackChannelDTO": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "SlackChannelListDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SlackChannelDTO"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-internal": true
 }

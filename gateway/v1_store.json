@@ -1,17 +1,18 @@
 {
-    "openapi": "3.0.1",
-    "info": {
-        "title": "v1_store",
-        "version": "v0.1"
-    },
-    "servers": [
-        {
-            "url": "https://api.steppay.kr",
-            "description": "Generated server url"
-        }
-    ],
-    "paths": {},
-    "components": {
-        "schemas": {}
+  "openapi": "3.0.1",
+  "info": {
+    "title": "v1_store",
+    "version": "v0.1"
+  },
+  "servers": [
+    {
+      "url": "https://api.steppay.kr",
+      "description": "Generated server url"
     }
+  ],
+  "paths": {},
+  "components": {
+    "schemas": {}
+  },
+  "x-internal": true
 }

@@ -1,404 +1,405 @@
 {
-    "openapi": "3.0.1",
-    "info": {
-        "title": "v1_usage_record",
-        "version": "v0"
-    },
-    "servers": [
-        {
-            "url": "https://api.steppay.kr",
-            "description": "Generated server url"
-        }
-    ],
-    "tags": [
-        {
-            "name": "사용량 기록",
-            "description": "계정/사용량 기반 과금의 사용량을 기록하기 위한 API 입니다."
-        }
-    ],
-    "paths": {
-        "/api/v1/usages": {
-            "get": {
-                "tags": [
-                    "usages"
-                ],
-                "summary": "사용량/계정 조회 API",
-                "description": "사용량 또는 계정을 조회할 때 사용합니다.",
-                "operationId": "v1_getRecordQuotas",
-                "parameters": [
-                    {
-                        "name": "subscriptionItemId",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "사용량/계정 기록이 정상적으로 조회됨",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RecordForV1"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "사용량/계정 기록을 조회할 수 없는 상황",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "usages"
-                ],
-                "summary": "사용량/계정 등록 API",
-                "description": "사용량 또는 계정을 등록할 때 사용합니다.",
-                "operationId": "v1_createRecordQuota",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Req"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "201": {
-                        "description": "사용량/계정 기록이 정상적으로 등록됨",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Res"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "사용량/계정 기록을 등록할 수 없는 상황",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/usage_records": {
-            "post": {
-                "tags": [
-                    "usage_records"
-                ],
-                "summary": "사용량/계정 등록 API",
-                "description": "사용량 또는 계정을 등록할 때 사용합니다.",
-                "operationId": "v1_createUnitRecords",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UsageRecordCreateDTO"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "201": {
-                        "description": "사용량/계정 기록이 정상적으로 등록됨",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/UsageRecordDTO"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "사용량/계정 기록을 등록할 수 없는 상황",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                },
-                "deprecated": true
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "ErrorResponse": {
-                "required": [
-                    "errorCode"
-                ],
-                "type": "object",
-                "properties": {
-                    "traceId": {
-                        "type": "string"
-                    },
-                    "errorCode": {
-                        "type": "string"
-                    },
-                    "errorMessage": {
-                        "type": "string"
-                    },
-                    "details": {
-                        "$ref": "#/components/schemas/ReturnError"
-                    }
-                }
-            },
-            "ReturnError": {
-                "type": "object"
-            },
-            "Res": {
-                "title": "기록 조회",
-                "required": [
-                    "accumulateRecord",
-                    "amountForQuota",
-                    "influxDate",
-                    "restDays"
-                ],
-                "type": "object",
-                "properties": {
-                    "accumulateQuota": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "accumulateRecord": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "influxDate": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "amountForQuota": {
-                        "type": "number"
-                    },
-                    "restDays": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                }
-            },
-            "Req": {
-                "title": "기록 생성",
-                "required": [
-                    "influxDate",
-                    "quota",
-                    "record",
-                    "subscriptionItemId"
-                ],
-                "type": "object",
-                "properties": {
-                    "subscriptionItemId": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "quota": {
-                        "type": "integer",
-                        "description": "기존 AccumulatedQuota 값에 대하여 증감합니다.",
-                        "format": "int64"
-                    },
-                    "record": {
-                        "type": "integer",
-                        "description": "기존 AccumulatedRecord 값에 대하여 증감합니다.",
-                        "format": "int64"
-                    },
-                    "influxDate": {
-                        "type": "string",
-                        "description": "인입일",
-                        "format": "date-time"
-                    },
-                    "payload": {
-                        "type": "string"
-                    }
-                }
-            },
-            "UsageRecordDTO": {
-                "required": [
-                    "accumulated",
-                    "id",
-                    "quantity",
-                    "startDate",
-                    "status",
-                    "subscriptionItemId",
-                    "via"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "description": "기록 ID",
-                        "format": "int64"
-                    },
-                    "subscriptionItemId": {
-                        "type": "integer",
-                        "description": "구독 항목 ID",
-                        "format": "int64"
-                    },
-                    "payload": {
-                        "type": "string",
-                        "description": "사용량과 관련하여 추가적으로 저장한 데이터"
-                    },
-                    "status": {
-                        "type": "string",
-                        "description": "상태",
-                        "enum": [
-                            "IN",
-                            "ACTIVE",
-                            "OUT",
-                            "REMOVED"
-                        ]
-                    },
-                    "startDate": {
-                        "type": "string",
-                        "description": "기록된 시각",
-                        "format": "date-time"
-                    },
-                    "endDate": {
-                        "type": "string",
-                        "description": "이탈한 시각 - 계정 기반 데이터에 사용됩니다.",
-                        "format": "date-time"
-                    },
-                    "quantity": {
-                        "type": "integer",
-                        "description": "기록 수량",
-                        "format": "int64"
-                    },
-                    "via": {
-                        "type": "string",
-                        "description": "어떤 경로로 기록되었는지",
-                        "enum": [
-                            "MANAGER",
-                            "V1",
-                            "RENEW",
-                            "CUSTOMER",
-                            "SYSTEM"
-                        ]
-                    },
-                    "accumulated": {
-                        "type": "integer",
-                        "description": "누적 사용량",
-                        "format": "int64"
-                    }
-                }
-            },
-            "UsageRecordCreateDTO": {
-                "title": "기록 생성",
-                "required": [
-                    "quantity",
-                    "startDate",
-                    "subscriptionItemId"
-                ],
-                "type": "object",
-                "properties": {
-                    "subscriptionItemId": {
-                        "type": "integer",
-                        "description": "구독 항목 ID",
-                        "format": "int64"
-                    },
-                    "quantity": {
-                        "minimum": 1,
-                        "type": "integer",
-                        "description": "기록 수량",
-                        "format": "int64"
-                    },
-                    "payload": {
-                        "type": "string",
-                        "description": "(사용량/계정)과 관련하여 추가적으로 저장이 필요한 데이터가 있을 때 저장하기 위한 공간"
-                    },
-                    "startDate": {
-                        "type": "string",
-                        "description": "기록한 날짜 - 기본값은 현재 시점입니다.",
-                        "format": "date-time"
-                    }
-                }
-            },
-            "RecordForV1": {
-                "required": [
-                    "influxDate",
-                    "record",
-                    "via"
-                ],
-                "type": "object",
-                "properties": {
-                    "quota": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "record": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "influxDate": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "via": {
-                        "type": "string",
-                        "enum": [
-                            "MANAGER",
-                            "V1",
-                            "RENEW",
-                            "CUSTOMER",
-                            "SYSTEM"
-                        ]
-                    },
-                    "payload": {
-                        "type": "string"
-                    }
-                }
-            }
-        }
+  "openapi": "3.0.1",
+  "info": {
+    "title": "v1_usage_record",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "https://api.steppay.kr",
+      "description": "Generated server url"
     }
+  ],
+  "tags": [
+    {
+      "name": "사용량 기록",
+      "description": "계정/사용량 기반 과금의 사용량을 기록하기 위한 API 입니다."
+    }
+  ],
+  "paths": {
+    "/api/v1/usages": {
+      "get": {
+        "tags": [
+          "usages"
+        ],
+        "summary": "사용량/계정 조회 API",
+        "description": "사용량 또는 계정을 조회할 때 사용합니다.",
+        "operationId": "v1_getRecordQuotas",
+        "parameters": [
+          {
+            "name": "subscriptionItemId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "사용량/계정 기록이 정상적으로 조회됨",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordForV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "사용량/계정 기록을 조회할 수 없는 상황",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "usages"
+        ],
+        "summary": "사용량/계정 등록 API",
+        "description": "사용량 또는 계정을 등록할 때 사용합니다.",
+        "operationId": "v1_createRecordQuota",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Req"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "사용량/계정 기록이 정상적으로 등록됨",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Res"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "사용량/계정 기록을 등록할 수 없는 상황",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usage_records": {
+      "post": {
+        "tags": [
+          "usage_records"
+        ],
+        "summary": "사용량/계정 등록 API",
+        "description": "사용량 또는 계정을 등록할 때 사용합니다.",
+        "operationId": "v1_createUnitRecords",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsageRecordCreateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "사용량/계정 기록이 정상적으로 등록됨",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageRecordDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "사용량/계정 기록을 등록할 수 없는 상황",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "required": [
+          "errorCode"
+        ],
+        "type": "object",
+        "properties": {
+          "traceId": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/components/schemas/ReturnError"
+          }
+        }
+      },
+      "ReturnError": {
+        "type": "object"
+      },
+      "Res": {
+        "title": "기록 조회",
+        "required": [
+          "accumulateRecord",
+          "amountForQuota",
+          "influxDate",
+          "restDays"
+        ],
+        "type": "object",
+        "properties": {
+          "accumulateQuota": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "accumulateRecord": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "influxDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "amountForQuota": {
+            "type": "number"
+          },
+          "restDays": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Req": {
+        "title": "기록 생성",
+        "required": [
+          "influxDate",
+          "quota",
+          "record",
+          "subscriptionItemId"
+        ],
+        "type": "object",
+        "properties": {
+          "subscriptionItemId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quota": {
+            "type": "integer",
+            "description": "기존 AccumulatedQuota 값에 대하여 증감합니다.",
+            "format": "int64"
+          },
+          "record": {
+            "type": "integer",
+            "description": "기존 AccumulatedRecord 값에 대하여 증감합니다.",
+            "format": "int64"
+          },
+          "influxDate": {
+            "type": "string",
+            "description": "인입일",
+            "format": "date-time"
+          },
+          "payload": {
+            "type": "string"
+          }
+        }
+      },
+      "UsageRecordDTO": {
+        "required": [
+          "accumulated",
+          "id",
+          "quantity",
+          "startDate",
+          "status",
+          "subscriptionItemId",
+          "via"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "기록 ID",
+            "format": "int64"
+          },
+          "subscriptionItemId": {
+            "type": "integer",
+            "description": "구독 항목 ID",
+            "format": "int64"
+          },
+          "payload": {
+            "type": "string",
+            "description": "사용량과 관련하여 추가적으로 저장한 데이터"
+          },
+          "status": {
+            "type": "string",
+            "description": "상태",
+            "enum": [
+              "IN",
+              "ACTIVE",
+              "OUT",
+              "REMOVED"
+            ]
+          },
+          "startDate": {
+            "type": "string",
+            "description": "기록된 시각",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "이탈한 시각 - 계정 기반 데이터에 사용됩니다.",
+            "format": "date-time"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "기록 수량",
+            "format": "int64"
+          },
+          "via": {
+            "type": "string",
+            "description": "어떤 경로로 기록되었는지",
+            "enum": [
+              "MANAGER",
+              "V1",
+              "RENEW",
+              "CUSTOMER",
+              "SYSTEM"
+            ]
+          },
+          "accumulated": {
+            "type": "integer",
+            "description": "누적 사용량",
+            "format": "int64"
+          }
+        }
+      },
+      "UsageRecordCreateDTO": {
+        "title": "기록 생성",
+        "required": [
+          "quantity",
+          "startDate",
+          "subscriptionItemId"
+        ],
+        "type": "object",
+        "properties": {
+          "subscriptionItemId": {
+            "type": "integer",
+            "description": "구독 항목 ID",
+            "format": "int64"
+          },
+          "quantity": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "기록 수량",
+            "format": "int64"
+          },
+          "payload": {
+            "type": "string",
+            "description": "(사용량/계정)과 관련하여 추가적으로 저장이 필요한 데이터가 있을 때 저장하기 위한 공간"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "기록한 날짜 - 기본값은 현재 시점입니다.",
+            "format": "date-time"
+          }
+        }
+      },
+      "RecordForV1": {
+        "required": [
+          "influxDate",
+          "record",
+          "via"
+        ],
+        "type": "object",
+        "properties": {
+          "quota": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "record": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "influxDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "via": {
+            "type": "string",
+            "enum": [
+              "MANAGER",
+              "V1",
+              "RENEW",
+              "CUSTOMER",
+              "SYSTEM"
+            ]
+          },
+          "payload": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "x-internal": true
 }
