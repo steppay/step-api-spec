@@ -444,6 +444,20 @@ async function addExamples(inPath, inFileName, outFileName) {
     }
 }
 
+async function publish(filePaths) {
+    try {
+        for (const filePath of filePaths) {
+            const fileName = path.basename(filePath);
+            const destPath = path.join('./publish', fileName);
+    
+            await fs.copyFile(filePath, destPath);
+            console.log(`Copied ${filePath} to ${destPath}`);
+        }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+}
+
 async function main() {
     // segment 별로 merge
     await mergeSpecBySegment();
@@ -456,6 +470,9 @@ async function main() {
 
     // V1 요청, 응답 예시 넣어주기
     await addExamples(COMPLETE_SPECS_DIR, 'v1_tag.json', 'steppay_v1.json')
+
+    // publish 폴더로 복사
+    // await publish(['./complete/steppay_v1.json'])
 }
 
 main()
