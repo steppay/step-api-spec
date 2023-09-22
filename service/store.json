@@ -1,0 +1,3194 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Store API",
+        "version": "v0.1"
+    },
+    "servers": [
+        {
+            "url": "https://api.steppay.kr",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/manager/stores/{storeId}/urls/{id}/activate": {
+            "put": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "activateBaseUrl",
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BaseUrlCreateDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BaseUrlResponseDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/stores/{id}": {
+            "get": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "findOneById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "updateStore",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreUpdateRequestDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/stores/{id}/menus": {
+            "get": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "getMenuItemList",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/MenuItemResponseDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "updateMenuItemList",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/MenuItemUpdateDTO"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/MenuItemResponseDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/pages/{pageId}/stores/{storeId}": {
+            "get": {
+                "tags": [
+                    "page-manager-controller"
+                ],
+                "operationId": "getStorePageMetadataById",
+                "parameters": [
+                    {
+                        "name": "pageId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StorePageResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "page-manager-controller"
+                ],
+                "operationId": "updateStorePage",
+                "parameters": [
+                    {
+                        "name": "pageId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StorePageUpdateDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StorePageResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/stores/{storeUuid}/store-urls": {
+            "put": {
+                "tags": [
+                    "store-admin-controller"
+                ],
+                "operationId": "addStoreUrls",
+                "parameters": [
+                    {
+                        "name": "storeUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/stores/{id}/urls": {
+            "post": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "addBaseUrl",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BaseUrlCreateDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/firstactivation/{vendorUuid}/store": {
+            "post": {
+                "tags": [
+                    "first-activation-manager-controller"
+                ],
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FirstActivationRequestWrapperDTOFirstActivationStoreDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/firstactivation/{vendorUuid}/screenNo": {
+            "post": {
+                "tags": [
+                    "first-activation-manager-controller"
+                ],
+                "operationId": "screenNo",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FirstActivationRequestWrapperDTOFirstActivationStoreTypeDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/firstactivation/{vendorUuid}/payment": {
+            "post": {
+                "tags": [
+                    "first-activation-manager-controller"
+                ],
+                "operationId": "payment",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FirstActivationRequestWrapperDTOFirstActivationPaymentDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/firstactivation/{vendorUuid}/finish": {
+            "post": {
+                "tags": [
+                    "first-activation-manager-controller"
+                ],
+                "operationId": "finish",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FirstActivationRequestWrapperDTOFirstActivationFinishDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/firstactivation/{vendorUuid}/delivery": {
+            "post": {
+                "tags": [
+                    "first-activation-manager-controller"
+                ],
+                "operationId": "delivery",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FirstActivationRequestWrapperDTOFirstActivationDeliveryDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/firstactivation/{vendorUuid}/business": {
+            "post": {
+                "tags": [
+                    "first-activation-manager-controller"
+                ],
+                "operationId": "business",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FirstActivationRequestWrapperDTOFirstActivationBusinessDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/internal/stores": {
+            "get": {
+                "tags": [
+                    "store-internal-controller"
+                ],
+                "operationId": "findAll",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/StoreResponseDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "store-internal-controller"
+                ],
+                "operationId": "createStore",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreCreateRequestDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/stores/{uuid}/policy": {
+            "get": {
+                "tags": [
+                    "store-public-controller"
+                ],
+                "operationId": "policy",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PolicyResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/stores/metadata": {
+            "get": {
+                "tags": [
+                    "store-public-controller"
+                ],
+                "operationId": "findByUUID",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "url",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreMetadataResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/pages/uri/{pageUri}/stores/{storeId}": {
+            "get": {
+                "tags": [
+                    "page-public-controller"
+                ],
+                "operationId": "getStorePageMetadataByUri",
+                "parameters": [
+                    {
+                        "name": "pageUri",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StorePageResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/stores/uuid/{uuid}": {
+            "get": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "findOneByUuid",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/stores/urls": {
+            "get": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "checkSubdomainAvailable",
+                "parameters": [
+                    {
+                        "name": "domain",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/stores/requirements": {
+            "get": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "requirements",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/pages": {
+            "get": {
+                "tags": [
+                    "page-manager-controller"
+                ],
+                "operationId": "getInstantPageList",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InstantPageGroupResponseDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/firstactivation/{vendorUuid}/view": {
+            "get": {
+                "tags": [
+                    "first-activation-manager-controller"
+                ],
+                "operationId": "view",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FirstActivationResponseWrapperDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/internal/test/now": {
+            "get": {
+                "tags": [
+                    "test-internal-controller"
+                ],
+                "operationId": "getCurrentTime",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "date"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/internal/stores/vendor/{vendorUuid}/metadata": {
+            "get": {
+                "tags": [
+                    "store-internal-controller"
+                ],
+                "operationId": "findByVendorUuid",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/internal/stores/vendor/{vendorUuid}/business_info": {
+            "get": {
+                "tags": [
+                    "store-internal-controller"
+                ],
+                "operationId": "findBusinessInfoByVendorUuid",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BusinessInfoDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/internal/stores/realm/{realmId}/metadata": {
+            "get": {
+                "tags": [
+                    "store-internal-controller"
+                ],
+                "operationId": "findByRealmUuid",
+                "parameters": [
+                    {
+                        "name": "realmId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/StoreResponseDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/stores/{id}/urls/{urlId}": {
+            "delete": {
+                "tags": [
+                    "store-manager-controller"
+                ],
+                "operationId": "deleteBaseUrl",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "urlId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BaseUrlResponseDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/firstactivation/{vendorUuid}/clear": {
+            "delete": {
+                "tags": [
+                    "first-activation-manager-controller"
+                ],
+                "operationId": "clear",
+                "parameters": [
+                    {
+                        "name": "vendorUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ErrorResponse": {
+                "required": [
+                    "errorCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "traceId": {
+                        "type": "string"
+                    },
+                    "errorCode": {
+                        "type": "string"
+                    },
+                    "errorMessage": {
+                        "type": "string"
+                    },
+                    "details": {
+                        "$ref": "#/components/schemas/ReturnError"
+                    }
+                }
+            },
+            "ReturnError": {
+                "type": "object"
+            },
+            "BaseUrlCreateDTO": {
+                "required": [
+                    "url"
+                ],
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string"
+                    }
+                }
+            },
+            "BaseUrlResponseDTO": {
+                "required": [
+                    "active",
+                    "default",
+                    "id",
+                    "url"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "url": {
+                        "type": "string"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "default": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "BusinessInfoUpdateDTO": {
+                "required": [
+                    "businessType"
+                ],
+                "type": "object",
+                "properties": {
+                    "businessType": {
+                        "type": "string",
+                        "enum": [
+                            "INDIVIDUAL",
+                            "SELF_EMPLOYED",
+                            "CORPORATION"
+                        ]
+                    },
+                    "businessName": {
+                        "type": "string"
+                    },
+                    "mailOrderNumber": {
+                        "type": "string"
+                    },
+                    "personName": {
+                        "type": "string"
+                    },
+                    "registrationNumber": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "postcode": {
+                        "type": "string"
+                    },
+                    "address1": {
+                        "type": "string"
+                    },
+                    "address2": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CustomFieldUpdateDTO": {
+                "required": [
+                    "active",
+                    "key",
+                    "name",
+                    "order",
+                    "required",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "TEXT",
+                            "EMAIL",
+                            "PASSWORD",
+                            "PHONE",
+                            "CHECKBOX",
+                            "DROPDOWN",
+                            "CALENDAR",
+                            "NUMBER",
+                            "COMMENT"
+                        ]
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "order": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "required": {
+                        "type": "boolean"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "values": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CustomerServiceInfoUpdateDTO": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "businessHours": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FormSettingUpdateDTO": {
+                "required": [
+                    "emailAsUsername",
+                    "verifyEmail"
+                ],
+                "type": "object",
+                "properties": {
+                    "emailAsUsername": {
+                        "type": "boolean"
+                    },
+                    "verifyEmail": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "SocialLinkUpdateDTO": {
+                "required": [
+                    "link",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "INSTAGRAM",
+                            "FACEBOOK",
+                            "NAVER",
+                            "TWITTER",
+                            "YOUTUBE"
+                        ]
+                    },
+                    "link": {
+                        "type": "string"
+                    }
+                }
+            },
+            "StoreUpdateRequestDTO": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "escrowType": {
+                        "type": "string",
+                        "enum": [
+                            "KG",
+                            "NICE",
+                            "TOSS",
+                            "KB",
+                            "NH",
+                            "IBK"
+                        ]
+                    },
+                    "escrowLink": {
+                        "type": "string"
+                    },
+                    "headHtml": {
+                        "type": "string"
+                    },
+                    "bodyHtml": {
+                        "type": "string"
+                    },
+                    "businessHours": {
+                        "type": "string"
+                    },
+                    "storeOperationType": {
+                        "type": "string",
+                        "enum": [
+                            "STANDALONE",
+                            "ENTERED"
+                        ]
+                    },
+                    "keyColor": {
+                        "type": "string"
+                    },
+                    "faviconUrl": {
+                        "type": "string"
+                    },
+                    "logoUrl": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "LIVE",
+                            "STOP"
+                        ]
+                    },
+                    "term1": {
+                        "type": "boolean"
+                    },
+                    "term2": {
+                        "type": "boolean"
+                    },
+                    "term3": {
+                        "type": "boolean"
+                    },
+                    "businessInfo": {
+                        "$ref": "#/components/schemas/BusinessInfoUpdateDTO"
+                    },
+                    "csInfo": {
+                        "$ref": "#/components/schemas/CustomerServiceInfoUpdateDTO"
+                    },
+                    "socialLinks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SocialLinkUpdateDTO"
+                        }
+                    },
+                    "formSettings": {
+                        "$ref": "#/components/schemas/FormSettingUpdateDTO"
+                    },
+                    "customFields": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CustomFieldUpdateDTO"
+                        }
+                    }
+                }
+            },
+            "BusinessInfoDTO": {
+                "required": [
+                    "businessType"
+                ],
+                "type": "object",
+                "properties": {
+                    "businessType": {
+                        "type": "string",
+                        "enum": [
+                            "INDIVIDUAL",
+                            "SELF_EMPLOYED",
+                            "CORPORATION"
+                        ]
+                    },
+                    "businessName": {
+                        "type": "string"
+                    },
+                    "personName": {
+                        "type": "string"
+                    },
+                    "registrationNumber": {
+                        "type": "string"
+                    },
+                    "mailOrderNumber": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "postcode": {
+                        "type": "string"
+                    },
+                    "address1": {
+                        "type": "string"
+                    },
+                    "address2": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CustomFieldResponseDTO": {
+                "required": [
+                    "active",
+                    "key",
+                    "name",
+                    "order",
+                    "required",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "TEXT",
+                            "EMAIL",
+                            "PASSWORD",
+                            "PHONE",
+                            "CHECKBOX",
+                            "DROPDOWN",
+                            "CALENDAR",
+                            "NUMBER",
+                            "COMMENT"
+                        ]
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "order": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "required": {
+                        "type": "boolean"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "values": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CustomerServiceInfoDTO": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "businessHours": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FormSettingsDTO": {
+                "required": [
+                    "emailAsUsername",
+                    "verifyEmail"
+                ],
+                "type": "object",
+                "properties": {
+                    "emailAsUsername": {
+                        "type": "boolean"
+                    },
+                    "verifyEmail": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "SocialLinkResponseDTO": {
+                "required": [
+                    "link",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "INSTAGRAM",
+                            "FACEBOOK",
+                            "NAVER",
+                            "TWITTER",
+                            "YOUTUBE"
+                        ]
+                    },
+                    "link": {
+                        "type": "string"
+                    }
+                }
+            },
+            "StoreResponseDTO": {
+                "required": [
+                    "authServerUrl",
+                    "baseUrls",
+                    "customFields",
+                    "faviconUrl",
+                    "formSettings",
+                    "id",
+                    "keyColor",
+                    "logoUrl",
+                    "name",
+                    "openidConfigurationUrl",
+                    "realmId",
+                    "socialLinks",
+                    "status",
+                    "subdomain",
+                    "terms1",
+                    "terms2",
+                    "terms3",
+                    "uuid"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "subdomain": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "escrowType": {
+                        "type": "string",
+                        "enum": [
+                            "KG",
+                            "NICE",
+                            "TOSS",
+                            "KB",
+                            "NH",
+                            "IBK"
+                        ]
+                    },
+                    "escrowLink": {
+                        "type": "string"
+                    },
+                    "headHtml": {
+                        "type": "string"
+                    },
+                    "bodyHtml": {
+                        "type": "string"
+                    },
+                    "storeOperationType": {
+                        "type": "string",
+                        "enum": [
+                            "STANDALONE",
+                            "ENTERED"
+                        ]
+                    },
+                    "keyColor": {
+                        "type": "string"
+                    },
+                    "faviconUrl": {
+                        "type": "string"
+                    },
+                    "logoUrl": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "businessHours": {
+                        "type": "string"
+                    },
+                    "formSettings": {
+                        "$ref": "#/components/schemas/FormSettingsDTO"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "LIVE",
+                            "STOP"
+                        ]
+                    },
+                    "terms1": {
+                        "type": "boolean"
+                    },
+                    "terms2": {
+                        "type": "boolean"
+                    },
+                    "terms3": {
+                        "type": "boolean"
+                    },
+                    "businessInfo": {
+                        "$ref": "#/components/schemas/BusinessInfoDTO"
+                    },
+                    "csInfo": {
+                        "$ref": "#/components/schemas/CustomerServiceInfoDTO"
+                    },
+                    "baseUrls": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BaseUrlResponseDTO"
+                        }
+                    },
+                    "socialLinks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SocialLinkResponseDTO"
+                        }
+                    },
+                    "customFields": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CustomFieldResponseDTO"
+                        }
+                    },
+                    "authServerUrl": {
+                        "type": "string"
+                    },
+                    "openidConfigurationUrl": {
+                        "type": "string"
+                    }
+                }
+            },
+            "MenuItemUpdateDTO": {
+                "required": [
+                    "children",
+                    "menuItemName",
+                    "newWindow",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "INSTANT_PAGE",
+                            "EXTERNAL_LINK",
+                            "CATEGORY",
+                            "PRODUCT_PAGE"
+                        ]
+                    },
+                    "menuItemName": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "pageId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "categoryId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MenuItemUpdateDTO"
+                        }
+                    },
+                    "newWindow": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "MenuItemResponseDTO": {
+                "required": [
+                    "children",
+                    "id",
+                    "newWindow",
+                    "order",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "INSTANT_PAGE",
+                            "EXTERNAL_LINK",
+                            "CATEGORY",
+                            "PRODUCT_PAGE"
+                        ]
+                    },
+                    "uri": {
+                        "type": "string"
+                    },
+                    "pageId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "categoryId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "order": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MenuItemResponseDTO"
+                        }
+                    },
+                    "newWindow": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "MetadataValueDTO": {
+                "required": [
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "STRING",
+                            "LONG",
+                            "BOOLEAN",
+                            "TEXT"
+                        ]
+                    },
+                    "stringValue": {
+                        "type": "string"
+                    },
+                    "longValue": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "booleanValue": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "StorePageUpdateDTO": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "seoEnabled": {
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MetadataValueDTO"
+                        }
+                    }
+                }
+            },
+            "StorePageResponseDTO": {
+                "required": [
+                    "metadata",
+                    "name",
+                    "seoEnabled",
+                    "uri"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "seoEnabled": {
+                        "type": "boolean"
+                    },
+                    "uri": {
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "type": "array",
+                        "example": "[ { \"name\": \"aspectRatio\": 0 } ]",
+                        "items": {
+                            "$ref": "#/components/schemas/MetadataValueDTO"
+                        }
+                    }
+                }
+            },
+            "FirstActivationRequestWrapperDTOFirstActivationStoreDTO": {
+                "required": [
+                    "request",
+                    "screenCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "screenCode": {
+                        "type": "string"
+                    },
+                    "request": {
+                        "$ref": "#/components/schemas/FirstActivationStoreDTO"
+                    }
+                }
+            },
+            "FirstActivationStoreDTO": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "maxLength": 30,
+                        "minLength": 2,
+                        "type": "string"
+                    },
+                    "email": {
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "tel": {
+                        "pattern": "0[23456789]{1,2}-\\d{3,4}-\\d{3,4}",
+                        "type": "string"
+                    },
+                    "businessHours": {
+                        "type": "string"
+                    },
+                    "keyColor": {
+                        "pattern": "#[0-9A-F]{6}",
+                        "type": "string"
+                    },
+                    "faviconUrl": {
+                        "type": "string"
+                    },
+                    "logoUrl": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FirstActivationRequestWrapperDTOFirstActivationStoreTypeDTO": {
+                "required": [
+                    "request",
+                    "screenCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "screenCode": {
+                        "type": "string"
+                    },
+                    "request": {
+                        "$ref": "#/components/schemas/FirstActivationStoreTypeDTO"
+                    }
+                }
+            },
+            "FirstActivationStoreTypeDTO": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "STANDALONE",
+                            "ENTERED"
+                        ]
+                    }
+                }
+            },
+            "FirstActivationPaymentDTO": {
+                "required": [
+                    "activated",
+                    "pgEnabled"
+                ],
+                "type": "object",
+                "properties": {
+                    "pgEnabled": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "uniqueItems": true,
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "CARD",
+                                    "VBANK",
+                                    "BANK",
+                                    "CELLPHONE",
+                                    "SIMPLE_PAY",
+                                    "CMS",
+                                    "CARD_BILL",
+                                    "CELLPHONE_BILL",
+                                    "CMS_BILL"
+                                ]
+                            }
+                        }
+                    },
+                    "activated": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "FirstActivationRequestWrapperDTOFirstActivationPaymentDTO": {
+                "required": [
+                    "request",
+                    "screenCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "screenCode": {
+                        "type": "string"
+                    },
+                    "request": {
+                        "$ref": "#/components/schemas/FirstActivationPaymentDTO"
+                    }
+                }
+            },
+            "FirstActivationFinishDTO": {
+                "required": [
+                    "term1",
+                    "term2",
+                    "term3"
+                ],
+                "type": "object",
+                "properties": {
+                    "term1": {
+                        "type": "boolean"
+                    },
+                    "term2": {
+                        "type": "boolean"
+                    },
+                    "term3": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "FirstActivationRequestWrapperDTOFirstActivationFinishDTO": {
+                "required": [
+                    "request",
+                    "screenCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "screenCode": {
+                        "type": "string"
+                    },
+                    "request": {
+                        "$ref": "#/components/schemas/FirstActivationFinishDTO"
+                    }
+                }
+            },
+            "FirstActivationDeliveryDTO": {
+                "required": [
+                    "useDeliveryCharge"
+                ],
+                "type": "object",
+                "properties": {
+                    "useDeliveryCharge": {
+                        "type": "boolean"
+                    },
+                    "deliveryChargeType": {
+                        "type": "string",
+                        "enum": [
+                            "FREE",
+                            "CONDITIONAL_FREE",
+                            "FIXED"
+                        ]
+                    },
+                    "defaultDeliveryCharge": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "freeShipOverAmount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "useLocalShipCharge": {
+                        "type": "boolean"
+                    },
+                    "jejuShipAmount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "islandAndMountainShipAmount": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "FirstActivationRequestWrapperDTOFirstActivationDeliveryDTO": {
+                "required": [
+                    "request",
+                    "screenCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "screenCode": {
+                        "type": "string"
+                    },
+                    "request": {
+                        "$ref": "#/components/schemas/FirstActivationDeliveryDTO"
+                    }
+                }
+            },
+            "FirstActivationBusinessDTO": {
+                "type": "object",
+                "properties": {
+                    "businessType": {
+                        "type": "string",
+                        "enum": [
+                            "INDIVIDUAL",
+                            "SELF_EMPLOYED",
+                            "CORPORATION"
+                        ]
+                    },
+                    "name": {
+                        "maxLength": 200,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "personName": {
+                        "type": "string"
+                    },
+                    "registrationNumber": {
+                        "pattern": "\\d{10}",
+                        "type": "string"
+                    },
+                    "mailOrderNumber": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "postcode": {
+                        "type": "string"
+                    },
+                    "address1": {
+                        "type": "string"
+                    },
+                    "address2": {
+                        "type": "string"
+                    },
+                    "file": {
+                        "type": "string"
+                    },
+                    "termTax": {
+                        "type": "boolean"
+                    },
+                    "termFee": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "FirstActivationRequestWrapperDTOFirstActivationBusinessDTO": {
+                "required": [
+                    "request",
+                    "screenCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "screenCode": {
+                        "type": "string"
+                    },
+                    "request": {
+                        "$ref": "#/components/schemas/FirstActivationBusinessDTO"
+                    }
+                }
+            },
+            "StoreCreateRequestDTO": {
+                "required": [
+                    "name",
+                    "realmId",
+                    "subdomain",
+                    "terms1",
+                    "terms2",
+                    "terms3",
+                    "uuid"
+                ],
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "subdomain": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "storeOperationType": {
+                        "type": "string",
+                        "enum": [
+                            "STANDALONE",
+                            "ENTERED"
+                        ]
+                    },
+                    "keyColor": {
+                        "type": "string"
+                    },
+                    "faviconUrl": {
+                        "type": "string"
+                    },
+                    "logoUrl": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "businessHours": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "LIVE",
+                            "STOP"
+                        ]
+                    },
+                    "terms1": {
+                        "type": "boolean"
+                    },
+                    "terms2": {
+                        "type": "boolean"
+                    },
+                    "terms3": {
+                        "type": "boolean"
+                    },
+                    "businessInfo": {
+                        "$ref": "#/components/schemas/BusinessInfoDTO"
+                    },
+                    "csInfo": {
+                        "$ref": "#/components/schemas/CustomerServiceInfoDTO"
+                    }
+                }
+            },
+            "PolicyResponseDTO": {
+                "type": "object",
+                "properties": {
+                    "termsAndConditions": {
+                        "type": "string"
+                    },
+                    "privacyConditions": {
+                        "type": "string"
+                    },
+                    "deliveryReturnConditions": {
+                        "type": "string"
+                    }
+                }
+            },
+            "StoreMetadataResponseDTO": {
+                "required": [
+                    "activeUrl",
+                    "authServerUrl",
+                    "authUrl",
+                    "baseUrl",
+                    "customFields",
+                    "defaultUrl",
+                    "faviconUrl",
+                    "formSettings",
+                    "id",
+                    "keyColor",
+                    "logoUrl",
+                    "menus",
+                    "name",
+                    "openidConfigurationUrl",
+                    "realmId",
+                    "socialLinks",
+                    "status",
+                    "subdomain",
+                    "uuid"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "subdomain": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "escrowType": {
+                        "type": "string",
+                        "enum": [
+                            "KG",
+                            "NICE",
+                            "TOSS",
+                            "KB",
+                            "NH",
+                            "IBK"
+                        ]
+                    },
+                    "escrowLink": {
+                        "type": "string"
+                    },
+                    "headHtml": {
+                        "type": "string"
+                    },
+                    "bodyHtml": {
+                        "type": "string"
+                    },
+                    "storeOperationType": {
+                        "type": "string",
+                        "enum": [
+                            "STANDALONE",
+                            "ENTERED"
+                        ]
+                    },
+                    "keyColor": {
+                        "type": "string"
+                    },
+                    "faviconUrl": {
+                        "type": "string"
+                    },
+                    "logoUrl": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "businessHours": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "LIVE",
+                            "STOP"
+                        ]
+                    },
+                    "businessInfo": {
+                        "$ref": "#/components/schemas/BusinessInfoDTO"
+                    },
+                    "csInfo": {
+                        "$ref": "#/components/schemas/CustomerServiceInfoDTO"
+                    },
+                    "formSettings": {
+                        "$ref": "#/components/schemas/FormSettingsDTO"
+                    },
+                    "baseUrl": {
+                        "type": "string"
+                    },
+                    "defaultUrl": {
+                        "type": "string"
+                    },
+                    "activeUrl": {
+                        "type": "string"
+                    },
+                    "menus": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MenuItemResponseDTO"
+                        }
+                    },
+                    "socialLinks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SocialLinkResponseDTO"
+                        }
+                    },
+                    "customFields": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CustomFieldResponseDTO"
+                        }
+                    },
+                    "authServerUrl": {
+                        "type": "string"
+                    },
+                    "authUrl": {
+                        "type": "string"
+                    },
+                    "openidConfigurationUrl": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ApiResponse": {
+                "required": [
+                    "message",
+                    "success"
+                ],
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "InstantPageGroupResponseDTO": {
+                "required": [
+                    "name",
+                    "pages"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "pages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InstantPageResponseDTO"
+                        }
+                    }
+                }
+            },
+            "InstantPageResponseDTO": {
+                "required": [
+                    "id",
+                    "metadata",
+                    "name",
+                    "status",
+                    "uri",
+                    "visibleInMenu"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "uri": {
+                        "type": "string"
+                    },
+                    "visibleInMenu": {
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE"
+                        ]
+                    },
+                    "metadata": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MetadataDTO"
+                        }
+                    }
+                }
+            },
+            "MetadataDTO": {
+                "required": [
+                    "name",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "STRING",
+                            "LONG",
+                            "BOOLEAN",
+                            "TEXT"
+                        ]
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FAAgreementCache": {
+                "required": [
+                    "vendorUuid"
+                ],
+                "type": "object",
+                "properties": {
+                    "vendorUuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "term1": {
+                        "type": "boolean"
+                    },
+                    "term2": {
+                        "type": "boolean"
+                    },
+                    "term3": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "FABusinessCache": {
+                "type": "object",
+                "properties": {
+                    "businessType": {
+                        "type": "string",
+                        "enum": [
+                            "INDIVIDUAL",
+                            "SELF_EMPLOYED",
+                            "CORPORATION"
+                        ]
+                    },
+                    "file": {
+                        "type": "string"
+                    },
+                    "termTax": {
+                        "type": "boolean"
+                    },
+                    "termFee": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "personName": {
+                        "type": "string"
+                    },
+                    "registrationNumber": {
+                        "type": "string"
+                    },
+                    "mailOrderNumber": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "postcode": {
+                        "type": "string"
+                    },
+                    "address1": {
+                        "type": "string"
+                    },
+                    "address2": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FADeliveryCache": {
+                "required": [
+                    "useDeliveryCharge",
+                    "vendorUuid"
+                ],
+                "type": "object",
+                "properties": {
+                    "vendorUuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "useDeliveryCharge": {
+                        "type": "boolean"
+                    },
+                    "deliveryChargeType": {
+                        "type": "string",
+                        "enum": [
+                            "FREE",
+                            "CONDITIONAL_FREE",
+                            "FIXED"
+                        ]
+                    },
+                    "defaultDeliveryCharge": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "freeShipOverAmount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "useLocalShipCharge": {
+                        "type": "boolean"
+                    },
+                    "jejuShipAmount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "islandAndMountainShipAmount": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "FAStoreCache": {
+                "required": [
+                    "vendorUuid"
+                ],
+                "type": "object",
+                "properties": {
+                    "vendorUuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "tel": {
+                        "type": "string"
+                    },
+                    "businessHours": {
+                        "type": "string"
+                    },
+                    "keyColor": {
+                        "type": "string"
+                    },
+                    "faviconUrl": {
+                        "type": "string"
+                    },
+                    "logoUrl": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FAStoreTypeCache": {
+                "required": [
+                    "vendorUuid"
+                ],
+                "type": "object",
+                "properties": {
+                    "vendorUuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "STANDALONE",
+                            "ENTERED"
+                        ]
+                    }
+                }
+            },
+            "FirstActivationResponseWrapperDTO": {
+                "required": [
+                    "screenCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "screenCode": {
+                        "type": "string"
+                    },
+                    "storeType": {
+                        "$ref": "#/components/schemas/FAStoreTypeCache"
+                    },
+                    "store": {
+                        "$ref": "#/components/schemas/FAStoreCache"
+                    },
+                    "business": {
+                        "$ref": "#/components/schemas/FABusinessCache"
+                    },
+                    "delivery": {
+                        "$ref": "#/components/schemas/FADeliveryCache"
+                    },
+                    "payment": {
+                        "$ref": "#/components/schemas/FirstActivationPaymentDTO"
+                    },
+                    "agreement": {
+                        "$ref": "#/components/schemas/FAAgreementCache"
+                    }
+                }
+            }
+        }
+    }
+}

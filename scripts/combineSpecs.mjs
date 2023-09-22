@@ -93,7 +93,7 @@ function combineSpec(specs) {
     const combinedSpec = {
         openapi: '3.0.1',
         info: {
-            title: 'Step API',
+            title: 'Steppay API',
             version: '1.0',
         },
         servers: [
@@ -295,6 +295,7 @@ async function writeSpec(spec, apiName, isMerged) {
     if (!(await pathExists(writePath))) {
         await fs.mkdir(writePath)
     }
+    spec.info.title = apiName
 
     const path = getSpecPathByServiceName(apiName, writePath)
     await fs.writeFile(path, JSON.stringify(spec, null, 4), {})
@@ -337,10 +338,12 @@ async function filterSpecBySegment() {
 async function addTag(inPath, outPath, fileName) {
     try {
         const spec = await loadSpecFrom(inPath, `${fileName}.json`);
+        spec.info.title = 'STEPPAY'
+
         const tagsMappingContent = await fs.readFile(TAG_SPECS, 'utf-8');
         const tagsMapping = JSON.parse(tagsMappingContent);
 
-        const sortedPaths = {};
+        let sortedPaths = {};
         for (const [tag, paths] of Object.entries(tagsMapping)) {
             for (const path of paths) {
                 if (spec.paths[path]) {
@@ -355,14 +358,9 @@ async function addTag(inPath, outPath, fileName) {
             }
         }
 
+        let pathsToRemove = [];
         spec.paths = sortedPaths;
         for (const [pathKey, pathValue] of Object.entries(spec.paths)) {
-            for (const method of Object.values(pathValue)) {
-                if (method.tags) {
-                    method.tags = [];
-                }
-            }
-
             let matchedTag = "포함되지 않은 API";
             for (const [tag, paths] of Object.entries(tagsMapping)) {
                 if (paths.includes(pathKey)) {
@@ -372,18 +370,24 @@ async function addTag(inPath, outPath, fileName) {
             }
 
             for (const method of Object.values(pathValue)) {
-                if (!method.tags) {
-                    method.tags = [];
-                }
+                method.tags = [];
 
                 if (!method.tags.includes(matchedTag)) {
                     method.tags.push(matchedTag);
                 }
             }
+
+            if (matchedTag === "포함되지 않은 API") {
+                pathsToRemove.push(pathKey);
+            }
         }
-        
+
+        // "포함되지 않은 API" 태그가 있는 path 삭제
+        for (const pathToRemove of pathsToRemove) {
+            delete spec.paths[pathToRemove];
+        }
         const targetSegment = ['v1'];
-        extractReferencedSchemasByTags(spec, targetSegment)
+        extractReferencedSchemasByTags(spec, targetSegment);
 
         const savePath = `${outPath}/${fileName}_tag.json`
         if (!(await directoryExists(outPath))) {

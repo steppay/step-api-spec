@@ -1,0 +1,1630 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "커버 API",
+        "version": "v0.9"
+    },
+    "servers": [
+        {
+            "url": "https://api.steppay.kr",
+            "description": "Generated server url"
+        }
+    ],
+    "tags": [
+        {
+            "name": "주문 정보",
+            "description": "주문 정보를 등록하기 위한 API 입니다."
+        },
+        {
+            "name": "결제 복구",
+            "description": "결제 복구와 관련된 기능을 사용하기 위한 API 입니다."
+        },
+        {
+            "name": "구독 정보",
+            "description": "구독 정보를 등록하기 위한 API 입니다."
+        },
+        {
+            "name": "가격 플랜 정보",
+            "description": "가격 플랜을 등록하기 위한 API 입니다."
+        },
+        {
+            "name": "상품 정보",
+            "description": "상품 정보를 등록하기 위한 API 입니다."
+        },
+        {
+            "name": "고객 정보",
+            "description": "고객 정보를 등록하기 위한 API 입니다."
+        },
+        {
+            "name": "복구 정보",
+            "description": "복구 정보를 조회하기 위한 API 입니다."
+        }
+    ],
+    "paths": {
+        "/api/v1/cover/subscription/{subscriptionId}/cancel": {
+            "put": {
+                "tags": [
+                    "구독 정보"
+                ],
+                "summary": "구독 취소 API",
+                "description": "구독이 취소되었을 때 사용합니다. 진행중이던 시나리오가 있다면 멈춥니다.",
+                "operationId": "cancelSubscription",
+                "parameters": [
+                    {
+                        "name": "subscriptionId",
+                        "in": "path",
+                        "description": "구독 ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "구독 정보가 정상적으로 취소됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DefaultResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/subscription/{subscriptionId}/active": {
+            "put": {
+                "tags": [
+                    "구독 정보"
+                ],
+                "summary": "구독 활성 API",
+                "description": "구독이 활성화 되었을 때 사용합니다. 진행중이던 시나리오가 있다면 멈춥니다.",
+                "operationId": "activeSubscription",
+                "parameters": [
+                    {
+                        "name": "subscriptionId",
+                        "in": "path",
+                        "description": "구독 ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "구독 정보가 정상적으로 변경됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DefaultResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/subscription": {
+            "post": {
+                "tags": [
+                    "구독 정보"
+                ],
+                "summary": "구독 정보 등록 API",
+                "description": "구독 정보를 스텝커버에 등록할 때 사용합니다.",
+                "operationId": "createSubscription",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SubscriptionCreateDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "구독 정보가 정상적으로 등록됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SubscriptionDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/recovery": {
+            "post": {
+                "tags": [
+                    "결제 복구"
+                ],
+                "summary": "복구 시작 API",
+                "description": "결제 복구 시나리오를 실행합니다.",
+                "operationId": "startRecovery",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StartRecoveryDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "결제 복구 시나리오가 시작됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StartRecoveryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/product": {
+            "post": {
+                "tags": [
+                    "상품 정보"
+                ],
+                "summary": "상품 정보 등록 API",
+                "description": "상품 정보를 스텝커버에 등록할 때 사용합니다.",
+                "operationId": "createCustomer",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCreateDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "상품 정보가 정상적으로 등록됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/price": {
+            "post": {
+                "tags": [
+                    "가격 플랜 정보"
+                ],
+                "summary": "가격 플랜 정보 등록 API",
+                "description": "가격 플랜 정보를 스텝커버에 등록할 때 사용합니다.",
+                "operationId": "createPrice",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PriceCreateDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "가격 플랜 정보가 정상적으로 등록됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PriceDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/order": {
+            "post": {
+                "tags": [
+                    "주문 정보"
+                ],
+                "summary": "주문 정보 등록 API",
+                "description": "주문 정보를 스텝커버에 등록할 때 사용합니다.",
+                "operationId": "createOrder",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderCreateDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "주문 정보가 정상적으로 등록됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/customer": {
+            "post": {
+                "tags": [
+                    "고객 정보"
+                ],
+                "summary": "고객 정보 등록 API",
+                "description": "고객 정보를 스텝커버에 등록할 때 사용합니다.",
+                "operationId": "createCustomer_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CustomerCreateDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "고객 정보가 정상적으로 등록됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CustomerDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/order/success/{orderId}": {
+            "patch": {
+                "tags": [
+                    "주문 정보"
+                ],
+                "summary": "주문 성공 API",
+                "description": "주문을 성공 상태로 바꿉니다. 결제 복구 시나리오가 멈춥니다.",
+                "operationId": "changeToSuccess",
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "주문 ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "notify",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "주문 상태 변경됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/order/cancel/{orderId}": {
+            "patch": {
+                "tags": [
+                    "주문 정보"
+                ],
+                "summary": "주문 취소 API",
+                "description": "주문을 취소 상태로 바꿉니다. 결제 복구 시나리오가 멈춥니다.",
+                "operationId": "cancelOrder",
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "주문 ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "주문 상태 변경됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cover/order/{token}/idKey": {
+            "get": {
+                "tags": [
+                    "주문 정보"
+                ],
+                "summary": "idKey 알아내기 API",
+                "description": "특정 토큰에서 결제된 idKey를 알아냅니다. 결제수단을 변경할 때 사용합니다.",
+                "operationId": "getIdKey",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "description": "복구 토큰",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "정상 동작",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderIdKeyDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/cover/{token}": {
+            "get": {
+                "tags": [
+                    "복구 정보"
+                ],
+                "summary": "복구 정보 조회 API",
+                "description": "복구 정보를 반환합니다.",
+                "operationId": "getRecoveryData",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "description": "복구 코드",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "복구 정보가 정상적으로 조회됨",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecoveryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ErrorResponse": {
+                "required": [
+                    "errorCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "traceId": {
+                        "type": "string"
+                    },
+                    "errorCode": {
+                        "type": "string"
+                    },
+                    "errorMessage": {
+                        "type": "string"
+                    },
+                    "details": {
+                        "$ref": "#/components/schemas/ReturnError"
+                    }
+                }
+            },
+            "ReturnError": {
+                "type": "object"
+            },
+            "DefaultResponseDTO": {
+                "title": "기본 응답 데이터",
+                "required": [
+                    "message",
+                    "result"
+                ],
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "type": "boolean",
+                        "description": "성공 여부"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "메세지"
+                    }
+                }
+            },
+            "CustomerDTO": {
+                "title": "고객 정보",
+                "required": [
+                    "email",
+                    "id",
+                    "name",
+                    "partnerCustomerId",
+                    "phone"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "고객 ID - 다른 API 호출에 사용되므로 해당 고객 정보와 함께 저장해놓고 사용하세요.",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "고객 이름"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "고객 email"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "description": "고객 전화번호"
+                    },
+                    "partnerCustomerId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 고객의 unique ID"
+                    }
+                },
+                "description": "고객 정보"
+            },
+            "OrderDTO": {
+                "title": "구독 정보",
+                "required": [
+                    "amount",
+                    "amountReturned",
+                    "customer",
+                    "id",
+                    "items",
+                    "partnerOrderId",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "주문 ID - 다른 API 호출에 사용되므로 해당 주문 정보와 함께 저장해놓고 사용하세요.",
+                        "format": "int64"
+                    },
+                    "customer": {
+                        "$ref": "#/components/schemas/CustomerDTO"
+                    },
+                    "amount": {
+                        "type": "number",
+                        "description": "주문 금액"
+                    },
+                    "amountReturned": {
+                        "type": "number",
+                        "description": "환불 금액"
+                    },
+                    "items": {
+                        "type": "array",
+                        "description": "주문 항목",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderItemDTO"
+                        }
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "주문 상태",
+                        "enum": [
+                            "CREATED",
+                            "PAID",
+                            "CANCEL_REQ",
+                            "CANCELED",
+                            "CHANGE_REQ",
+                            "CHANGE_PROCESS",
+                            "CHANGED",
+                            "RETURN_REQ",
+                            "RETURN_PROCESS",
+                            "RETURNED",
+                            "PREPARING",
+                            "SHIPPING",
+                            "FULFILLED",
+                            "FULL_REFUND",
+                            "PARTIAL_REFUND",
+                            "PAYMENT_FAILURE"
+                        ]
+                    },
+                    "canceledDate": {
+                        "type": "string",
+                        "description": "주문 취소 시점",
+                        "format": "date-time"
+                    },
+                    "paymentDate": {
+                        "type": "string",
+                        "description": "주문 결제 시점",
+                        "format": "date-time"
+                    },
+                    "idKey": {
+                        "type": "string",
+                        "description": "스텝페이 주문 idKey"
+                    },
+                    "retryDate": {
+                        "type": "string",
+                        "description": "다음 결제 시도 시점 - 시나리오에 의해서 계산된 시점입니다. 해당 시점에 다시 결제를 시도해주세요(실패 주문을 생성했을 때 포함됩니다).",
+                        "format": "date-time"
+                    },
+                    "partnerOrderId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 주문의 unique ID"
+                    }
+                },
+                "description": "구독과 연관된 갱신 주문 정보"
+            },
+            "OrderItemDTO": {
+                "title": "주문 항목 정보",
+                "required": [
+                    "quantity"
+                ],
+                "type": "object",
+                "properties": {
+                    "price": {
+                        "$ref": "#/components/schemas/PriceDTO"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "항목 주문 수량",
+                        "format": "int32"
+                    }
+                },
+                "description": "주문 항목"
+            },
+            "PriceDTO": {
+                "title": "가격 플랜 정보",
+                "required": [
+                    "id",
+                    "isRecurring",
+                    "name",
+                    "partnerPriceId",
+                    "price",
+                    "product"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "플랜 ID - 다른 API 호출에 사용되므로 해당 플랜 정보와 함께 저장해놓고 사용하세요.",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "플랜 이름"
+                    },
+                    "partnerPriceId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 플랜의 unique ID"
+                    },
+                    "product": {
+                        "$ref": "#/components/schemas/ProductDTO"
+                    },
+                    "price": {
+                        "type": "number",
+                        "description": "판매 가격"
+                    },
+                    "isRecurring": {
+                        "type": "boolean",
+                        "description": "정기결제인지 여부"
+                    },
+                    "recurringInterval": {
+                        "type": "string",
+                        "description": "결제 주기에 대한 단위(isRecurring이 true일 때)",
+                        "enum": [
+                            "DAY",
+                            "WEEK",
+                            "MONTH",
+                            "YEAR"
+                        ]
+                    },
+                    "recurringIntervalCount": {
+                        "type": "integer",
+                        "description": "결제 주기에 대한 수(isRecurring이 true일 때)",
+                        "format": "int32"
+                    }
+                },
+                "description": "가격 플랜 정보"
+            },
+            "ProductDTO": {
+                "title": "상품 정보",
+                "required": [
+                    "id",
+                    "name",
+                    "partnerProductId"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "상품 ID - 다른 API 호출에 사용되므로 해당 상품 정보와 함께 저장해놓고 사용하세요.",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "상품 이름"
+                    },
+                    "featuredImageUrl": {
+                        "type": "string",
+                        "description": "상품 대표 이미지 URL"
+                    },
+                    "partnerProductId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 상품의 unique ID"
+                    }
+                },
+                "description": "플랜과 연관된 상품 정보"
+            },
+            "SubscriptionDTO": {
+                "title": "구독 정보",
+                "required": [
+                    "currentPeriodEnd",
+                    "currentPeriodStart",
+                    "customer",
+                    "id",
+                    "partnerSubscriptionId",
+                    "recurringInterval",
+                    "recurringIntervalCount",
+                    "renewalOrders",
+                    "start",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "구독 ID - 다른 API 호출에 사용되므로 해당 구독 정보와 함께 저장해놓고 사용하세요.",
+                        "format": "int64"
+                    },
+                    "customer": {
+                        "$ref": "#/components/schemas/CustomerDTO"
+                    },
+                    "trialStart": {
+                        "type": "string",
+                        "description": "체험기간 시작 시점",
+                        "format": "date-time"
+                    },
+                    "trialEnd": {
+                        "type": "string",
+                        "description": "체험기간 종료 시점",
+                        "format": "date-time"
+                    },
+                    "start": {
+                        "type": "string",
+                        "description": "구독 시작 시점",
+                        "format": "date-time"
+                    },
+                    "currentPeriodStart": {
+                        "type": "string",
+                        "description": "현재 주기의 시작 시점",
+                        "format": "date-time"
+                    },
+                    "currentPeriodEnd": {
+                        "type": "string",
+                        "description": "현재 주기의 종료 시점",
+                        "format": "date-time"
+                    },
+                    "canceledAt": {
+                        "type": "string",
+                        "description": "취소 시점",
+                        "format": "date-time"
+                    },
+                    "cancelAtPeriodEnd": {
+                        "type": "boolean",
+                        "description": "이번 주기가 마지막인지 여부 - 이번 주기 후 만료될 경우 true"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "구독 상태",
+                        "enum": [
+                            "ACTIVE",
+                            "CANCELED",
+                            "UNPAID",
+                            "PAUSE",
+                            "EXPIRED"
+                        ]
+                    },
+                    "initialOrder": {
+                        "$ref": "#/components/schemas/OrderDTO"
+                    },
+                    "renewalOrders": {
+                        "type": "array",
+                        "description": "구독과 연관된 갱신 주문 정보",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderDTO"
+                        }
+                    },
+                    "partnerSubscriptionId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 구독의 unique ID"
+                    },
+                    "recurringIntervalCount": {
+                        "type": "integer",
+                        "description": "구독 주기",
+                        "format": "int32"
+                    },
+                    "recurringInterval": {
+                        "type": "string",
+                        "description": "구독 주기 단위",
+                        "enum": [
+                            "DAY",
+                            "WEEK",
+                            "MONTH",
+                            "YEAR"
+                        ]
+                    }
+                },
+                "description": "구독 정보"
+            },
+            "SubscriptionCreateDTO": {
+                "title": "구독 생성 데이터",
+                "required": [
+                    "currentPeriodEnd",
+                    "currentPeriodStart",
+                    "customerId",
+                    "partnerSubscriptionId",
+                    "recurringInterval",
+                    "recurringIntervalCount"
+                ],
+                "type": "object",
+                "properties": {
+                    "customerId": {
+                        "type": "integer",
+                        "description": "고객 ID",
+                        "format": "int64"
+                    },
+                    "trialStart": {
+                        "type": "string",
+                        "description": "체험기간 시작 시점",
+                        "format": "date-time"
+                    },
+                    "trialEnd": {
+                        "type": "string",
+                        "description": "체험기간 종료 시점",
+                        "format": "date-time"
+                    },
+                    "start": {
+                        "type": "string",
+                        "description": "구독 시작 시점",
+                        "format": "date-time"
+                    },
+                    "currentPeriodStart": {
+                        "type": "string",
+                        "description": "현재 주기의 시작 시점",
+                        "format": "date-time"
+                    },
+                    "currentPeriodEnd": {
+                        "type": "string",
+                        "description": "현재 주기의 종료 시점",
+                        "format": "date-time"
+                    },
+                    "canceledAt": {
+                        "type": "string",
+                        "description": "취소 시점",
+                        "format": "date-time"
+                    },
+                    "cancelAtPeriodEnd": {
+                        "type": "boolean",
+                        "description": "이번 주기가 마지막인지 여부 - 이번 주기 후 만료될 경우 true 입력"
+                    },
+                    "initialOrderId": {
+                        "type": "integer",
+                        "description": "구독이 시작되는 최초 주문의 ID",
+                        "format": "int64"
+                    },
+                    "replaceIfExists": {
+                        "type": "boolean",
+                        "description": "partnerSubscriptionId 이미 존재할 때 replaceIfExists가 true 이면 값을 수정하고, false 이면 exception 이 발생합니다."
+                    },
+                    "recurringIntervalCount": {
+                        "type": "integer",
+                        "description": "구독 주기",
+                        "format": "int32"
+                    },
+                    "recurringInterval": {
+                        "type": "string",
+                        "description": "구독 주기 단위",
+                        "enum": [
+                            "DAY",
+                            "WEEK",
+                            "MONTH",
+                            "YEAR"
+                        ]
+                    },
+                    "partnerSubscriptionId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 구독의 unique ID"
+                    }
+                },
+                "description": "구독 생성 데이터"
+            },
+            "StartRecoveryResponse": {
+                "title": "복구 시작 응답",
+                "required": [
+                    "coverId"
+                ],
+                "type": "object",
+                "properties": {
+                    "coverId": {
+                        "type": "integer",
+                        "description": "커버 ID - 다른 동작을 위해 사용됩니다.",
+                        "format": "int64"
+                    },
+                    "retryDate": {
+                        "type": "string",
+                        "description": "다음 결제 시도 시점 - 시나리오에 의해서 계산된 시점입니다. 해당 시점에 다시 결제를 시도해주세요. NULL인 경우, 종료된 시나리오입니다.",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "StartRecoveryDTO": {
+                "title": "복구 시작 데이터",
+                "required": [
+                    "orderId",
+                    "subscriptionId"
+                ],
+                "type": "object",
+                "properties": {
+                    "subscriptionId": {
+                        "type": "integer",
+                        "description": "구독 ID",
+                        "format": "int64"
+                    },
+                    "orderId": {
+                        "type": "integer",
+                        "description": "주문 ID",
+                        "format": "int64"
+                    },
+                    "errorCode": {
+                        "type": "string",
+                        "description": "PG사에서 알아낸 결제 오류 코드"
+                    },
+                    "errorMessage": {
+                        "type": "string",
+                        "description": "PG사에서 알아낸 결제 오류 메세지"
+                    }
+                },
+                "description": "복구 시작 데이터"
+            },
+            "ProductCreateDTO": {
+                "title": "상품 생성 데이터",
+                "required": [
+                    "name",
+                    "partnerProductId"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "상품 이름"
+                    },
+                    "featuredImageUrl": {
+                        "type": "string",
+                        "description": "상품 대표 이미지 URL"
+                    },
+                    "replaceIfExists": {
+                        "type": "boolean",
+                        "description": "partnerProductId 이미 존재할 때 replaceIfExists가 true 이면 값을 수정하고, false 이면 exception 이 발생합니다."
+                    },
+                    "partnerProductId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 상품의 unique ID"
+                    }
+                },
+                "description": "상품 생성 데이터"
+            },
+            "PriceCreateDTO": {
+                "title": "가격 플랜 생성 데이터",
+                "required": [
+                    "isRecurring",
+                    "name",
+                    "partnerPriceId",
+                    "price",
+                    "productId"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "플랜 이름"
+                    },
+                    "productId": {
+                        "type": "integer",
+                        "description": "플랜과 연관된 상품 ID",
+                        "format": "int64"
+                    },
+                    "price": {
+                        "type": "number",
+                        "description": "판매 가격"
+                    },
+                    "isRecurring": {
+                        "type": "boolean",
+                        "description": "정기결제인지 여부"
+                    },
+                    "replaceIfExists": {
+                        "type": "boolean",
+                        "description": "partnerPriceId 이미 존재할 때 replaceIfExists가 true 이면 값을 수정하고, false 이면 exception 이 발생합니다."
+                    },
+                    "recurringInterval": {
+                        "type": "string",
+                        "description": "결제 주기에 대한 단위(isRecurring이 true일 때)",
+                        "enum": [
+                            "DAY",
+                            "WEEK",
+                            "MONTH",
+                            "YEAR"
+                        ]
+                    },
+                    "recurringIntervalCount": {
+                        "type": "integer",
+                        "description": "결제 주기에 대한 수(isRecurring이 true일 때)",
+                        "format": "int32"
+                    },
+                    "partnerPriceId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 플랜의 unique ID"
+                    }
+                },
+                "description": "가격 생성 데이터"
+            },
+            "OrderCreateDTO": {
+                "title": "주문 생성 데이터",
+                "required": [
+                    "amount",
+                    "amountReturned",
+                    "customerId",
+                    "items",
+                    "partnerOrderId",
+                    "paymentGateway"
+                ],
+                "type": "object",
+                "properties": {
+                    "customerId": {
+                        "type": "integer",
+                        "description": "고객 ID",
+                        "format": "int64"
+                    },
+                    "amount": {
+                        "type": "number",
+                        "description": "주문 금액"
+                    },
+                    "amountReturned": {
+                        "type": "number",
+                        "description": "환불된 금액"
+                    },
+                    "items": {
+                        "type": "array",
+                        "description": "주문 항목",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderItemCreateDTO"
+                        }
+                    },
+                    "paymentDate": {
+                        "type": "string",
+                        "description": "결제일",
+                        "format": "date-time"
+                    },
+                    "idKey": {
+                        "type": "string",
+                        "description": "스텝페이 결제 ID"
+                    },
+                    "replaceIfExists": {
+                        "type": "boolean",
+                        "description": "partnerOrderId가 이미 존재할 때 replaceIfExists가 true 이면 값을 수정하고, false 이면 exception 이 발생합니다."
+                    },
+                    "canceledDate": {
+                        "type": "string",
+                        "description": "취소 날짜",
+                        "format": "date-time"
+                    },
+                    "subscriptionId": {
+                        "type": "integer",
+                        "description": "연관된 구독 ID",
+                        "format": "int64"
+                    },
+                    "paymentInfo": {
+                        "type": "string",
+                        "description": "결제 정보(카드사, 카드번호 등)"
+                    },
+                    "paymentGateway": {
+                        "type": "string",
+                        "description": "결제 PG",
+                        "enum": [
+                            "NAVER",
+                            "DANAL",
+                            "KAKAO",
+                            "KG",
+                            "KCP",
+                            "NICE",
+                            "JT",
+                            "GOOGLE",
+                            "BANKPAY",
+                            "BLUEWALNUT",
+                            "KSNET",
+                            "TOSS",
+                            "EXIMBAY",
+                            "SETTLE",
+                            "DAOUDATA",
+                            "WELCOME",
+                            "NICE_V2",
+                            "STRIPE",
+                            "PAYPLE",
+                            "PAYPLE_GLOBAL",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "paymentFailed": {
+                        "type": "boolean",
+                        "description": "주문 등록과 함께 시나리오가 실행되게 하려면 true 입력"
+                    },
+                    "errorCode": {
+                        "type": "string",
+                        "description": "PG사에서 받은 에러 코드(paymentFailed가 true일 때)"
+                    },
+                    "errorMessage": {
+                        "type": "string",
+                        "description": "PG사에서 받은 에러 메세지(paymentFailed가 true일 때)"
+                    },
+                    "partnerOrderId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 주문의 unique ID"
+                    }
+                },
+                "description": "주문 생성 데이터"
+            },
+            "OrderItemCreateDTO": {
+                "title": "주문 항목 생성",
+                "required": [
+                    "quantity"
+                ],
+                "type": "object",
+                "properties": {
+                    "priceId": {
+                        "type": "integer",
+                        "description": "가격 플랜 ID",
+                        "format": "int64"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "수량",
+                        "format": "int32"
+                    }
+                },
+                "description": "주문 항목"
+            },
+            "CustomerCreateDTO": {
+                "title": "고객 생성 데이터",
+                "required": [
+                    "email",
+                    "name",
+                    "partnerCustomerId",
+                    "phone"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "고객 이름"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "고객 email"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "description": "고객 전화번호"
+                    },
+                    "replaceIfExists": {
+                        "type": "boolean",
+                        "description": "partnerCustomerId가 이미 존재할 때 replaceIfExists가 true 이면 값을 수정하고, false 이면 exception 이 발생합니다."
+                    },
+                    "partnerCustomerId": {
+                        "type": "string",
+                        "description": "가맹점에서 사용하는 고객의 unique ID"
+                    }
+                },
+                "description": "고객 정보 등록 데이터"
+            },
+            "OrderIdKeyDTO": {
+                "title": "주문과 idKey",
+                "required": [
+                    "orderId",
+                    "paymentGateway"
+                ],
+                "type": "object",
+                "properties": {
+                    "idKey": {
+                        "type": "string",
+                        "description": "idKey"
+                    },
+                    "orderId": {
+                        "type": "integer",
+                        "description": "주문 ID",
+                        "format": "int64"
+                    },
+                    "paymentGateway": {
+                        "type": "string",
+                        "description": "사용한 PG",
+                        "enum": [
+                            "NAVER",
+                            "DANAL",
+                            "KAKAO",
+                            "KG",
+                            "KCP",
+                            "NICE",
+                            "JT",
+                            "GOOGLE",
+                            "BANKPAY",
+                            "BLUEWALNUT",
+                            "KSNET",
+                            "TOSS",
+                            "EXIMBAY",
+                            "SETTLE",
+                            "DAOUDATA",
+                            "WELCOME",
+                            "NICE_V2",
+                            "STRIPE",
+                            "PAYPLE",
+                            "PAYPLE_GLOBAL",
+                            "UNKNOWN"
+                        ]
+                    }
+                }
+            },
+            "EnabledPaymentGatewayDTO": {
+                "title": "사용 가능한 PG 정보",
+                "required": [
+                    "isBill",
+                    "isTest",
+                    "paymentGateway",
+                    "paymentMethod"
+                ],
+                "type": "object",
+                "properties": {
+                    "paymentGateway": {
+                        "type": "string",
+                        "description": "PG",
+                        "enum": [
+                            "NAVER",
+                            "DANAL",
+                            "KAKAO",
+                            "KG",
+                            "KCP",
+                            "NICE",
+                            "JT",
+                            "GOOGLE",
+                            "BANKPAY",
+                            "BLUEWALNUT",
+                            "KSNET",
+                            "TOSS",
+                            "EXIMBAY",
+                            "SETTLE",
+                            "DAOUDATA",
+                            "WELCOME",
+                            "NICE_V2",
+                            "STRIPE",
+                            "PAYPLE",
+                            "PAYPLE_GLOBAL",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "paymentMethod": {
+                        "type": "string",
+                        "description": "결제 수단",
+                        "enum": [
+                            "CARD",
+                            "VBANK",
+                            "BANK",
+                            "CELLPHONE",
+                            "SIMPLE_PAY",
+                            "CMS",
+                            "CARD_BILL",
+                            "CELLPHONE_BILL",
+                            "CMS_BILL"
+                        ]
+                    },
+                    "isTest": {
+                        "type": "boolean",
+                        "description": "테스트 결제인지 여부"
+                    },
+                    "isBill": {
+                        "type": "boolean",
+                        "description": "정기결제인지 여부"
+                    }
+                },
+                "description": "사용할 수 있는 PG 목록"
+            },
+            "RecoveryResponse": {
+                "title": "복구 정보",
+                "required": [
+                    "changeDateEnabled",
+                    "delayedCount",
+                    "enabledPaymentGateways",
+                    "expired",
+                    "id",
+                    "order",
+                    "paymentDate",
+                    "paymentDayOfWeek",
+                    "paymentKey",
+                    "paymentMonth",
+                    "paymentYear",
+                    "subscription"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "복구 정보 ID",
+                        "format": "int64"
+                    },
+                    "order": {
+                        "$ref": "#/components/schemas/OrderDTO"
+                    },
+                    "paymentYear": {
+                        "type": "integer",
+                        "description": "주문 연도",
+                        "format": "int32"
+                    },
+                    "paymentMonth": {
+                        "type": "integer",
+                        "description": "주문 월",
+                        "format": "int32"
+                    },
+                    "paymentDate": {
+                        "type": "integer",
+                        "description": "주문 일",
+                        "format": "int32"
+                    },
+                    "paymentInfo": {
+                        "type": "string",
+                        "description": "사용한 결제 정보"
+                    },
+                    "errorMessage": {
+                        "type": "string",
+                        "description": "결제 실패 메세지"
+                    },
+                    "expired": {
+                        "type": "boolean",
+                        "description": "만기 여부 - 진행중인 복구인지"
+                    },
+                    "delayedCount": {
+                        "type": "integer",
+                        "description": "나중에 알림 기능을 몇 번 사용했는지(최대 3회 가능)",
+                        "format": "int32"
+                    },
+                    "businessImageUrl": {
+                        "type": "string",
+                        "description": "가맹점 로고 이미지 URL"
+                    },
+                    "businessName": {
+                        "type": "string",
+                        "description": "가맹점 이름"
+                    },
+                    "paymentDayOfWeek": {
+                        "type": "string",
+                        "description": "결제 요일",
+                        "enum": [
+                            "MONDAY",
+                            "TUESDAY",
+                            "WEDNESDAY",
+                            "THURSDAY",
+                            "FRIDAY",
+                            "SATURDAY",
+                            "SUNDAY"
+                        ]
+                    },
+                    "paymentKey": {
+                        "type": "string",
+                        "description": "결제에 사용할 paymentKey"
+                    },
+                    "enabledPaymentGateways": {
+                        "type": "array",
+                        "description": "사용할 수 있는 PG 목록",
+                        "items": {
+                            "$ref": "#/components/schemas/EnabledPaymentGatewayDTO"
+                        }
+                    },
+                    "subscription": {
+                        "$ref": "#/components/schemas/SubscriptionDTO"
+                    },
+                    "changeDateEnabled": {
+                        "type": "boolean",
+                        "description": "결제일 변경 사용 가능 여부"
+                    }
+                }
+            }
+        }
+    }
+}

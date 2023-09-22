@@ -10,8 +10,8 @@
     "/api/v1/products",
     "/api/v1/products/{id}",
     "/api/v1/products/{code}",
-    "/api/v1/products/{id}/prices/{priceId}",
     "/api/v1/products/{id}/prices",
+    "/api/v1/products/{id}/prices/{priceId}",
     "/api/v1/products/{id}/status"
   ],
   "주문 API": [
@@ -43,7 +43,18 @@
     "/api/v1/subscriptions/{subscriptionId}/calculate"
   ],
   "커버 API": [
-
+    "/api/v1/cover/customer",
+    "/api/v1/cover/product",
+    "/api/v1/cover/price",
+    "/api/v1/cover/order",
+    "/api/v1/cover/order/{token}/idKey",
+    "/api/v1/cover/order/success/{orderId}",
+    "/api/v1/cover/order/cancel/{orderId}",
+    "/api/v1/cover/subscription",
+    "/api/v1/cover/subscription/{subscriptionId}/active",
+    "/api/v1/cover/subscription/{subscriptionId}/cancel",
+    "/api/v1/cover/recovery",
+    "/api/cover/{token}"
   ],
   "인증 API": [
     "/api/v1/session/{customerId}"
