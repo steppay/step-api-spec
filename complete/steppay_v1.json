@@ -2,7 +2,12 @@
   "openapi": "3.0.1",
   "info": {
     "title": "STEPPAY",
-    "version": "1.0"
+    "version": "1.0",
+    "contact": {
+      "url": "https://www.steppay.kr",
+      "name": "스텝페이",
+      "email": "contact@steppay.kr"
+    }
   },
   "servers": [
     {
@@ -14901,6 +14906,18 @@
           }
         }
       }
+    },
+    "securitySchemes": {
+      "Secret-Token": {
+        "name": "Secret-Token",
+        "type": "apiKey",
+        "in": "header"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Secret-Token": []
+    }
+  ]
 }
