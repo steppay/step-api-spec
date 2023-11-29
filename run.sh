@@ -3,7 +3,7 @@
 ENV=${1:-production}
 
 echo "Installing packages..."
-npm install
+yarn install
 
 echo "Fetching API specs in $ENV environment..."
 APP_ENV=$ENV yarn fetch

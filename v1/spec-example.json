@@ -1,0 +1,1385 @@
+{
+    "/api/v1/products": {
+        "get": {
+            "summary":"상품 목록 조회",
+            "responses": {
+                "상품 목록": {
+                    "value": {
+                        "last": true,
+                        "size": 0,
+                        "sort": {
+                            "empty": true,
+                            "sorted": true,
+                            "unsorted": true
+                        },
+                        "empty": true,
+                        "first": true,
+                        "number": 0,
+                        "content": [
+                            {
+                            "id": 0,
+                            "code": "string",
+                            "name": "string",
+                            "type": "BOX",
+                            "prices": [
+                                {
+                                "id": 0,
+                                "code": "string",
+                                "plan": {
+                                    "name": "string",
+                                    "adminName": "string",
+                                    "description": "string",
+                                    "isHiddenFromShop": true,
+                                    "detailDescription": "string"
+                                },
+                                "type": "ONE_TIME",
+                                "unit": "string",
+                                "claim": {
+                                    "methodType": "PRE",
+                                    "billingDate": 0,
+                                    "provideStartDay": 0,
+                                    "whenToClaimType": "FIRST_PAYMENT"
+                                },
+                                "order": 0,
+                                "price": 0,
+                                "options": [
+                                    {
+                                    "id": 0,
+                                    "name": "string",
+                                    "type": "INITIALLY",
+                                    "price": 0,
+                                    "priceCode": "string",
+                                    "priceName": "string",
+                                    "productCode": "string",
+                                    "productType": "BOX",
+                                    "recurringDTO": {
+                                        "id": 0,
+                                        "interval": "DAY",
+                                        "usageType": "LICENSED",
+                                        "intervalCount": 0,
+                                        "aggregateUsageType": "SUM"
+                                    }
+                                    }
+                                ],
+                                "volumes": [
+                                    {
+                                    "id": 0,
+                                    "max": 0,
+                                    "min": 0,
+                                    "price": 0
+                                    }
+                                ],
+                                "planName": "string",
+                                "createdAt": "2019-08-24T14:15:22Z",
+                                "firstSale": {
+                                    "price": 0,
+                                    "enabled": true
+                                },
+                                "recurring": {
+                                    "id": 0,
+                                    "interval": "DAY",
+                                    "usageType": "LICENSED",
+                                    "intervalCount": 0,
+                                    "aggregateUsageType": "SUM"
+                                },
+                                "modifiedAt": "2019-08-24T14:15:22Z",
+                                "billingDate": 0,
+                                "setupOption": {
+                                    "id": 0,
+                                    "name": "string",
+                                    "type": "INITIALLY",
+                                    "price": 0,
+                                    "claimMethodType": "PRE"
+                                },
+                                "basicServing": 0,
+                                "bundlePrices": [
+                                    {
+                                    "price": {},
+                                    "product": {
+                                        "id": 0,
+                                        "sku": "string",
+                                        "code": "string",
+                                        "name": "string",
+                                        "type": "BOX",
+                                        "notice": "string",
+                                        "prices": [
+                                        {}
+                                        ],
+                                        "status": "SALE",
+                                        "groupId": 0,
+                                        "summary": "string",
+                                        "quantity": 0,
+                                        "subTitle": "string",
+                                        "createdAt": "2019-08-24T14:15:22Z",
+                                        "imageUrls": [
+                                        "string"
+                                        ],
+                                        "useWidget": {
+                                        "useDemo": true,
+                                        "useNotice": true,
+                                        "useEventBadge": true,
+                                        "useOnetimePurchasable": true
+                                        },
+                                        "categories": [
+                                        {
+                                            "name": "string",
+                                            "categoryId": 0
+                                        }
+                                        ],
+                                        "demoPeriod": 0,
+                                        "eventBadge": [
+                                        {
+                                            "event": "string",
+                                            "endDateTime": "2019-08-24T14:15:22Z",
+                                            "startDateTime": "2019-08-24T14:15:22Z"
+                                        }
+                                        ],
+                                        "modifiedAt": "2019-08-24T14:15:22Z",
+                                        "vendorUuid": "86a7a3b9-2a36-4138-af12-a1ac1bec47f5",
+                                        "description": "string",
+                                        "enabledDemo": true,
+                                        "optionGroups": [
+                                        {
+                                            "id": 0,
+                                            "name": "string",
+                                            "depth": 0,
+                                            "options": [
+                                            {
+                                                "id": 0,
+                                                "name": "string",
+                                                "price": 0,
+                                                "parent": 0,
+                                                "quantity": 0
+                                            }
+                                            ]
+                                        }
+                                        ],
+                                        "productOrder": 0,
+                                        "countrySetting": {
+                                        "id": 0,
+                                        "taxRate": 0,
+                                        "isDefault": true,
+                                        "countryCode": "string",
+                                        "currencyCode": "string",
+                                        "timezoneName": "string"
+                                        },
+                                        "demoPeriodUnit": "DAY",
+                                        "reasonOfReject": "string",
+                                        "useCombination": true,
+                                        "combinedProducts": [
+                                        {
+                                            "code": "string",
+                                            "name": "string",
+                                            "type": "BOX",
+                                            "prices": [
+                                            {}
+                                            ],
+                                            "status": "SALE",
+                                            "options": [
+                                            {
+                                                "id": 0,
+                                                "name": "string",
+                                                "depth": 0,
+                                                "options": [
+                                                {
+                                                    "id": 0,
+                                                    "name": "string",
+                                                    "price": 0,
+                                                    "parent": 0,
+                                                    "quantity": 0
+                                                }
+                                                ]
+                                            }
+                                            ],
+                                            "createdAt": "2019-08-24T14:15:22Z",
+                                            "modifiedAt": "2019-08-24T14:15:22Z",
+                                            "description": "string"
+                                        }
+                                        ],
+                                        "featuredImageUrl": "string",
+                                        "optionCombinations": [
+                                        {
+                                            "id": [
+                                            0
+                                            ],
+                                            "price": 0,
+                                            "status": "SALE",
+                                            "quantity": 0
+                                        }
+                                        ],
+                                        "isOnetimePurchasable": true
+                                    }
+                                    }
+                                ],
+                                "firstSalePrice": 0,
+                                "claimMethodType": "PRE",
+                                "planDescription": "string",
+                                "whenToClaimType": "FIRST_PAYMENT",
+                                "additionalBilling": {
+                                    "id": 0,
+                                    "type": "USAGE_BASED_WITH_RANGE",
+                                    "ranges": [
+                                    {
+                                        "id": 0,
+                                        "price": 0,
+                                        "until": 0
+                                    }
+                                    ]
+                                },
+                                "onetimeBundlePrice": 0,
+                                "enabledFirstSalePrice": true,
+                                "maximumPurchaseQuantity": 0,
+                                "membershipExpirationDate": 0,
+                                "membershipExpirationDateType": "DAY"
+                                }
+                            ],
+                            "status": "SALE",
+                            "quantity": 0,
+                            "createdAt": "2019-08-24T14:15:22Z",
+                            "categories": [
+                                {
+                                "name": "string",
+                                "categoryId": 0
+                                }
+                            ],
+                            "modifiedAt": "2019-08-24T14:15:22Z",
+                            "vendorUuid": "86a7a3b9-2a36-4138-af12-a1ac1bec47f5",
+                            "description": "string",
+                            "enabledDemo": true,
+                            "productOrder": 0,
+                            "countrySetting": {
+                                "id": 0,
+                                "taxRate": 0,
+                                "isDefault": true,
+                                "countryCode": "string",
+                                "currencyCode": "string",
+                                "timezoneName": "string"
+                            },
+                            "featuredImageUrl": "string",
+                            "isOnetimePurchasable": true
+                            }
+                        ],
+                        "pageable": {
+                            "sort": {
+                            "empty": true,
+                            "sorted": true,
+                            "unsorted": true
+                            },
+                            "paged": true,
+                            "offset": 0,
+                            "unpaged": true,
+                            "pageSize": 0,
+                            "pageNumber": 0
+                        },
+                        "totalPages": 0,
+                        "totalElements": 0,
+                        "numberOfElements": 0
+                    }
+                }
+            }
+        },
+        "post": {
+            "summary": "상품 생성",
+            "requestBody": {
+                "유튜브 구독 상품": {
+                    "value": {
+                        "type": "SOFTWARE",
+                        "status": "SALE",
+                        "name": "유튜브 구독 상품",
+                        "productOrder": 0,
+                        "featuredImageUrl": "Url string",
+                        "imageUrls": [
+                            "Url string"
+                        ],
+                        "description": "유튜브 프리미엄",
+                        "summary": "string",
+                        "sku": "회",
+                        "quantity": null,
+                        "enabledDemo": true,
+                        "demoPeriod": 30,
+                        "demoPeriodUnit": "DAY",
+                        "useCombination": false,
+                        "optionCombinations": [],
+                        "categoryIds": [],
+                        "eventBadge": [
+                            {
+                                "event": "string",
+                                "startDateTime": "2023-08-01T15:00:00Z",
+                                "endDateTime": "2023-08-31T00:00:00Z"
+                            }
+                        ],
+                        "useWidget": {
+                            "useDemo": true,
+                            "useEventBadge": true,
+                            "useOnetimePurchasable": true,
+                            "useNotice": true
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "유튜브 구독 상품": {
+                    "value": {
+                        "id": 8540,
+                        "code": "product_Xe9PbusHq",
+                        "type": "SOFTWARE",
+                        "status": "SALE",
+                        "name": "유튜브 구독 상품",
+                        "subTitle": null,
+                        "featuredImageUrl": "Url string",
+                        "imageUrls": [
+                            "Url string"
+                        ],
+                        "description": "유튜브 프리미엄",
+                        "summary": "string",
+                        "reasonOfReject": null,
+                        "sku": "회",
+                        "quantity": null,
+                        "combinedProducts": [],
+                        "optionGroups": [],
+                        "useCombination": false,
+                        "optionCombinations": [],
+                        "prices": [],
+                        "createdAt": "2023-09-13T09:09:31.038268",
+                        "modifiedAt": "2023-09-13T09:09:31.038268",
+                        "enabledDemo": true,
+                        "demoPeriod": 30,
+                        "demoPeriodUnit": "DAY",
+                        "categories": [],
+                        "vendorUuid": "5d18b0e1-c843-4740-b369-c55891b301e7",
+                        "productOrder": 0,
+                        "isOnetimePurchasable": false,
+                        "eventBadge": [
+                            {
+                                "event": "string",
+                                "startDateTime": "2023-08-01T15:00:00",
+                                "endDateTime": "2023-08-31T00:00:00"
+                            }
+                        ],
+                        "notice": null,
+                        "useWidget": {
+                            "useDemo": false,
+                            "useEventBadge": false,
+                            "useOnetimePurchasable": false,
+                            "useNotice": false
+                        },
+                        "groupId": null,
+                        "countrySetting": null
+                    }
+                }
+            }
+        }
+    },
+    "/api/v1/products/{id}": {
+        "put": {
+            "summary": "상품 수정",
+            "requestBody": {
+                "넷플릭스 구독 상품": {
+                    "value": {
+                        "type": "SOFTWARE",
+                        "status": "SALE",
+                        "name": "넷플릭스 구독 상품",
+                        "featuredImageUrl": "string",
+                        "imageUrls": [
+                            "string"
+                        ],
+                        "description": "다양한 영화와 드라마",
+                        "summary": "New summary",
+                        "sku": "회차",
+                        "quantity": null,
+                        "eventBadge": [
+                            {
+                                "event": "string",
+                                "startDateTime": "2019-08-24T14:15:22Z",
+                                "endDateTime": "2019-08-24T14:15:22Z"
+                            }
+                        ],
+                        "productOrder": 0,
+                        "enabledDemo": true,
+                        "demoPeriod": 29,
+                        "demoPeriodUnit": "DAY",
+                        "combinedProducts": [],
+                        "useCombination": false,
+                        "optionCombinations": null,
+                        "isOnetimePurchasable": false,
+                        "useWidget": {
+                            "useDemo": true,
+                            "useEventBadge": true,
+                            "useOnetimePurchasable": true,
+                            "useNotice": true
+                        },
+                        "categoryIds": []
+                    }
+                }
+            },
+            "responses": {
+                "넷플릭스 구독 상품": {
+                    "value": {
+                        "id": 8527,
+                        "code": "product_KyULFznFV",
+                        "type": "SOFTWARE",
+                        "status": "SALE",
+                        "name": "New Product Name",
+                        "subTitle": null,
+                        "featuredImageUrl": "string",
+                        "imageUrls": [
+                            "string"
+                        ],
+                        "description": "New Description",
+                        "summary": "New summary",
+                        "reasonOfReject": "New Reason",
+                        "sku": "units",
+                        "quantity": 0,
+                        "combinedProducts": [],
+                        "optionGroups": [
+                            {
+                                "id": 1109,
+                                "name": "string",
+                                "options": [
+                                    {
+                                        "id": 2569,
+                                        "name": "string",
+                                        "quantity": 0,
+                                        "price": 0,
+                                        "parent": null
+                                    }
+                                ],
+                                "depth": null
+                            }
+                        ],
+                        "useCombination": false,
+                        "optionCombinations": [],
+                        "prices": [],
+                        "createdAt": "2023-09-13T05:42:00",
+                        "modifiedAt": "2023-09-13T06:58:25",
+                        "enabledDemo": true,
+                        "demoPeriod": 2,
+                        "demoPeriodUnit": "DAY",
+                        "categories": [],
+                        "vendorUuid": "5d18b0e1-c843-4740-b369-c55891b301e7",
+                        "productOrder": 0,
+                        "isOnetimePurchasable": false,
+                        "eventBadge": [
+                            {
+                                "event": "string",
+                                "startDateTime": "2019-08-24T14:15:22",
+                                "endDateTime": "2019-08-24T14:15:22"
+                            }
+                        ],
+                        "notice": "New notice",
+                        "useWidget": {
+                            "useDemo": true,
+                            "useEventBadge": true,
+                            "useOnetimePurchasable": true,
+                            "useNotice": true
+                        },
+                        "groupId": null,
+                        "countrySetting": null
+                    }
+                }
+            }
+        },
+        "delete": {
+            "summary": "상품 삭제",
+            "responses":{
+                "응답 예시": {
+                    "value": {
+                        "body": null,
+                        "message": "상품 삭제 성공"
+                    }
+                }
+            }
+        }
+    },
+    "/api/v1/products/{code}": {
+        "get": {
+            "summary": "상품 상세 조회",
+            "requestBody": {},
+            "responses": {
+                "응답 예시": {
+                    "value": {
+                        "id": 8525,
+                        "code": "product_3ahl8r2Mt",
+                        "type": "SOFTWARE",
+                        "status": "SALE",
+                        "name": "Product Name",
+                        "subTitle": null,
+                        "featuredImageUrl": "Url string",
+                        "imageUrls": [
+                            "Url string"
+                        ],
+                        "description": "Product Description",
+                        "summary": "string",
+                        "reasonOfReject": null,
+                        "sku": "unit",
+                        "quantity": 0,
+                        "combinedProducts": [],
+                        "optionGroups": [
+                            {
+                                "id": 1091,
+                                "name": "Option Group Name",
+                                "options": [
+                                    {
+                                        "id": 2547,
+                                        "name": "Basic",
+                                        "quantity": 0,
+                                        "price": 1000,
+                                        "parent": null
+                                    },
+                                    {
+                                        "id": 2548,
+                                        "name": "Standard",
+                                        "quantity": 0,
+                                        "price": 2000,
+                                        "parent": null
+                                    },
+                                    {
+                                        "id": 2549,
+                                        "name": "Pro",
+                                        "quantity": 0,
+                                        "price": 2000,
+                                        "parent": null
+                                    }
+                                ],
+                                "depth": null
+                            }
+                        ],
+                        "useCombination": false,
+                        "optionCombinations": [],
+                        "prices": [],
+                        "createdAt": "2023-09-13T05:27:16",
+                        "modifiedAt": "2023-09-13T05:27:16",
+                        "enabledDemo": true,
+                        "demoPeriod": 3,
+                        "demoPeriodUnit": "DAY",
+                        "categories": [],
+                        "vendorUuid": "5d18b0e1-c843-4740-b369-c55891b301e7",
+                        "productOrder": 0,
+                        "isOnetimePurchasable": false,
+                        "eventBadge": [
+                            {
+                                "event": "string",
+                                "startDateTime": "2019-08-24T14:15:22",
+                                "endDateTime": "2019-08-24T14:15:22"
+                            }
+                        ],
+                        "notice": "notice",
+                        "useWidget": {
+                            "useDemo": false,
+                            "useEventBadge": false,
+                            "useOnetimePurchasable": false,
+                            "useNotice": false
+                        },
+                        "groupId": null,
+                        "countrySetting": null
+                    }
+                }
+            }
+        }
+    },
+    "/api/v1/products/{id}/prices": {
+        "get": {
+            "summary": "가격플랜 목록 조회",
+            "requestBody": {},
+            "responses": {
+                "응답 예시": {
+                    "value": [
+                        {
+                            "id": 12651,
+                            "code": "price_dKWOvYywR",
+                            "price": 10000,
+                            "unit": "회",
+                            "planName": "단건 가격플랜 이름",
+                            "planDescription": "단건 가격플랜 설명",
+                            "type": "ONE_TIME",
+                            "enabledFirstSalePrice": true,
+                            "firstSalePrice": 1000,
+                            "claimMethodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "maximumPurchaseQuantity": 0,
+                            "membershipExpirationDate": 0,
+                            "membershipExpirationDateType": null,
+                            "setupOption": {
+                                "id": 947,
+                                "name": "가입비",
+                                "type": "INITIALLY",
+                                "price": 500,
+                                "claimMethodType": "PRE"
+                            },
+                            "options": [],
+                            "volumes": [],
+                            "additionalBilling": null,
+                            "recurring": null,
+                            "createdAt": "2023-09-13T09:06:58",
+                            "modifiedAt": "2023-09-13T09:06:58",
+                            "plan": {
+                                "name": "단건 가격플랜 이름",
+                                "description": "단건 가격플랜 설명",
+                                "detailDescription": "단건 가격플랜 상세설명",
+                                "isHiddenFromShop": false,
+                                "adminName": "admin"
+                            },
+                            "firstSale": {
+                                "enabled": true,
+                                "price": 1000
+                            },
+                            "claim": {
+                                "methodType": "PRE",
+                                "whenToClaimType": "FIRST_PAYMENT",
+                                "billingDate": 0,
+                                "provideStartDay": 0
+                            },
+                            "basicServing": 0,
+                            "bundlePrices": [],
+                            "onetimeBundlePrice": 0,
+                            "order": 0
+                        },
+                        {
+                            "id": 12652,
+                            "code": "price_5uykUL11C",
+                            "price": 8900,
+                            "unit": "회",
+                            "planName": "구독 가격플랜",
+                            "planDescription": "구독 가격플랜 설명",
+                            "type": "FLAT",
+                            "enabledFirstSalePrice": true,
+                            "firstSalePrice": 1000,
+                            "claimMethodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "maximumPurchaseQuantity": 0,
+                            "membershipExpirationDate": 0,
+                            "membershipExpirationDateType": null,
+                            "setupOption": {
+                                "id": 948,
+                                "name": "가입비",
+                                "type": "INITIALLY",
+                                "price": 0,
+                                "claimMethodType": "PRE"
+                            },
+                            "options": [],
+                            "volumes": [],
+                            "additionalBilling": null,
+                            "recurring": {
+                                "id": 17373,
+                                "intervalCount": 1,
+                                "aggregateUsageType": "SUM",
+                                "interval": "MONTH",
+                                "usageType": "LICENSED"
+                            },
+                            "createdAt": "2023-09-13T09:07:55",
+                            "modifiedAt": "2023-09-13T09:07:55",
+                            "plan": {
+                                "name": "구독 가격플랜",
+                                "description": "구독 가격플랜 설명",
+                                "detailDescription": "구독 가격플랜 상세설명",
+                                "isHiddenFromShop": false,
+                                "adminName": "admin"
+                            },
+                            "firstSale": {
+                                "enabled": true,
+                                "price": 1000
+                            },
+                            "claim": {
+                                "methodType": "PRE",
+                                "whenToClaimType": "FIRST_PAYMENT",
+                                "billingDate": 0,
+                                "provideStartDay": 0
+                            },
+                            "basicServing": 0,
+                            "bundlePrices": [],
+                            "onetimeBundlePrice": 0,
+                            "order": 0
+                        }
+                    ]
+                }
+            }
+        },
+        "post": {
+            "summary": "가격플랜 생성",
+            "requestBody": {
+                "단건 가격플랜": {
+                    "value": {
+                        "price": 10000,
+                        "unit": "회",
+                        "plan": {
+                            "name": "단건 가격플랜 이름",
+                            "description": "단건 가격플랜 설명",
+                            "detailDescription": "단건 가격플랜 상세설명",
+                            "isHiddenFromShop": false,
+                            "adminName": "admin"
+                        },
+                        "type": "ONE_TIME",
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 1000
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "maximumPurchaseQuantity": 0,
+                        "expiryRecurringCount": 0,
+                        "setupOption": {
+                            "name": "가입비",
+                            "type": "INITIALLY",
+                            "price": 500,
+                            "claimMethodType": "PRE"
+                        },
+                        "isRepresentative": false
+                    }
+                },
+                "구독 가격플랜": {
+                    "value": {
+                        "price": 8900,
+                        "unit": "회",
+                        "plan": {
+                            "name": "구독 가격플랜",
+                            "description": "구독 가격플랜 설명",
+                            "detailDescription": "구독 가격플랜 상세설명",
+                            "isHiddenFromShop": false,
+                            "adminName": "admin"
+                        },
+                        "type": "FLAT",
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 1000
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "maximumPurchaseQuantity": 0,
+                        "expiryRecurringCount": 0,
+                        "setupOption": {
+                            "name": "가입비",
+                            "type": "INITIALLY",
+                            "price": 0,
+                            "claimMethodType": "PRE"
+                        },
+                        "recurring": {
+                            "intervalCount": 1,
+                            "interval": "MONTH",
+                            "aggregateUsageType": "SUM",
+                            "usageType": "LICENSED"
+                        },
+                        "isRepresentative": false
+                    }
+                }
+            },
+            "responses": {
+                "단건 가격플랜": {
+                    "value": {
+                        "id": 12651,
+                        "code": "string",
+                        "price": 0,
+                        "unit": "string",
+                        "planName": "string",
+                        "planDescription": "string",
+                        "type": "ONE_TIME",
+                        "enabledFirstSalePrice": true,
+                        "firstSalePrice": 0,
+                        "claimMethodType": "PRE",
+                        "whenToClaimType": "FIRST_PAYMENT",
+                        "billingDate": 0,
+                        "maximumPurchaseQuantity": 0,
+                        "membershipExpirationDate": 0,
+                        "membershipExpirationDateType": "DAY",
+                        "setupOption": {
+                            "id": 0,
+                            "name": "string",
+                            "type": "INITIALLY",
+                            "price": 0,
+                            "claimMethodType": "PRE"
+                        },
+                        "options": [
+                            {
+                                "id": 0,
+                                "name": "string",
+                                "productCode": "string",
+                                "type": "INITIALLY",
+                                "price": 0,
+                                "priceCode": "string",
+                                "priceName": "string",
+                                "productType": "BOX",
+                                "recurringDTO": {
+                                    "id": 0,
+                                    "intervalCount": 0,
+                                    "aggregateUsageType": "SUM",
+                                    "interval": "DAY",
+                                    "usageType": "LICENSED"
+                                }
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "id": 0,
+                                "min": 0,
+                                "max": 0,
+                                "price": 0
+                            }
+                        ],
+                        "additionalBilling": {
+                            "id": 0,
+                            "type": "USAGE_BASED_WITH_RANGE",
+                            "ranges": [
+                                {
+                                    "id": 0,
+                                    "until": 0,
+                                    "price": 0
+                                }
+                            ]
+                        },
+                        "recurring": {
+                            "id": 0,
+                            "intervalCount": 0,
+                            "aggregateUsageType": "SUM",
+                            "interval": "DAY",
+                            "usageType": "LICENSED"
+                        },
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "modifiedAt": "2019-08-24T14:15:22Z",
+                        "plan": {
+                            "name": "string",
+                            "description": "string",
+                            "detailDescription": "string",
+                            "isHiddenFromShop": true,
+                            "adminName": "string"
+                        },
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 0
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "basicServing": 0,
+                        "bundlePrices": [
+                            {
+                                "product": {
+                                    "id": 0,
+                                    "code": "string",
+                                    "type": "BOX",
+                                    "status": "SALE",
+                                    "name": "string",
+                                    "subTitle": "string",
+                                    "featuredImageUrl": "string",
+                                    "imageUrls": [
+                                        "string"
+                                    ],
+                                    "description": "string",
+                                    "summary": "string",
+                                    "reasonOfReject": "string",
+                                    "sku": "string",
+                                    "quantity": 0,
+                                    "combinedProducts": [
+                                        {
+                                            "code": "string",
+                                            "type": "BOX",
+                                            "status": "SALE",
+                                            "name": "string",
+                                            "description": "string",
+                                            "options": [
+                                                {
+                                                    "id": 0,
+                                                    "name": "string",
+                                                    "options": [
+                                                        {
+                                                            "id": 0,
+                                                            "name": "string",
+                                                            "quantity": 0,
+                                                            "price": 0,
+                                                            "parent": 0
+                                                        }
+                                                    ],
+                                                    "depth": 0
+                                                }
+                                            ],
+                                            "prices": [
+                                                {}
+                                            ],
+                                            "createdAt": "2019-08-24T14:15:22Z",
+                                            "modifiedAt": "2019-08-24T14:15:22Z"
+                                        }
+                                    ],
+                                    "optionGroups": [
+                                        {
+                                            "id": 0,
+                                            "name": "string",
+                                            "options": [
+                                                {
+                                                    "id": 0,
+                                                    "name": "string",
+                                                    "quantity": 0,
+                                                    "price": 0,
+                                                    "parent": 0
+                                                }
+                                            ],
+                                            "depth": 0
+                                        }
+                                    ],
+                                    "useCombination": true,
+                                    "optionCombinations": [
+                                        {
+                                            "id": [
+                                                0
+                                            ],
+                                            "quantity": 0,
+                                            "price": 0,
+                                            "status": "SALE"
+                                        }
+                                    ],
+                                    "prices": [
+                                        {}
+                                    ],
+                                    "createdAt": "2019-08-24T14:15:22Z",
+                                    "modifiedAt": "2019-08-24T14:15:22Z",
+                                    "enabledDemo": true,
+                                    "demoPeriod": 0,
+                                    "demoPeriodUnit": "DAY",
+                                    "categories": [
+                                        {
+                                            "categoryId": 0,
+                                            "name": "string"
+                                        }
+                                    ],
+                                    "vendorUuid": "86a7a3b9-2a36-4138-af12-a1ac1bec47f5",
+                                    "productOrder": 0,
+                                    "isOnetimePurchasable": true,
+                                    "eventBadge": [
+                                        {
+                                            "event": "string",
+                                            "startDateTime": "2019-08-24T14:15:22Z",
+                                            "endDateTime": "2019-08-24T14:15:22Z"
+                                        }
+                                    ],
+                                    "notice": "string",
+                                    "useWidget": {
+                                        "useDemo": true,
+                                        "useEventBadge": true,
+                                        "useOnetimePurchasable": true,
+                                        "useNotice": true
+                                    },
+                                    "groupId": 0,
+                                    "countrySetting": {
+                                        "id": 0,
+                                        "countryCode": "string",
+                                        "timezoneName": "string",
+                                        "currencyCode": "string",
+                                        "isDefault": true,
+                                        "taxRate": 0
+                                    }
+                                },
+                                "price": {}
+                            }
+                        ],
+                        "onetimeBundlePrice": 0,
+                        "order": 0
+                    }
+                },
+                "구독 가격플랜": {
+                    "value": {
+                        "id": 12652,
+                        "code": "price_5uykUL11C",
+                        "price": 8900,
+                        "unit": "회",
+                        "planName": "구독 가격플랜",
+                        "planDescription": "구독 가격플랜 설명",
+                        "type": "FLAT",
+                        "enabledFirstSalePrice": true,
+                        "firstSalePrice": 1000,
+                        "claimMethodType": "PRE",
+                        "whenToClaimType": "FIRST_PAYMENT",
+                        "billingDate": 0,
+                        "maximumPurchaseQuantity": 0,
+                        "membershipExpirationDate": 0,
+                        "membershipExpirationDateType": null,
+                        "setupOption": {
+                            "id": 948,
+                            "name": "가입비",
+                            "type": "INITIALLY",
+                            "price": 0,
+                            "claimMethodType": "PRE"
+                        },
+                        "options": [],
+                        "volumes": [],
+                        "additionalBilling": null,
+                        "recurring": {
+                            "id": 17373,
+                            "intervalCount": 1,
+                            "aggregateUsageType": "SUM",
+                            "interval": "MONTH",
+                            "usageType": "LICENSED"
+                        },
+                        "createdAt": "2023-09-13T09:07:55.332519",
+                        "modifiedAt": "2023-09-13T09:07:55.332519",
+                        "plan": {
+                            "name": "구독 가격플랜",
+                            "description": "구독 가격플랜 설명",
+                            "detailDescription": "구독 가격플랜 상세설명",
+                            "isHiddenFromShop": false,
+                            "adminName": "admin"
+                        },
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 1000
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "basicServing": 0,
+                        "bundlePrices": [],
+                        "onetimeBundlePrice": 0,
+                        "order": 0
+                    }
+                }
+            }
+        }
+    },
+    "/api/v1/products/{id}/prices/{priceId}": {
+        "get": {
+            "summary": "가격플랜 상세 조회",
+            "requestBody": {},
+            "responses": {
+                "단건 가격플랜": {
+                    "value": {
+                        "id": 12651,
+                        "code": "price_OwbncZIR4",
+                        "price": 10000.000,
+                        "unit": "회",
+                        "planName": "단건 가격플랜 이름",
+                        "planDescription": "단건 가격플랜 설명",
+                        "type": "ONE_TIME",
+                        "enabledFirstSalePrice": true,
+                        "firstSalePrice": 1000,
+                        "claimMethodType": "PRE",
+                        "whenToClaimType": "FIRST_PAYMENT",
+                        "billingDate": 0,
+                        "maximumPurchaseQuantity": 0,
+                        "membershipExpirationDate": 0,
+                        "membershipExpirationDateType": null,
+                        "setupOption": {
+                            "id": 951,
+                            "name": "가입비",
+                            "type": "INITIALLY",
+                            "price": 500,
+                            "claimMethodType": "PRE"
+                        },
+                        "options": [],
+                        "volumes": [],
+                        "additionalBilling": null,
+                        "recurring": null,
+                        "createdAt": "2023-09-13T12:37:05",
+                        "modifiedAt": "2023-09-13T12:37:05",
+                        "plan": {
+                            "name": "단건 가격플랜 이름",
+                            "description": "단건 가격플랜 설명",
+                            "detailDescription": "단건 가격플랜 상세설명",
+                            "isHiddenFromShop": false,
+                            "adminName": "admin"
+                        },
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 1000
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "basicServing": 0,
+                        "bundlePrices": [],
+                        "onetimeBundlePrice": 0,
+                        "order": 0
+                    }
+                },
+                "구독 가격플랜": {
+                    "value": {
+                        "id": 12652,
+                        "code": "price_5uykUL11C",
+                        "price": 8900,
+                        "unit": "회",
+                        "planName": "구독 가격플랜",
+                        "planDescription": "구독 가격플랜 설명",
+                        "type": "FLAT",
+                        "enabledFirstSalePrice": true,
+                        "firstSalePrice": 1000,
+                        "claimMethodType": "PRE",
+                        "whenToClaimType": "FIRST_PAYMENT",
+                        "billingDate": 0,
+                        "maximumPurchaseQuantity": 0,
+                        "membershipExpirationDate": 0,
+                        "membershipExpirationDateType": null,
+                        "setupOption": {
+                            "id": 948,
+                            "name": "가입비",
+                            "type": "INITIALLY",
+                            "price": 0,
+                            "claimMethodType": "PRE"
+                        },
+                        "options": [],
+                        "volumes": [],
+                        "additionalBilling": null,
+                        "recurring": {
+                            "id": 17373,
+                            "intervalCount": 1,
+                            "aggregateUsageType": "SUM",
+                            "interval": "MONTH",
+                            "usageType": "LICENSED"
+                        },
+                        "createdAt": "2023-09-13T09:07:55",
+                        "modifiedAt": "2023-09-13T09:07:55",
+                        "plan": {
+                            "name": "구독 가격플랜",
+                            "description": "구독 가격플랜 설명",
+                            "detailDescription": "구독 가격플랜 상세설명",
+                            "isHiddenFromShop": false,
+                            "adminName": "admin"
+                        },
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 1000
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "basicServing": 0,
+                        "bundlePrices": [],
+                        "onetimeBundlePrice": 0,
+                        "order": 0
+                    }
+                }
+            }
+        },
+        "put": {
+            "summary": "가격플랜 수정",
+            "requestBody": {
+                "단건 가격플랜": {
+                    "value": {
+                        "price": 6000,
+                        "unit": "개",
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 1000
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "maximumPurchaseQuantity": 0,
+                        "expiryPaymentCount": 0,
+                        "setupOption": {
+                            "id": 943,
+                            "name": "가입비",
+                            "type": "INITIALLY",
+                            "price": 2000
+                        },
+                        "isRepresentative": true,
+                        "type": "ONE_TIME",
+                        "plan": {
+                            "name": "단건 가격플랜 이름",
+                            "description": "단건 가격플랜 설명",
+                            "detailDescription": "단건 가격플랜 상세설명",
+                            "isHiddenFromShop": false,
+                            "adminName": "admin"
+                        }
+                    }
+                },
+                "구독 가격플랜": {
+                    "value": {
+                        "price": 5000,
+                        "unit": "회차",
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 200
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "maximumPurchaseQuantity": 0,
+                        "setupOption": {
+                            "id": 0,
+                            "name": "가입비",
+                            "type": "INITIALLY",
+                            "price": 0
+                        },
+                        "recurring": {
+                            "id": 17363,
+                            "intervalCount": 7,
+                            "interval": "DAY",
+                            "aggregateUsageType": "SUM",
+                            "usageType": "LICENSED"
+                        },
+                        "isRepresentative": true,
+                        "type": "FLAT",
+                        "plan": {
+                            "name": "구독 가격플랜",
+                            "description": "구독 가격플랜 설명",
+                            "detailDescription": "구독 가격플랜 상세설명",
+                            "isHiddenFromShop": false,
+                            "adminName": "admin"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "단건 가격플랜": {
+                    "value": {
+                        "id": 12640,
+                        "code": "price_LMdrD4fPs",
+                        "price": 6000,
+                        "unit": "string",
+                        "planName": "string",
+                        "planDescription": "string",
+                        "type": "ONE_TIME",
+                        "enabledFirstSalePrice": true,
+                        "firstSalePrice": 1000,
+                        "claimMethodType": "PRE",
+                        "whenToClaimType": "FIRST_PAYMENT",
+                        "billingDate": 0,
+                        "maximumPurchaseQuantity": 0,
+                        "membershipExpirationDate": 0,
+                        "membershipExpirationDateType": null,
+                        "setupOption": {
+                            "id": 943,
+                            "name": "가입비",
+                            "type": "INITIALLY",
+                            "price": 2000,
+                            "claimMethodType": "PRE"
+                        },
+                        "options": [],
+                        "volumes": [],
+                        "additionalBilling": null,
+                        "recurring": null,
+                        "createdAt": "2023-09-13T07:36:19",
+                        "modifiedAt": "2023-09-13T08:39:53.50896",
+                        "plan": {
+                            "name": "string",
+                            "description": "string",
+                            "detailDescription": "string",
+                            "isHiddenFromShop": false,
+                            "adminName": "string"
+                        },
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 1000
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "basicServing": 0,
+                        "bundlePrices": [],
+                        "onetimeBundlePrice": 0,
+                        "order": 4
+                    }
+                },
+                "구독 가격플랜": {
+                    "value": {
+                        "id": 12645,
+                        "code": "price_WaRli2lYn",
+                        "price": 5000,
+                        "unit": "회차",
+                        "planName": "구독 가격플랜",
+                        "planDescription": "구독 가격플랜 설명",
+                        "type": "FLAT",
+                        "enabledFirstSalePrice": true,
+                        "firstSalePrice": 200,
+                        "claimMethodType": "PRE",
+                        "whenToClaimType": "FIRST_PAYMENT",
+                        "billingDate": 0,
+                        "maximumPurchaseQuantity": 0,
+                        "membershipExpirationDate": 0,
+                        "membershipExpirationDateType": null,
+                        "setupOption": {
+                            "id": 946,
+                            "name": "string",
+                            "type": "INITIALLY",
+                            "price": 0,
+                            "claimMethodType": "PRE"
+                        },
+                        "options": [],
+                        "volumes": [],
+                        "additionalBilling": null,
+                        "recurring": {
+                            "id": 17372,
+                            "intervalCount": 7,
+                            "aggregateUsageType": "SUM",
+                            "interval": "DAY",
+                            "usageType": "LICENSED"
+                        },
+                        "createdAt": "2023-09-13T08:06:14",
+                        "modifiedAt": "2023-09-13T08:50:36.656827",
+                        "plan": {
+                            "name": "구독 가격플랜",
+                            "description": "구독 가격플랜 설명",
+                            "detailDescription": "구독 가격플랜 상세설명",
+                            "isHiddenFromShop": false,
+                            "adminName": "admin"
+                        },
+                        "firstSale": {
+                            "enabled": true,
+                            "price": 200
+                        },
+                        "claim": {
+                            "methodType": "PRE",
+                            "whenToClaimType": "FIRST_PAYMENT",
+                            "billingDate": 0,
+                            "provideStartDay": 0
+                        },
+                        "basicServing": 0,
+                        "bundlePrices": [],
+                        "onetimeBundlePrice": 0,
+                        "order": 5
+                    }
+                }
+            }
+        },
+        "delete": {
+            "summary":"가격 삭제",
+            "responses": {
+                "응답 예시": {
+                    "value": {
+                        "body": null,
+                        "message": "상품 모델을 성공적으로 삭제 했습니다"
+                    }
+                }
+            }
+        }
+    },
+    "/api/v1/products/{id}/status": {
+        "patch": {
+            "summary": "상품 게시 삭제 변경",
+            "responses": {
+                "응답 예시": {
+                    "value": {
+                        "body": null,
+                        "message": "상품 상태 변경 성공"
+                    }
+                }
+            }
+        }
+    }
+}
