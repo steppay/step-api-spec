@@ -1,13 +1,13 @@
 {
     "name": "step-api-sdk-generator",
-    "packageManager": "yarn@3.3.0",
+    "packageManager": "yarn@1.22.21",
     "private": true,
     "type": "module",
     "scripts": {
         "fetch": "node ./scripts/fetchServiceSpecs.mjs",
         "skeleton": "node ./scripts/generateOverrideSkeleton.mjs",
         "combine": "node ./scripts/combineSpecs.mjs",
-        "build": "openapi-generator-cli generate -i merge/$API_SPEC_FILE.json -g typescript-axios -o ../step-api-sdk --remove-operation-id-prefix --additional-properties=ngVersion=6.1.7,npmName=step-api-sdk,supportsES6=true,npmVersion=1.0.0,withInterfaces=true",
+        "build": "openapi-generator-cli generate -i merge/$API_SPEC_FILE.json -g typescript-axios -o --skip-validate-spec ../step-api-sdk --remove-operation-id-prefix --additional-properties=ngVersion=6.1.7,npmName=step-api-sdk,supportsES6=true,npmVersion=1.0.0,withInterfaces=true",
         "docs": "webpack-dev-server --open"
     },
     "dependencies": {
