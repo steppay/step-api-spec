@@ -15,6 +15,11 @@ for tag in "${tags[@]}"; do
     API_SEGMENT=$tag yarn combine
 done
 
+for tag in "${tags[@]}"; do
+    echo "V1 API spec for segment: $tag"
+    API_SEGMENT=$tag yarn stoplight
+done
+
 echo "Building with all spec..."
 API_SPEC_FILE=all yarn build
 

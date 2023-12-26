@@ -1,6 +1,8 @@
 import fs from 'fs/promises'
 import path from 'path'
 import _ from 'lodash'
+import {DOWNLOADED_SPECS_DIR, SERVICES} from "./constants.mjs";
+import console from "console";
 
 export function getSpecPathByServiceName(serviceName, prefix = '') {
     return './' + path.join(prefix, serviceName) + '.json'
@@ -73,4 +75,37 @@ export function renameField(obj, originalFieldName, newFieldName) {
         delete obj[originalFieldName]
     }
     return obj
+}
+
+export async function loadSpecs() {
+    return await SERVICES.reduce(async (accPromise, service) => {
+        const acc = await accPromise;
+        const downloadedSpecPath = getSpecPathByServiceName(service, DOWNLOADED_SPECS_DIR);
+
+        if (!(await fileExists(downloadedSpecPath))) {
+            console.error(`문제가 발생한 서비스: ${service}`);
+            console.error(`문제가 발생한 경로: ${downloadedSpecPath}`);
+            throw new Error('다운받은 Open API 스펙 파일이 모두 있어야 합니다.');
+        }
+
+        const spec = await fs.readFile(downloadedSpecPath);
+        return {...acc, [service]: JSON.parse(spec.toString())};
+    }, Promise.resolve({}));
+}
+
+export async function loadSpecFrom(directory, fileName) {
+    try {
+        const specPath = `${directory}/${fileName}`;
+
+        if (!(fs.access(specPath))) {
+            console.error(`문제가 발생한 경로: ${specPath}`);
+            throw new Error(`해당 경로에 스펙 파일이 없습니다: ${specPath}`);
+        }
+
+        const specContent = await fs.readFile(specPath);
+        return JSON.parse(specContent.toString());
+    } catch (e) {
+        console.error(e);
+        throw e;
+    }
 }

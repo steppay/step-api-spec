@@ -12,15 +12,20 @@ npm install --global yarn
 
 ## 주요 명령어 사용법
 
+- 전체 실행하기
+
 ```bash
 chmod +x run.sh
 ./run.sh
 ```
 
+- 서비스 별로 실행하기
+
 ```bash
 npm install
 APP_ENV=production yarn fetch
 API_SEGMENT=v1 yarn combine
+API_SEGMENT=v1 yarn stoplight
 API_SPEC_FILE=v1 yarn build
 ```
 
@@ -56,14 +61,12 @@ node ./src/server.mjs
 http://localhost:3000/swagger
 ```
 
-## 수정 작업
+## 기타
 
-- product
-    - v1_updateProductOrder
-    - v1_retryPayment
-    - v1_searchDeliveryByOrder
+### Spec Validate Skip
+- org.openapitools.codegen.SpecValidationException 날 때 임시 조치
+- package.json에서 build 옵션에 `--skip-validate-spec ` 추가
 
-
-APP_ENV=local yarn fetch
-API_SEGMENT=v1 yarn combine
-API_SPEC_FILE=v1 yarn build
+```text
+"build": "openapi-generator-cli generate -i merge/$API_SPEC_FILE.json -g typescript-axios -o ../step-api-sdk --remove-operation-id-prefix --additional-properties=ngVersion=6.1.7,npmName=step-api-sdk,supportsES6=true,npmVersion=1.0.0,withInterfaces=true"
+```
