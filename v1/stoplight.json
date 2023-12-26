@@ -1,0 +1,390 @@
+{
+    "/api/v1/customers": {
+      "post": {
+        "x-stoplight": {
+          "id": "y5u57kwssikj3"
+        }
+      },
+      "get": {
+        "x-stoplight": {
+          "id": "jpd5w840p1ke3"
+        }
+      }
+    },
+    "/api/v1/customers/{id}": {
+      "put": {
+        "x-stoplight": {
+          "id": "gtlznwiejhf9b"
+        }
+      },
+      "delete": {
+        "x-stoplight": {
+          "id": "rv1na38tpxg9w"
+        }
+      },
+      "get": {
+        "x-stoplight": {
+          "id": "p9imo3u89uelf"
+        }
+      }
+    },
+    "/api/v1/customers/{id}/payment-method": {
+      "post": {
+        "x-stoplight": {
+          "id": "51ksi5s0quope"
+        }
+      }
+    },
+    "/api/v1/customers/{customerId}/payment-method": {
+      "put": {
+        "x-stoplight": {
+          "id": "4rt9ipio9cvtx"
+        },
+        "x-internal": true
+      }
+    },
+    "/api/v1/customers/{customerId}/payment-method/{methodId}": {
+      "delete": {
+        "x-stoplight": {
+          "id": "6vmzlbmd2ykgt"
+        }
+      }
+    },
+    "/api/v1/products": {
+      "get": {
+        "x-stoplight": {
+          "id": "qk7wwjo8q4t62"
+        }
+      },
+      "post": {
+        "x-stoplight": {
+          "id": "cmpcpf85mlsai"
+        }
+      }
+    },
+    "/api/v1/products/{id}": {
+      "put": {
+        "x-stoplight": {
+          "id": "se6ybsgbemmyi"
+        }
+      },
+      "delete": {
+        "x-stoplight": {
+          "id": "5kztpmow6gf70"
+        }
+      }
+    },
+    "/api/v1/products/{code}": {
+      "get": {
+        "x-stoplight": {
+          "id": "sex7rn9yehufv"
+        }
+      }
+    },
+    "/api/v1/products/{id}/prices": {
+      "get": {
+        "x-stoplight": {
+          "id": "2scmjn8mmxh21"
+        }
+      },
+      "post": {
+        "x-stoplight": {
+          "id": "qwwy8n7l0sc4q"
+        }
+      }
+    },
+    "/api/v1/products/{id}/prices/{priceId}": {
+      "get": {
+        "x-stoplight": {
+          "id": "jjwg13cb8q4el"
+        }
+      },
+      "put": {
+        "x-stoplight": {
+          "id": "a1lk0z55qet7y"
+        }
+      },
+      "delete": {
+        "x-stoplight": {
+          "id": "i2ll47ew0t6vn"
+        }
+      }
+    },
+    "/api/v1/products/{id}/status": {
+      "patch": {
+        "x-stoplight": {
+          "id": "x1b3yitqwq6c5"
+        }
+      }
+    },
+    "/api/v1/orders": {
+      "get": {
+        "x-stoplight": {
+          "id": "7ggihe0kn9h4f"
+        }
+      },
+      "post": {
+        "x-stoplight": {
+          "id": "mopoq2ivh7trq"
+        }
+      }
+    },
+    "/api/v1/orders/{orderIdOrCode}": {
+      "get": {
+        "x-stoplight": {
+          "id": "9j1l5azkkdxcp"
+        }
+      }
+    },
+    "/api/v1/orders/{orderIdOrCode}/cancel": {
+      "patch": {
+        "x-stoplight": {
+          "id": "vvz292qgotdjy"
+        }
+      }
+    },
+    "/api/v1/orders/{idOrCode}/pay": {
+      "get": {
+        "x-stoplight": {
+          "id": "chr8dssl5ajwt"
+        }
+      }
+    },
+    "/api/v1/delivery/order/{orderCode}": {
+      "get": {
+        
+      }
+    },
+    "/api/v1/delivery/orders/{orderIdOrCode}": {
+      "get": {
+        "x-internal": true
+      }
+    },
+    "/api/v1/invoices": {
+      "get": {
+        "x-stoplight": {
+          "id": "bml65rreylfwc"
+        }
+      },
+      "post": {
+        "x-stoplight": {
+          "id": "0nrinnszkw9at"
+        }
+      }
+    },
+    "/api/v1/invoices/{id}": {
+      "get": {
+        "x-stoplight": {
+          "id": "q1clx2dui0d8b"
+        }
+      },
+      "put": {
+        "x-stoplight": {
+          "id": "eo4ebtjq4y0dc"
+        }
+      },
+      "delete": {
+        "x-stoplight": {
+          "id": "gvb2db1qhkp12"
+        }
+      }
+    },
+    "/api/v1/subscriptions": {
+      "get": {
+        "x-stoplight": {
+          "id": "xl64x0x1q91u1"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{id}": {
+      "get": {
+        "x-stoplight": {
+          "id": "rid399o08zwtw"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/items": {
+      "put": {
+        "x-stoplight": {
+          "id": "50hcadi89cfi5"
+        }
+      },
+      "post": {
+        "x-stoplight": {
+          "id": "3rj4vs4tbb4lp"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/items/{itemId}": {
+      "put": {
+        "x-stoplight": {
+          "id": "amsu0gh78f6rl"
+        }
+      },
+      "delete": {
+        "x-stoplight": {
+          "id": "1zkzv8x600wqw"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/payment-method": {
+      "put": {
+        "x-stoplight": {
+          "id": "zvbg7bxjuhifz"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/interval": {
+      "put": {
+        "x-stoplight": {
+          "id": "klfut9sx56rqw"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/pause": {
+      "post": {
+        "x-stoplight": {
+          "id": "qgfux29t08y1z"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/change-pay-datetime": {
+      "post": {
+        "x-stoplight": {
+          "id": "ct5ag3bzyksr0"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/cancel": {
+      "post": {
+        "x-stoplight": {
+          "id": "9xtembnv67dz9"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/active": {
+      "post": {
+        "x-stoplight": {
+          "id": "f8t3a1nhyy1om"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{id}/renew": {
+      "post": {
+        "x-stoplight": {
+          "id": "cetduidoqmooy"
+        },
+        "x-internal": true
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/items/{itemId}/options": {
+      "get": {
+        "x-stoplight": {
+          "id": "1rynb6kxsebam"
+        }
+      }
+    },
+    "/api/v1/usages": {
+      "get": {
+        "x-stoplight": {
+          "id": "q58gmj40ulr22"
+        }
+      },
+      "post": {
+        "x-stoplight": {
+          "id": "usn75ct3klqvb"
+        }
+      }
+    },
+    "/api/v1/subscriptions/{subscriptionId}/calculate": {
+      "get": {
+        "x-stoplight": {
+          "id": "3cujnnbmdysz8"
+        }
+      }
+    },
+    "/api/v1/cover/customer": {
+      "post": {
+        "x-stoplight": {
+          "id": "ofidcynlumo5s"
+        }
+      }
+    },
+    "/api/v1/cover/product": {
+      "post": {
+        "x-stoplight": {
+          "id": "ex80tbh82es6t"
+        }
+      }
+    },
+    "/api/v1/cover/price": {
+      "post": {
+        "x-stoplight": {
+          "id": "1plpx97iq75sp"
+        }
+      }
+    },
+    "/api/v1/cover/order": {
+      "post": {
+        "x-stoplight": {
+          "id": "8x7b5pwxu7yyp"
+        }
+      }
+    },
+    "/api/v1/cover/order/{token}/idKey": {
+      "get": {
+        "x-stoplight": {
+          "id": "qii1pxt90t6h7"
+        }
+      }
+    },
+    "/api/v1/cover/order/success/{orderId}": {
+      "patch": {
+        "x-stoplight": {
+          "id": "rduy90zkb6qnc"
+        }
+      }
+    },
+    "/api/v1/cover/order/cancel/{orderId}": {
+      "patch": {
+        "x-stoplight": {
+          "id": "9yjpn6ywm46e9"
+        }
+      }
+    },
+    "/api/v1/cover/subscription": {
+      "post": {
+        "x-stoplight": {
+          "id": "4t9lalaqwxsr8"
+        }
+      }
+    },
+    "/api/v1/cover/subscription/{subscriptionId}/active": {
+      "put": {
+        "x-stoplight": {
+          "id": "8fyh8k3ow9gmf"
+        }
+      }
+    },
+    "/api/v1/cover/subscription/{subscriptionId}/cancel": {
+      "put": {
+        "x-stoplight": {
+          "id": "rvvwu6ysr2rte"
+        }
+      }
+    },
+    "/api/v1/cover/recovery": {
+      "post": {
+        "x-stoplight": {
+          "id": "m3w88x1ce3b5g"
+        }
+      }
+    },
+    "/api/v1/session/{customerId}": {
+      "get": {
+        "x-stoplight": {
+          "id": "yruxih4kcqqtc"
+        }
+      }
+    }
+}
