@@ -1,0 +1,58 @@
+{
+  "AccountCustomercreatedto": [
+      "username",
+      "email",
+      "name"
+    ],
+  "CustomerUpdateDTO": [
+    "name"
+  ],
+  "ProductProductcreatedto": [
+    "type",
+    "status",
+    "name"
+  ],
+  "ProductUpdateDTO": [],
+  "ProductPricecreatedto": [
+    "unit",
+    "plan",
+    "type"
+  ],
+  "Plan": [
+    "name",
+    "description"
+  ],
+  "FirstSale": [],
+  "Claim": [],
+  "PriceSetupOptionCreateDTO": [
+    "name",
+    "type"
+  ],
+  "PriceUpdateDTO": [
+    "unit",
+    "plan"
+  ],
+  "PriceSetupOptionUpdateDTO": [
+    "name",
+    "type"
+  ],
+  "OrderCreateV1DTO": [
+    "customerId",
+    "customerCode",
+    "customerUuid",
+    "items"
+  ],
+  "OrderItemCreateV1DTO": [
+    "productCode",
+    "priceCode"
+  ],
+  "ReqV1": [
+    "requestPrice"
+  ],
+  "SubscriptionItemCreateDTO": [
+    "productCode",
+    "priceCode"
+  ],
+  "SubscriptionItemChangeDTO": [],
+  "SubscriptionPauseDTO": []
+}

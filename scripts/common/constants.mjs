@@ -10,3 +10,5 @@ export const STOPLIGHT_ID = 'h7olll6xt2zrg'
 export const TAG_SPECS = './v1/spec-tag.json'
 export const EXAMPLE_SPECS = './v1/spec-example.json'
 export const STOPLIGHT_PATH_MAP = './v1/stoplight.json'
+
+export const REQUIRED_SPECS = './v1/spec-required.json'
