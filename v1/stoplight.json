@@ -150,14 +150,11 @@
         }
       }
     },
-    "/api/v1/delivery/order/{orderCode}": {
-      "get": {
-        
-      }
-    },
     "/api/v1/delivery/orders/{orderIdOrCode}": {
       "get": {
-        "x-internal": true
+        "x-stoplight": {
+          "id": "7f8b09108201f"
+        }
       }
     },
     "/api/v1/invoices": {

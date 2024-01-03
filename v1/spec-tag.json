@@ -19,7 +19,6 @@
     "/api/v1/orders/{orderIdOrCode}",
     "/api/v1/orders/{orderIdOrCode}/cancel",
     "/api/v1/orders/{idOrCode}/pay",
-    "/api/v1/delivery/order/{orderCode}",
     "/api/v1/delivery/orders/{orderIdOrCode}"
   ],
   "청구서 API": [
