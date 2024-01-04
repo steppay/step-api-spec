@@ -1560,16 +1560,9 @@
             "items": [
               {
                 "productCode": "product_AbCdEfGhI",
-                "priceCode": "price_AbCdEfGhI",
-                "productOption": [],
-                "currency": "KRW",
-                "type": "SKU",
-                "minimumQuantity": 1
+                "priceCode": "price_AbCdEfGhI"
               }
-            ],
-            "purchaseDeadline": "9999-01-01T00:00:00",
-            "paymentGateway": "UNKNOWN",
-            "region": "KR"
+            ]
           }
         }
       },
