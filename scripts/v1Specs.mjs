@@ -5,7 +5,7 @@ import {
     COMBINE_SPECS_DIR,
     EXAMPLE_SPECS,
     INCLUDE_TAG,
-    MERGED_SPECS_DIR, PUBLISH_SPECS_DIR, STOPLIGHT_PATH_MAP,
+    MERGED_SPECS_DIR, PUBLISH_SPECS_DIR, REQUIRED_SPECS, STOPLIGHT_PATH_MAP,
     TAG_SPECS
 } from './common/constants.mjs'
 import {directoryExists, loadSpecFrom} from './common/utils.mjs'
@@ -152,12 +152,30 @@ async function setStoplightId(inPath, inFileName, outPath, outFileName) {
     await fs.writeFile(`${outPath}/${outFileName}`, JSON.stringify(spec, null, 2));
 }
 
+async function reviceRequied(inPath, inFileName, outFileName) {
+    const spec = await loadSpecFrom(inPath, inFileName);
+    const schemas = spec.components.schemas; // DTO Schema
+
+    const requiredMappingContent = await fs.readFile(REQUIRED_SPECS, 'utf-8');
+    const requiredMap = JSON.parse(requiredMappingContent); // required spec
+
+    for (const [DTOName, required] of Object.entries(requiredMap)) {
+        schemas[DTOName].required = required
+    }
+
+    await fs.writeFile(`${COMBINE_SPECS_DIR}/${outFileName}`, JSON.stringify(spec, null, 2));
+}
+
+
 async function v1Spec() {
     // 공개된 V1 API에 맞게 정렬
     await addTag(MERGED_SPECS_DIR, 'v1', COMBINE_SPECS_DIR);
 
+    // required 수정
+    await reviceRequied(COMBINE_SPECS_DIR, 'v1_tag.json', 'v1_required.json')
+
     // V1 요청, 응답 예시 넣어주기
-    await addExamples(COMBINE_SPECS_DIR, 'v1_tag.json', 'v1_example.json')
+    await addExamples(COMBINE_SPECS_DIR, 'v1_required.json', 'v1_example.json')
 
     // stoplight id 추가
     await setStoplightId(COMBINE_SPECS_DIR, 'v1_example.json', PUBLISH_SPECS_DIR, 'steppay_v1.json');
