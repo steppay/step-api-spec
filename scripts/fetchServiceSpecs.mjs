@@ -9,7 +9,7 @@ import { directoryExists, getSpecPathByServiceName } from './common/utils.mjs'
 const APP_ENV = process.env.APP_ENV ?? 'develop'
 
 async function fetchServiceOpenApiSpec(env, services) {
-    let baseUrl = `https://api.${env === 'production' ? '' : env + '.'}steppay.kr/docs/manager`
+    let baseUrl = `https://api.${env === 'production' ? '' : env + '.'}steppay.kr/docs/v1`
     if (env === 'local') {
         baseUrl = `http://localhost:9091/docs`
     }

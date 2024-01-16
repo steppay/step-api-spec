@@ -65,7 +65,7 @@ http://localhost:3000/swagger
 
 ### Spec Validate Skip
 - org.openapitools.codegen.SpecValidationException 날 때 임시 조치
-- package.json에서 build 옵션에 `--skip-validate-spec ` 추가
+- package.json에서 build 옵션에 `--skip-validate-spec` 추가
 
 ```text
 "build": "openapi-generator-cli generate -i merge/$API_SPEC_FILE.json -g typescript-axios -o ../step-api-sdk --remove-operation-id-prefix --additional-properties=ngVersion=6.1.7,npmName=step-api-sdk,supportsES6=true,npmVersion=1.0.0,withInterfaces=true"

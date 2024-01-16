@@ -1559,6 +1559,7 @@
             "customerId": 0,
             "items": [
               {
+                "minimumQuantity": 1,
                 "productCode": "product_AbCdEfGhI",
                 "priceCode": "price_AbCdEfGhI"
               }

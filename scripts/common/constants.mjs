@@ -1,4 +1,4 @@
-export const SERVICES = ['account', 'notification', 'payment', 'product', 'storage', 'store', 'usage_record', 'cover']
+export const SERVICES = ['account', 'payment', 'product', 'storage', 'store', 'usage_record', 'cover']
 export const DOWNLOADED_SPECS_DIR = './service'
 export const MERGED_SPECS_DIR = './merge'
 export const COMBINE_SPECS_DIR = './combine'
