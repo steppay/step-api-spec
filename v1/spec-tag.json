@@ -1,10 +1,7 @@
 {
   "고객 API": [
     "/api/v1/customers",
-    "/api/v1/customers/{id}",
-    "/api/v1/customers/{id}/payment-method",
-    "/api/v1/customers/{customerId}/payment-method",
-    "/api/v1/customers/{customerId}/payment-method/{methodId}"
+    "/api/v1/customers/{id}"
   ],
   "상품 API": [
     "/api/v1/products",
@@ -63,5 +60,9 @@
   "인증 API": [
     "/api/v1/session/{customerId}"
   ],
-  "포함되지 않은 API": []
+  "포함되지 않은 API": [
+    "/api/v1/customers/{id}/payment-method",
+    "/api/v1/customers/{customerId}/payment-method",
+    "/api/v1/customers/{customerId}/payment-method/{methodId}"
+  ]
 }
